@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <script async src="https://cdn.ampproject.org/v0.js"></script>
-  <title>Hello, AMPs</title>
+  <title>Song Donkey</title>
   <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup/">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
   <style amp-boilerplate>
@@ -74,17 +74,23 @@
       }
     </style>
   </noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
   <style amp-custom>
-    /* amp-img.cover img {
-      object-fit: cover;
+    h1 {
+      font-family: Roboto, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 64px;
     }
-
-    .fixed-container {
-      position: relative;
-      width: 800px;
-      height: 100%;
-    } */
-
+    p {
+      font-family: Lato, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 36px;
+      color: #0A0B0D;
+    }
     .fullImage {
       position: fixed;
       top: 0;
@@ -102,9 +108,9 @@
 </head>
 
 <body>
-  <h1 id="hello">This is an amp page ⚡</h1>
-  <p>Coooool aye x, yes very cool</p>
- 
+  <h1><span style="color: #A68263;">Audio</span> splitting by Song Donkey</h1>
+  <p>Extract vocals and instruments with artificial intelligence </p>
+
   <div class="fullImage"></div>
 
 </body>
