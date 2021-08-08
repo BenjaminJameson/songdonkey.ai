@@ -124,19 +124,15 @@
   <div class="fullImage"></div>
   <div>
 
+
+
     <amp-script layout="container" script="hello-world" class="sample">
       <button id="hello-inline">Say hello!</button>
     </amp-script>
 
     <script id="hello-world" type="text/plain" target="amp-script">
-        const button = document.getElementById('hello-inline');
-
-        button.addEventListener('click', () => {
-          const h1 = document.createElement('h1');
-          h1.textContent = 'Hello World!';
-          document.body.appendChild(h1);
-          console.log("HHHHHIIIIIIII");
-        });
+      console.log("hello world first");
+      
       </script>
   </div>
 
