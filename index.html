@@ -12,6 +12,7 @@
 
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-element="amp-script" src="https://cdn.ampproject.org/v0/amp-script-0.1.js"></script>
+  <script async custom-element="amp-soundcloud" src="https://cdn.ampproject.org/v0/amp-soundcloud-0.1.js"></script>
   <title>Song Donkey</title>
   <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup/">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -122,10 +123,14 @@
 
 <body>
   <div class="fullImage"></div>
+<amp-soundcloud
+  width="auto"
+  height="20"
+  layout="fixed-height"
+  data-trackid="1102321477"
+  data-color="d6bfab"
+></amp-soundcloud>
   <div>
-
-
-
     <amp-script layout="container" script="hello-world" class="sample">
       <button id="hello-inline">Say hello!</button>
     </amp-script>
@@ -136,7 +141,7 @@
       </script>
   </div>
 
-  <h1><span style="color: #A68263;">Audio</span> splitting by Song Donkey</h1>
+  <h1><span style="color: #d6bfab;">Audio</span> splitting by Song Donkey</h1>
   <p>Extract vocals and instruments with artificial intelligence </p>
 </body>
 
