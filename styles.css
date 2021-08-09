@@ -19,7 +19,7 @@ h2 {
 }
 
 .mainImage {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
@@ -45,4 +45,12 @@ h2 {
     margin: 15px;
     padding: 10px;
     border: 1px solid #aaaaaa;
+}
+
+.uploadLabel {
+    position: relative;
+    width: 448px;
+    height: 72px;
+    border-radius: 20px;
+    background-color: #A68263;
 }
