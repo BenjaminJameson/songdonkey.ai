@@ -29,6 +29,11 @@ h2 {
     background-position: center;
     background-size: cover;
     z-index: -9999999;
+    background-attachment: fixed;
+    transition: height 1000000s ease;
+    -webkit-transition: height 1000000s ease;
+    -moz-transition: height 1000000s ease;
+    -o-transition: height 1000000s ease;
 }
 
 .myDiv {
