@@ -1,60 +1,13 @@
-var eminem = 'https://song-splitter-bucket.s3.amazonaws.com/1079040578.mp3';
-var longerSong = 'https://song-splitter-bucket.s3.amazonaws.com/1687030339.mp3';
-var img = 'https://cdn.shopify.com/s/files/1/1061/1924/products/Man_Saying_Hi_Emoji_Icon_ios10_1024x1024.png?v=1571606091';
-var vocals = document.getElementById("vocals");
-console.log("vocals", vocals);
 console.log("YESSSSSS");
-const audio_file = document.getElementById("audio_file");
-console.log("audio", audio_file);
+audio_file.onchange = function () {
+    files = this.files;
+    file = URL.createObjectURL(files[0]);
+    audio_player.src = file;
+    console.log(file);
+    var fileToSend = files[0];
 
-// When the draggable p element enters the droptarget, change the DIVS's border style
-document.addEventListener("dragenter", function (event) {
-    console.log("dragenter");
-    console.log(event.target);
-    if (event.target.className == "myDiv") {
-        event.target.style.border = "3px dotted red";
-    }
-});
-document.addEventListener("dragover", function (event) {
-    // console.log("dragover");
-    event.preventDefault();
-});
-document.addEventListener("drop", function (event) {
-    console.log("DROPPPPPED");
-    event.preventDefault();
-
-    console.log(event.dataTransfer.items[0].getAsFile());
-    if (event.target.className == "droptarget") {
-        document.getElementById("demo").style.color = "";
-        event.target.style.border = "";
-        var data = event.dataTransfer.getData("Text");
-        event.target.appendChild(document.getElementById(data));
-    }
-});
-
-// document.addEventListener('drop', function (event) {
-//     console.log("something dropped");
-// })
-
-// audio_file.addEventListener('drop', (event) => {
-//     console.log("DROPPPPPED");
-//     console.log("src", vocals.src);
-//     vocals.src = longerSong;
-//     const testAudio = document.createElement('img');
-//     testAudio.setAttribute("src", img);
-//     // testAudio.setAttribute("layout", "responsive");
-//     document.body.appendChild(testAudio);
-// });
-
-// audio_file.onchange = function () {
-//     files = this.files;
-//     file = URL.createObjectURL(files[0]);
-//     audio_player.src = file;
-//     console.log(file);
-//     var fileToSend = files[0];
-
-//     uploadAndRunAI(fileToSend);
-// };
+    uploadAndRunAI(fileToSend);
+};
 
 async function checkExistsThenUpdate(accompanimentURL, vocalsURL) {
     var accompaniment = await checkIfFileExistsYet(accompanimentURL);
