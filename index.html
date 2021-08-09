@@ -13,6 +13,8 @@
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-element="amp-script" src="https://cdn.ampproject.org/v0/amp-script-0.1.js"></script>
   <script async custom-element="amp-soundcloud" src="https://cdn.ampproject.org/v0/amp-soundcloud-0.1.js"></script>
+  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+  <script async custom-element="amp-audio" src="https://cdn.ampproject.org/v0/amp-audio-0.1.js"></script>
   <title>Song Donkey</title>
   <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup/">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -112,6 +114,14 @@
       background-size: cover;
       z-index: -9999;
     }
+
+    .uploadLabel {
+      position: absolute;
+      width: 448px;
+      height: 72px;
+      border-radius: 20px;
+      background-color: #A68263;
+    }
   </style>
   <!-- <meta name="amp-script-src" content="sha384-Ue9zbjRg4pTNmA-I9-Hy1AQ2VfqWqnBnhG8TCgpHocJSqrVT6t3hggROYYnrx8-1 sha384-r00P9CEZbM38zUQ7MvMzB-dPXvaxBHSfxK2jMqNh0n9o_ii-WPF9PvKDQtHCKqEQ sha384-zj48DhYXLklSbvWSjgcx7avvMkOlcwM6cNjRxWFP0ktlkOFcevIGlV0dV20oXdgD sha384-pCERTONzwdvjE-jmP2anx_-4dkr0iPV22IEXws49h0tKSojtwFE5PZYNZq9tQXQn sha384-NSzMIpXPEGdeAOEp5jQlCZgkPgGdMgtAoVyiIhaIIcKFM3PKq9t8pFs_t8nBjDk9 sha384-DNmRE8-Gxecf5BVIB5ZbpctTIiEa56TFjGKEhWG4Ys7LUdFYBcRn9fwb1NKcSzuE sha384-tvoKljCwTSMId8wpKdpz8LLZ0LX4CYPO5SHE3naqBMSpjiAXs7nqAFyDqcIyKLnu sha384-u8MHzN6WO3qzhKcTDfPwzegaQxQIsoc7rvZIIs1OvtqvdD-H9ERP-rS7w_lCKp5b sha384-YyoOiy6agw_rBLvwQu9kX7jLfXe8mIlDv-Fusnd_Cgnji2dMTFrn4n5vp7wttYSK sha384-sGOe51ozMtqq18npMQaH285rcTBNpUn5q5CQbTNj3Pv3ngGS2R7x-lx-Vlrq8UHT sha384-zg8qhSMK-BcD0eokXgIlw2LecNc_L8yHC_M1bs7UipQHeK8K2bryFGK05h9fZOyH sha384--Jg4MSQPIYA-2HcDnoTs61S7XAv10T6k3-OyjJ1VEVy3-E29XvxDEdEAxPj0F_XV sha384-iER2Cy-P1498h1B-1f3ngpVEa9NG1xIxKqg0rNkRX0e7p5s0GYdit1MRKsELIQe8 sha384-UPY0FmlOzIjSqWqMgbuaEbqIdvpGY_FzCuTAyoLdrFJb2NYf8cPWJlugA0rUbXjL
     sha384-tvoKljCwTSMId8wpKdpz8LLZ0LX4CYPO5SHE3naqBMSpjiAXs7nqAFyDqcIyKLnu
@@ -123,13 +133,12 @@
 
 <body>
   <div class="fullImage"></div>
-<amp-soundcloud
-  width="auto"
-  height="20"
-  layout="fixed-height"
-  data-trackid="1102321477"
-  data-color="d6bfab"
-></amp-soundcloud>
+  <h1><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
+  <p>Extract vocals and instruments with artificial intelligence </p>
+
+
+  <amp-soundcloud width="auto" height="20" layout="fixed-height" data-trackid="1102321477" data-color="A68263">
+  </amp-soundcloud>
   <div>
     <amp-script layout="container" script="hello-world" class="sample">
       <button id="hello-inline">Say hello!</button>
@@ -137,12 +146,29 @@
 
     <script id="hello-world" type="text/plain" target="amp-script">
       console.log("hello world first");
-      
       </script>
   </div>
 
-  <h1><span style="color: #d6bfab;">Audio</span> splitting by Song Donkey</h1>
-  <p>Extract vocals and instruments with artificial intelligence </p>
+  <form action-xhr="./index.js" method="post">
+    <label class="uploadLabel" for="audio_file"><span
+        style="color: white; display: flex; justify-content: center; font-size: 30px;">Upload</span></label>
+    <input id="audio_file" type="file" accept="audio/*" />
+  </form>
+
+
+  <amp-audio width="400" height="200" src="https://yourhost.com/audios/myaudio.mp3">
+    <div fallback>
+      <p>Your browser doesn’t support HTML5 audio</p>
+    </div>
+  </amp-audio>
+  <br>
+  <amp-audio width="400" height="200" src="https://yourhost.com/audios/myaudio.mp3">
+    <div fallback>
+      <p>Your browser doesn’t support HTML5 audio</p>
+    </div>
+  </amp-audio>
+
+
 </body>
 
 </html>
