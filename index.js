@@ -81,6 +81,7 @@ async function uploadData(url = '', data) {
 }
 
 async function runSplitter(url, data) {
+    console.log("Running AI");
     var objectKey = { 'objectKey': data };
     var splitterResponse = {};
     await fetch(url, {

@@ -1,0 +1,48 @@
+body {
+    padding-left: 145px;
+    padding-right: 145px;
+}
+
+h1 {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 64px;
+}
+
+h2 {
+    font-family: Lato, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    color: #0A0B0D;
+}
+
+.mainImage {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: url('https://llytonca.sirv.com/mainImage.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -9999999;
+}
+
+.myDiv {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    background-color: #A68263;
+}
+
+.droptarget {
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}

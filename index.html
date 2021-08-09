@@ -6,12 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@500&display=swap"
-        rel="stylesheet">
-    <script defer src="index.js"></script>
-    <style>
+    <style type="text/css">
         .mainImage {
             position: absolute;
             top: 0;
@@ -25,25 +20,32 @@
             z-index: -9999999;
         }
 
-        .myDiv {
-            position: relative;
-            height: 200px;
-            width: 200px;
-            background-color: #A68263;
+        body {
+            padding-left: 145px;
+            padding-right: 145px;
         }
 
+        h1 {
+            font-family: Roboto, sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 64px;
+        }
 
-
-
-        .droptarget {
-            float: left;
-            width: 100px;
-            height: 35px;
-            margin: 15px;
-            padding: 10px;
-            border: 1px solid #aaaaaa;
+        h2 {
+            font-family: Lato, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 36px;
+            color: #0A0B0D;
         }
     </style>
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@500&display=swap"
+        rel="stylesheet">
+    <script defer src="index.js"></script>
 </head>
 
 <body>
@@ -52,7 +54,7 @@
     <div class="myDiv"></div>
 
     <h1><span style="color: #A68263;">Audio</span> splitting by Song Donkey</h1>
-    <p>Hello World</p>
+    <h2>Extract vocals and instruments with artificial intelligence</h2>
     <div class="droptarget">
         <p draggable="true" id="dragtarget">Drag me!</p>
     </div>
@@ -65,6 +67,7 @@
 
 
     Load Audio file: <br>
+    <label class="uploadLabel" for="audio_file"></label>
     <input id="audio_file" type="file" accept="audio/*" />
 
     <br>
@@ -82,7 +85,8 @@
         <audio controls id="vocals" src=""></audio>
     </p>
 
-    <iframe width="100%" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1102321477&amp;show_artwork=false&amp;buying=false&amp;show_track=false&amp;color=A68263&amp;show_user=false&amp"></iframe>
+    <iframe width="100%" height="20" scrolling="no" frameborder="no"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1102321477&amp;show_artwork=false&amp;buying=false&amp;show_track=false&amp;color=A68263&amp;show_user=false&amp"></iframe>
 
 
 
