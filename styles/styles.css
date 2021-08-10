@@ -24,3 +24,34 @@
     border-radius: 20px;
     background-color: #A68263;
 }
+
+/* flex */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 144px;
+}
+
+.leftSide {
+    flex: 54%;
+}
+
+.rightSide {
+    flex: 38%;
+}
+
+.spaceMiddle {
+    flex: 8%;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 800px) {
+    .row {
+        flex-direction: column;
+    }
+    .spaceMiddle {
+        display: none;
+    }
+}
