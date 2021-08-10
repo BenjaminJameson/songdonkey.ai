@@ -1,6 +1,13 @@
 /* @import "bulma/sass/utilities/_all.sass";
 @import "bulma/sass/grid/columns.sass"; */
 
+h3 {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.8vw;
+}
+
 .myDiv {
     position: relative;
     height: 200px;
@@ -43,6 +50,11 @@
 
 .spaceMiddle {
     flex: 8%;
+}
+
+.topBoxRight {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
