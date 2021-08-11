@@ -65,12 +65,21 @@
             <h2>Extract vocals and instruments with artificial intelligence</h2>
 
 
-            <div class="droptarget">
-                <div class="insideDropTarget">
-                    <div style="flex: 59%;">
+            <div id="droptarget" class="droptarget">
+                <div id="insideDropTarget" class="insideDropTarget">
+                    <div style="flex: 59%; position: relative;">
+                        <!-- <div> -->
+                        <script
+                            src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                        <lottie-player class="animation"
+                            src="https://assets9.lottiefiles.com/packages/lf20_zos1rbzl.json" background="transparent"
+                            speed="1" loop autoplay>
+                        </lottie-player>
+                        <!-- </div> -->
                     </div>
                     <div style="flex: 23%;">
                         <label class="uploadLabel" for="audio_file">
+                            <input id="audio_file" style="display: none;" type="file" accept="audio/*" />
                             <!-- <div style="display:flex"> -->
                             <h2 style="color: white; align-self: center; text-align: center;">Upload</h2>
                             <!-- </div> -->
@@ -80,20 +89,19 @@
                         </label>
                     </div>
                     <div style="flex: 18%;">
+                        <p style="text-align: center; font-family: lato;">Or drop files here<br>
+                            <span style="color: #525252; font-size:smaller">Only .mp3 and .wav files.</span>
+                        </p>
                     </div>
                 </div>
 
-                <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                    <lottie-player class="animation" src="https://assets9.lottiefiles.com/packages/lf20_zos1rbzl.json"
-                        background="transparent" speed="1" loop autoplay>
-                    </lottie-player> -->
+
 
                 <!-- </div> -->
 
             </div>
 
             Load Audio file: <br>
-            <input id="audio_file" type="file" accept="audio/*" />
 
             <br>
             <!-- <audio control id="audio_player" /> -->
@@ -132,75 +140,7 @@
                 src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1102765603&amp;show_artwork=false&amp;buying=false&amp;show_track=false&amp;color=A68263&amp;show_user=false&amp"></iframe>
         </div>
     </div>
-    <script>
-        /* Events fired on the drag target */
-
-        // document.addEventListener("dragstart", function (event) {
-        //     console.log("dragstart");
-        //     // The dataTransfer.setData() method sets the data type and the value of the dragged data
-        //     event.dataTransfer.setData("Text", event.target.id);
-
-        //     // Output some text when starting to drag the p element
-        //     document.getElementById("demo").innerHTML = "Started to drag the p element.";
-
-        //     // Change the opacity of the draggable element
-        //     event.target.style.opacity = "0.4";
-        // });
-
-        // While dragging the p element, change the color of the output text
-        document.addEventListener("drag", function (event) {
-            // console.log("drag");
-            document.getElementById("demo").style.color = "red";
-        });
-
-        // Output some text when finished dragging the p element and reset the opacity
-        document.addEventListener("dragend", function (event) {
-            document.getElementById("demo").innerHTML = "Finished dragging the p element.";
-            event.target.style.opacity = "1";
-        });
-
-        /* Events fired on the drop target */
-
-        // When the draggable p element enters the droptarget, change the DIVS's border style
-        document.addEventListener("dragenter", function (event) {
-            console.log("dragenter");
-            console.log(event.target);
-            if (event.target.className == "myDiv") {
-                event.target.style.border = "3px dotted red";
-            }
-        });
-
-        // By default, data/elements cannot be dropped in other elements. To allow a drop, we must prevent the default handling of the element
-        document.addEventListener("dragover", function (event) {
-            // console.log("dragover");
-            event.preventDefault();
-        });
-
-        // When the draggable p element leaves the droptarget, reset the DIVS's border style
-        document.addEventListener("dragleave", function (event) {
-            if (event.target.className == "droptarget") {
-                event.target.style.border = "";
-            }
-        });
-
-        /* On drop - Prevent the browser default handling of the data (default is open as link on drop)
-           Reset the color of the output text and DIV's border color
-           Get the dragged data with the dataTransfer.getData() method
-           The dragged data is the id of the dragged element ("drag1")
-           Append the dragged element into the drop element
-        */
-        document.addEventListener("drop", function (event) {
-            event.preventDefault();
-            console.log("DROPPPPPED");
-            console.log(event.dataTransfer.items[0].getAsFile());
-            if (event.target.className == "droptarget") {
-                document.getElementById("demo").style.color = "";
-                event.target.style.border = "";
-                var data = event.dataTransfer.getData("Text");
-                event.target.appendChild(document.getElementById(data));
-            }
-        });
-    </script>
+    
 </body>
 
 </html>
