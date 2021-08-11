@@ -16,20 +16,46 @@ h3 {
 }
 
 .droptarget {
-    float: left;
-    width: 100px;
-    height: 35px;
-    margin: 15px;
-    padding: 10px;
-    border: 1px solid #aaaaaa;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 28vw;
+    background: rgba(217, 217, 217, 0.4);
+    border: 1px solid rgba(10, 11, 13, 0.5);
+    box-sizing: content-box;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
+.insideDropTarget {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    width: 50%;
+    /* align-items: center; */
+}
+
+/* if I want the icon over the label make the parent relative then the child absolute */
 .uploadLabel {
     position: relative;
-    width: 448px;
-    height: 72px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
     border-radius: 20px;
     background-color: #A68263;
+}
+.uploadIcon{
+    position: absolute;
+    right: 0px;
+    margin-right: 4%;
+}
+
+
+.animation {
 }
 
 /* flex */
@@ -37,7 +63,7 @@ h3 {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 144px;
+    margin-top: 20px;
 }
 
 .leftSide {
@@ -55,6 +81,10 @@ h3 {
 .topBoxRight {
     display: flex;
     justify-content: space-between;
+}
+
+.tick {
+    height: 0.8em;
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
