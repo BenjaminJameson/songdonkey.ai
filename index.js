@@ -167,6 +167,11 @@ document.addEventListener("dragenter", function (event) {
         document.getElementById("insideDropTarget").style.zIndex = "-1";
         console.log("drop target");
     }
+    if (document.getElementById("droptarget").contains(event.target)) {
+        console.log("yes it contains it!!!");
+        document.getElementById("droptarget").style.background = "rgba(217, 217, 217, 0.75)";
+        document.getElementById("insideDropTarget").style.zIndex = "-1";
+    }
 });
 
 // By default, data/elements cannot be dropped in other elements. To allow a drop, we must prevent the default handling of the element
@@ -192,6 +197,8 @@ document.addEventListener("dragleave", function (event) {
 document.addEventListener("drop", function (event) {
     event.preventDefault();
     console.log("DROPPPPPED");
+    document.getElementById("droptarget").style.background = "";
+    document.getElementById("insideDropTarget").style.zIndex = "";
     var data = event.dataTransfer.items[0].getAsFile();
     console.log(data);
     if (event.target.className == "droptarget") {
