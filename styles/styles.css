@@ -208,3 +208,9 @@ h3 {
         margin-right: 0;
     }
 }
+
+/* audio */
+.audioPlayer {
+    height: 20px;
+    width: 100%;
+}

@@ -205,3 +205,20 @@ document.addEventListener("drop", function (event) {
         uploadAndRunAI(data);
     }
 });
+
+
+
+
+
+
+// soundcloud
+
+window.onload = (event) => {
+    var options = [];
+    var url = "https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3";
+    // var url = "https://soundcloud.com/songdonkey/accompaniment";
+    var widget = document.getElementById("soundcloudWidget");
+    SC.Widget(widget).setVolume(10);
+    SC.Widget(widget).load(url, options);
+    console.log('page is fully loaded');
+};

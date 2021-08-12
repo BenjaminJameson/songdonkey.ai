@@ -65,7 +65,7 @@
             <h2>Extract vocals and instruments with artificial intelligence</h2>
 
 
-            <div id="droptarget" class="droptarget">
+            <div id="droptarget" class="droptarget" style="display: none;">
                 <div id="insideDropTarget" class="insideDropTarget" style="display: none;">
                     <div style="flex: 59%; position: relative;">
                         <!-- <div> -->
@@ -157,24 +157,23 @@
                 <!-- </div> -->
 
             </div>
+            <div id="droptargetResult" class="droptarget" style="width: 185%;">
+                <div id="insideDropTarget" class="insideDropTarget">
+                    <div>
+                        Your audio: <br>
+                        <audio class="audioPlayer" controls id="audio_player"></audio>
+                    </div>
+                    <div>
+                        Accompaniment: <br>
+                        <audio class="audioPlayer" controls id="accompaniment" src=""></audio>
+                    </div>
+                    <div>
+                        Vocals: <br>
+                        <audio class="audioPlayer" controls id="vocals" src=""></audio>
+                    </div>
+                </div>
+            </div>
 
-            Load Audio file: <br>
-
-            <br>
-            <!-- <audio control id="audio_player" /> -->
-            <p>
-                Your audio: <br>
-                <audio controls id="audio_player"></audio>
-            </p>
-            <p>
-                Accompaniment: <br>
-                <audio controls id="accompaniment" src=""></audio>
-            </p>
-
-            <p>
-                Vocals: <br>
-                <audio controls id="vocals" src=""></audio>
-            </p>
         </div>
         <div class="spaceMiddle">
         </div>
