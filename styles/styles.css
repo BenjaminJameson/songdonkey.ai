@@ -162,7 +162,6 @@ h3 {
     }
 }
 
-
 /* timed loading bar */
 
 .timed-progress, .timed-progress:before {
@@ -181,8 +180,8 @@ h3 {
 .timed-progress:before {
     background-color: #AE896A;
     content: '';
-    -webkit-animation: running-progress1 38s cubic-bezier(.44,.72,.8,.79);
-    animation: running-progress1 38s cubic-bezier(.44,.72,.8,.79);
+    -webkit-animation: running-progress1 38s cubic-bezier(.44, .72, .8, .79);
+    animation: running-progress1 38s cubic-bezier(.44, .72, .8, .79);
 }
 
 @-webkit-keyframes running-progress1 {
@@ -190,7 +189,6 @@ h3 {
         margin-left: 0px;
         margin-right: 100%;
     }
-    
     100% {
         margin-left: 0;
         margin-right: 0;
@@ -202,7 +200,6 @@ h3 {
         margin-left: 0px;
         margin-right: 100%;
     }
-   
     100% {
         margin-left: 0;
         margin-right: 0;
@@ -210,7 +207,14 @@ h3 {
 }
 
 /* audio */
+
 .audioPlayer {
     height: 20px;
     width: 100%;
+}
+
+/* this has to be the last class */
+
+.hideElement {
+    display: none;
 }

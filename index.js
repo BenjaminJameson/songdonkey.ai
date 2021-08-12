@@ -1,11 +1,20 @@
-audio_file.onchange = function () {
+window.onload = (event) => {
+    var input = document.getElementById('audioInput');
+    input.addEventListener("input", processInput);
+};
+
+function processInput(event) {
+    console.log("event happened");
+    console.log(event);
     files = this.files;
     file = URL.createObjectURL(files[0]);
-    audio_player.src = file;
+    console.log("this is file", file);
+    document.getElementById('yourAudio').src = file;
     console.log(file);
     var fileToSend = files[0];
 
     uploadAndRunAI(fileToSend);
+    view_chooseOptions();
 };
 
 async function checkExistsThenUpdate(accompanimentURL, vocalsURL) {
@@ -73,6 +82,7 @@ async function uploadData(url = '', data) {
         })
         .then((result) => {
             console.log('Success:', result);
+            view_loading();
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -123,6 +133,7 @@ function updateAudioElements(accompanimentURL, vocalsURL) {
     console.log("updating audioElements");
     document.getElementById("accompaniment").src = accompanimentURL;
     document.getElementById("vocals").src = vocalsURL;
+    view_results();
 }
 
 
@@ -202,7 +213,11 @@ document.addEventListener("drop", function (event) {
     var data = event.dataTransfer.items[0].getAsFile();
     console.log(data);
     if (event.target.className == "droptarget") {
+        file = URL.createObjectURL(data);
+        console.log("this is file", file);
+        document.getElementById('yourAudio').src = file;
         uploadAndRunAI(data);
+        view_chooseOptions();
     }
 });
 
@@ -213,12 +228,34 @@ document.addEventListener("drop", function (event) {
 
 // soundcloud
 
-window.onload = (event) => {
-    var options = [];
-    var url = "https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3";
-    // var url = "https://soundcloud.com/songdonkey/accompaniment";
-    var widget = document.getElementById("soundcloudWidget");
-    SC.Widget(widget).setVolume(10);
-    SC.Widget(widget).load(url, options);
-    console.log('page is fully loaded');
-};
+// window.onload = (event) => {
+//     var options = [];
+//     var url = "https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3";
+//     // var url = "https://soundcloud.com/songdonkey/accompaniment";
+//     var widget = document.getElementById("soundcloudWidget");
+//     SC.Widget(widget).setVolume(10);
+//     SC.Widget(widget).load(url, options);
+//     console.log('page is fully loaded');
+// };
+
+function view_begin() {
+
+}
+function view_chooseOptions() {
+    document.getElementById('insideDropTarget').classList.add('hideElement');
+    document.getElementById('insideDropTargetSecondPage').classList.remove('hideElement');
+}
+function view_loading() {
+    document.getElementById('insideDropTargetSecondPage').classList.add('hideElement');
+    document.getElementById('insideDropTargetThirdPage').classList.remove('hideElement');
+}
+function view_results() {
+    document.getElementById('soundcloudExamples').classList.add("hideElement");
+    document.getElementById('insideDropTargetThirdPage').classList.add('hideElement');
+    document.getElementById('droptarget').classList.add('hideElement');
+    document.getElementById('droptargetResult').classList.remove('hideElement');
+}
+
+
+// I need to use cloneNode(true) so that it copies the nested children
+// but doing the state stuff and template can come with the speed improvement

@@ -65,26 +65,20 @@
             <h2>Extract vocals and instruments with artificial intelligence</h2>
 
 
-            <div id="droptarget" class="droptarget" style="display: none;">
-                <div id="insideDropTarget" class="insideDropTarget" style="display: none;">
+            <div id="droptarget" class="droptarget">
+                <div id="insideDropTarget" class="insideDropTarget">
                     <div style="flex: 59%; position: relative;">
-                        <!-- <div> -->
                         <script
                             src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
                         <lottie-player class="animation"
                             src="https://assets9.lottiefiles.com/packages/lf20_zos1rbzl.json" background="transparent"
                             speed="1" loop autoplay>
                         </lottie-player>
-                        <!-- </div> -->
                     </div>
                     <div style="flex: 23%;">
-                        <label class="uploadLabel" for="audio_file">
-                            <input id="audio_file" style="display: none;" type="file" accept="audio/*" />
-                            <!-- <div style="display:flex"> -->
+                        <label class="uploadLabel" for="audioInput">
+                            <input id="audioInput" style="display: none;" type="file" accept="audio/*" />
                             <h2 style="color: white; align-self: center; text-align: center;">Upload</h2>
-                            <!-- </div> -->
-                            <!-- <div style="display: flex; z-index: 1;"> -->
-                            <!-- </div> -->
                             <img src="assets/upload.svg" alt="" width="auto" height="65%" class="uploadIcon">
                         </label>
                     </div>
@@ -94,7 +88,7 @@
                         </p>
                     </div>
                 </div>
-                <div id="insideDropTargetSecondPage" class="insideDropTarget" style="display: none;">
+                <div id="insideDropTargetSecondPage" class="insideDropTarget hideElement">
                     <div
                         style="flex: 59%; position: relative; display: flex; flex-direction: column; justify-content: space-around;">
                         <div>
@@ -135,7 +129,7 @@
                         </p> -->
                     </div>
                 </div>
-                <div id="insideDropTargetThirdPage" class="insideDropTarget">
+                <div id="insideDropTargetThirdPage" class="insideDropTarget hideElement">
                     <div
                         style="flex: 59%; position: relative; display: flex; flex-direction: column; justify-content: space-around;">
                         <lottie-player class="animation"
@@ -154,14 +148,12 @@
                 </div>
 
 
-                <!-- </div> -->
-
             </div>
-            <div id="droptargetResult" class="droptarget" style="width: 185%;">
+            <div id="droptargetResult" class="droptarget hideElement" style="width: 185%;">
                 <div id="insideDropTarget" class="insideDropTarget">
                     <div>
                         Your audio: <br>
-                        <audio class="audioPlayer" controls id="audio_player"></audio>
+                        <audio class="audioPlayer" controls id="yourAudio"></audio>
                     </div>
                     <div>
                         Accompaniment: <br>
@@ -171,6 +163,7 @@
                         Vocals: <br>
                         <audio class="audioPlayer" controls id="vocals" src=""></audio>
                     </div>
+                <template>Hello world</template> 
                 </div>
             </div>
 
@@ -188,7 +181,7 @@
                     <h3><img class="tick" src="assets/tick.svg">Always <span style="color: #A68263;">Free</span></h3>
                 </div>
             </div>
-            <div style="margin-top: 30%;">
+            <div id="soundcloudExamples" style="margin-top: 30%;">
                 <iframe width="100%" height="20" scrolling="no" frameborder="no"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1102321477&amp;show_artwork=false&amp;buying=false&amp;show_track=false&amp;color=A68263&amp;show_user=false&amp"></iframe>
                 <iframe width="100%" height="20" scrolling="no" frameborder="no"
