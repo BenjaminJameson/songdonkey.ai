@@ -53,6 +53,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@500&display=swap"
         rel="stylesheet">
     <script defer src="index.js"></script>
+    <!-- Default theme. ~960B -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css" />
+
+    <!-- Optional light theme (extends default). ~400B -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/light.css" />
 </head>
 
 <body>
@@ -153,17 +158,20 @@
                 <div id="insideDropTarget" class="insideDropTarget" style="background-color: #F1F3F4;">
                     <div>
                         Your audio: <br>
-                        <audio class="audioPlayer" controls id="yourAudio" src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
+                        <audio class="audioPlayer" controls id="yourAudio"
+                            src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
                     </div>
                     <div>
                         Accompaniment: <br>
-                        <audio class="audioPlayer" controls id="accompaniment" src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
+                        <audio class="audioPlayer" controls id="accompaniment"
+                            src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
                     </div>
                     <div>
                         Vocals: <br>
-                        <audio class="audioPlayer" controls id="vocals" src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
+                        <audio class="audioPlayer" controls id="vocals"
+                            src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
                     </div>
-                <template>Hello world</template> 
+                    <template>Hello world</template>
                 </div>
             </div>
 
@@ -189,8 +197,19 @@
                 <iframe width="100%" height="20" scrolling="no" frameborder="no"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1102765603&amp;show_artwork=false&amp;buying=false&amp;show_track=false&amp;color=A68263&amp;show_user=false&amp"></iframe>
             </div>
+
         </div>
     </div>
+
+
+    <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
+    <vm-player theme="light" style="--vm-player-theme: #A68263;">
+        <vm-audio>
+            <source data-src="https://media.vimejs.com/audio.mp3" type="audio/mp3" />
+        </vm-audio>
+        <vm-default-ui>
+    </vm-player>
 
 </body>
 
