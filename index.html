@@ -54,10 +54,10 @@
         rel="stylesheet">
     <script defer src="index.js"></script>
     <!-- Default theme. ~960B -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css" />
 
     <!-- Optional light theme (extends default). ~400B -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/light.css" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/light.css" />
 </head>
 
 <body>
@@ -159,17 +159,17 @@
                     <div>
                         Your audio: <br>
                         <audio class="audioPlayer" controls id="yourAudio"
-                            src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
+                            src=""></audio>
                     </div>
                     <div>
                         Accompaniment: <br>
                         <audio class="audioPlayer" controls id="accompaniment"
-                            src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
+                            src=""></audio>
                     </div>
                     <div>
                         Vocals: <br>
                         <audio class="audioPlayer" controls id="vocals"
-                            src="https://song-splitter-bucket.s3.amazonaws.com/9775562882.mp3"></audio>
+                            src=""></audio>
                     </div>
                     <template>Hello world</template>
                 </div>
@@ -203,13 +203,13 @@
 
 
     <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
-    <!-- <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
     <vm-player theme="light" style="--vm-player-theme: #A68263;">
         <vm-audio>
             <source data-src="https://media.vimejs.com/audio.mp3" type="audio/mp3" />
         </vm-audio>
         <vm-default-ui>
-    </vm-player> -->
+    </vm-player>
 
 </body>
 
