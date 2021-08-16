@@ -11,6 +11,7 @@ function processInput(event) {
     file = URL.createObjectURL(files[0]);
     console.log("this is file", file);
     document.getElementById('yourAudio').src = file;
+    document.getElementById('originalAudioId').setAttribute('data-src', file);
     console.log(file);
     var fileToSend = files[0];
 
@@ -134,6 +135,8 @@ function updateAudioElements(accompanimentURL, vocalsURL) {
     console.log("updating audioElements");
     document.getElementById("accompaniment").src = accompanimentURL;
     document.getElementById("vocals").src = vocalsURL;
+    document.getElementById('vocalsId').setAttribute('data-src', vocalsURL);
+    document.getElementById('accompanimentId').setAttribute('data-src', accompanimentURL);
     view_results();
 }
 

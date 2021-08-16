@@ -137,25 +137,90 @@
                             Seperating tracks...</h2>
                     </div>
                     <div style="flex: 18%;">
-                        <p style="display: contents;">Estimated time 38 seconds</p>
+                        <p style="display: contents;">Estimated time 55 seconds</p>
                         <div class="timed-progress"></div>
                     </div>
                 </div>
             </div>
             <!-- use the template div here for speed -->
             <div id="droptargetResult" class="droptarget hideElement" style="width: 185%;">
-                <div id="insideDropTarget" class="insideDropTarget" style="background-color: #F1F3F4;">
-                    <div>
-                        Your audio: <br>
-                        <audio class="audioPlayer" controls id="yourAudio" src=""></audio>
-                    </div>
-                    <div>
-                        Accompaniment: <br>
-                        <audio class="audioPlayer" controls id="accompaniment" src=""></audio>
-                    </div>
-                    <div>
-                        Vocals: <br>
-                        <audio class="audioPlayer" controls id="vocals" src=""></audio>
+                <div id="insideDropTarget" class="insideDropTarget">
+                    <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                        <vm-audio mediaTitle="Example Song">
+                            <source id="originalAudioId" mediaTitle="Example Song"
+                                data-src=""
+                                type="audio/mp3"/>
+                        </vm-audio>
+                        <vm-ui>
+                            <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                                <vm-control
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                    <vm-playback-control>
+                                    </vm-playback-control>
+                                </vm-control>
+                                <span style="text-align: center; font-family: lato;">Original audio</span>
+                                <vm-scrubber-control></vm-scrubber-control>
+                                <vm-control>
+                                    <vm-end-time />
+                                </vm-control>
+                            </vm-controls>
+                        </vm-ui>
+                    </vm-player>
+                    <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                        <vm-audio mediaTitle="Example Song">
+                            <source id="vocalsId" mediaTitle="Example Song"
+                                data-src=""
+                                type="audio/wav" />
+                        </vm-audio>
+                        <vm-ui>
+                            <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                                <vm-control
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                    <vm-playback-control>
+                                    </vm-playback-control>
+                                </vm-control>
+                                <span style="text-align: center; font-family: lato;">Vocals</span>
+                                <vm-scrubber-control></vm-scrubber-control>
+                                <vm-control>
+                                    <vm-end-time />
+                                </vm-control>
+                            </vm-controls>
+                        </vm-ui>
+                    </vm-player>
+                    <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                        <vm-audio mediaTitle="Example Song">
+                            <source id="accompanimentId" mediaTitle="Example Song"
+                                data-src=""
+                                type="audio/wav"/>
+                        </vm-audio>
+                        <vm-ui>
+                            <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                                <vm-control
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                    <vm-playback-control>
+                                    </vm-playback-control>
+                                </vm-control>
+                                <span style="text-align: center; font-family: lato;">Accompaniment</span>
+                                <vm-scrubber-control></vm-scrubber-control>
+                                <vm-control>
+                                    <vm-end-time />
+                                </vm-control>
+                            </vm-controls>
+                        </vm-ui>
+                    </vm-player>
+                    <div style="display: none;">
+                        <div>
+                            Your audio: <br>
+                            <audio class="audioPlayer" controls id="yourAudio" src=""></audio>
+                        </div>
+                        <div>
+                            Accompaniment: <br>
+                            <audio class="audioPlayer" controls id="accompaniment" src=""></audio>
+                        </div>
+                        <div>
+                            Vocals: <br>
+                            <audio class="audioPlayer" controls id="vocals" src=""></audio>
+                        </div>
                     </div>
                     <template>Hello world</template>
                 </div>

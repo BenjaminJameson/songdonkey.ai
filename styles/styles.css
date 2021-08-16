@@ -180,8 +180,8 @@ h3 {
 .timed-progress:before {
     background-color: #AE896A;
     content: '';
-    -webkit-animation: running-progress1 38s cubic-bezier(.44, .72, .8, .79);
-    animation: running-progress1 38s cubic-bezier(.44, .72, .8, .79);
+    -webkit-animation: running-progress1 55s cubic-bezier(.44, .72, .8, .79);
+    animation: running-progress1 55s cubic-bezier(.44, .72, .8, .79);
 }
 
 @-webkit-keyframes running-progress1 {
