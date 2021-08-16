@@ -178,18 +178,13 @@
             <div id="soundcloudExamples" style="margin-top: 30%;">
                 <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
                 <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
-                <vm-player currentTextTrack theme="light"
-                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                     <vm-audio mediaTitle="Example Song">
-                        <source mediaTitle="Example Song" data-src="https://audio-example-songdonkey.s3.amazonaws.com/Example.mp3"
-                            type="audio/mp3" />
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Example.mp3" type="audio/mp3" />
                     </vm-audio>
-                    <!-- <vm-default-ui noSettings noLoadingScreen> -->
                     <vm-ui>
-                        <!-- ... -->
-                        <vm-captions></vm-captions>
                         <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
-                            <!-- ... -->
                             <vm-control
                                 style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
                                 <vm-playback-control>
@@ -197,7 +192,7 @@
                             </vm-control>
                             <span style="text-align: center; font-family: lato;">Example</span>
                             <vm-scrubber-control></vm-scrubber-control>
-                            <vm-control label="Playback" keys="k" pressed="true">
+                            <vm-control>
                                 <vm-end-time />
                             </vm-control>
                         </vm-controls>
@@ -206,8 +201,8 @@
                 <vm-player currentTextTrack theme="light"
                     style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                     <vm-audio mediaTitle="Example Song">
-                        <source mediaTitle="Example Song" data-src="https://audio-example-songdonkey.s3.amazonaws.com/Vocals.mp3"
-                            type="audio/mp3" />
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Vocals.mp3" type="audio/mp3" />
                     </vm-audio>
                     <!-- <vm-default-ui noSettings noLoadingScreen> -->
                     <vm-ui>
@@ -231,7 +226,8 @@
                 <vm-player currentTextTrack theme="light"
                     style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                     <vm-audio mediaTitle="Example Song">
-                        <source mediaTitle="Example Song" data-src="https://audio-example-songdonkey.s3.amazonaws.com/Accompaniment.mp3"
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Accompaniment.mp3"
                             type="audio/mp3" />
                     </vm-audio>
                     <!-- <vm-default-ui noSettings noLoadingScreen> -->
