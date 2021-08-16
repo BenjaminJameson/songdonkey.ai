@@ -178,7 +178,8 @@
             <div id="soundcloudExamples" style="margin-top: 30%;">
                 <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
                 <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
-                <vm-player currentTextTrack theme="light" style="--vm-player-theme: #A68263;">
+                <vm-player currentTextTrack theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                     <vm-audio mediaTitle="Example Song">
                         <source mediaTitle="Example Song" data-src="https://media.vimejs.com/audio.mp3"
                             type="audio/mp3" />
@@ -186,23 +187,78 @@
                             label="English" />
                     </vm-audio>
                     <!-- <vm-default-ui noSettings noLoadingScreen> -->
-                        <vm-ui>
+                    <vm-ui>
+                        <!-- ... -->
+                        <vm-captions></vm-captions>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
                             <!-- ... -->
-                            <vm-captions></vm-captions>
-                            <vm-controls style="--vm-controls-bg: #ffffff2e">
-                                <!-- ... -->
-                                <vm-control style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px">
-                                    <vm-playback-control>
-                                    </vm-playback-control>
-                                </vm-control>
-                                <vm-scrubber-control></vm-scrubber-control>
-                                <vm-control label="Playback" keys="k" pressed="true">
-                                    <vm-end-time />
-                                    <vm-icon name="play">Hello</vm-icon>
-                                    <vm-tooltip>Play (k)</vm-tooltip>
-                                </vm-control>
-                            </vm-controls>
-                        </vm-ui>
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Example</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control label="Playback" keys="k" pressed="true">
+                                <vm-end-time />
+                                <vm-icon name="play">Hello</vm-icon>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player currentTextTrack theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source mediaTitle="Example Song" data-src="https://media.vimejs.com/audio.mp3"
+                            type="audio/mp3" />
+                    </vm-audio>
+                    <!-- <vm-default-ui noSettings noLoadingScreen> -->
+                    <vm-ui>
+                        <!-- ... -->
+                        <vm-captions></vm-captions>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <!-- ... -->
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Vocals</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control label="Playback" keys="k" pressed="true">
+                                <vm-end-time />
+                                <vm-icon name="play">Hello</vm-icon>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player currentTextTrack theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source mediaTitle="Example Song" data-src="https://media.vimejs.com/audio.mp3"
+                            type="audio/mp3" />
+                        <track default kind="subtitles" src="https://media.vimejs.com/subs/english.vtt" srclang="en"
+                            label="English" />
+                    </vm-audio>
+                    <!-- <vm-default-ui noSettings noLoadingScreen> -->
+                    <vm-ui>
+                        <!-- ... -->
+                        <vm-captions></vm-captions>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <!-- ... -->
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Accompaniment</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control label="Playback" keys="k" pressed="true">
+                                <vm-end-time />
+                                <vm-icon name="play">Hello</vm-icon>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
                 </vm-player>
             </div>
         </div>
