@@ -2,6 +2,7 @@ window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
     // view_results();
+    view_chooseOptions();
 };
 
 function processInput(event) {
@@ -141,7 +142,12 @@ function updateAudioElements(accompanimentURL, vocalsURL) {
 }
 
 
-
+function optionsResult() {
+    var tracks = document.getElementsByName('tracks')[0].value;
+    var outputFormat = document.getElementsByName('outputFormat')[0].value;
+    console.log('tracks', tracks);
+    console.log('outputFormat', outputFormat);
+}
 
 
 

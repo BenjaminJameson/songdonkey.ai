@@ -91,36 +91,38 @@
                 </div>
                 <!-- use the template div here for speed -->
                 <div id="insideDropTargetSecondPage" class="insideDropTarget hideElement">
-                    <div
-                        style="flex: 59%; position: relative; display: flex; flex-direction: column; justify-content: space-around;">
-                        <div>
-                            <p style="display: contents;">Uploading</p>
-                            <div class="progress-line"></div>
+                    <form id="formOptions">
+                        <div
+                            style="flex: 59%; position: relative; display: flex; flex-direction: column; justify-content: space-around;">
+                            <div>
+                                <p style="display: contents;">Uploading</p>
+                                <div class="progress-line"></div>
+                            </div>
+                            <div>
+                                <p style="display: contents;">Number of tracks to extract</p>
+                                <select name="tracks" id="tracks" class="dropdownOptions">
+                                    <option value="2">2 (vocals, accompaniment)</option>
+                                    <option value="4">4 (vocals, bass, drums, other)</option>
+                                    <option value="5">5 (vocals, bass, drums, piano, other)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p style="display: contents;">Output format</p>
+                                <select name="outputFormat" id="outputFormat" class="dropdownOptions">
+                                    <option value=".mp3">.mp3</option>
+                                    <option value=".wav">.wav</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <p style="display: contents;">Number of tracks to extract</p>
-                            <select name="tracks" id="tracks" class="dropdownOptions">
-                                <option value="2 tracks">2 tracks</option>
-                                <option value="4 tracks">4 tracks</option>
-                                <option value="5 tracks">5 tracks</option>
-                            </select>
+                        <div style="flex: 23%;">
+                            <label class="uploadLabel" for="formSubmit">
+                                <input id="formSubmit" style="display: none;" onclick="optionsResult()"/>
+                                <h2 style="color: white; align-self: center; text-align: center; margin-right: 10%;">
+                                    Seperate audio tracks</h2>
+                                <img src="assets/stars.svg" alt="" width="auto" height="50%" class="uploadIcon">
+                            </label>
                         </div>
-                        <div>
-                            <p style="display: contents;">Output format</p>
-                            <select name="outputFormat" id="outputFormat" class="dropdownOptions">
-                                <option value=".mp3">.mp3</option>
-                                <option value=".wav">.wav</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div style="flex: 23%;">
-                        <label class="uploadLabel" for="audio_file">
-                            <input id="audio_file" style="display: none;" type="file" accept="audio/*" />
-                            <h2 style="color: white; align-self: center; text-align: center; margin-right: 10%;">
-                                Seperate audio tracks</h2>
-                            <img src="assets/stars.svg" alt="" width="auto" height="50%" class="uploadIcon">
-                        </label>
-                    </div>
+                    </form>
                     <div style="flex: 18%;">
                     </div>
                 </div>
@@ -147,9 +149,7 @@
                 <div id="insideDropTarget" class="insideDropTarget">
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
-                            <source id="originalAudioId" mediaTitle="Example Song"
-                                data-src=""
-                                type="audio/mp3"/>
+                            <source id="originalAudioId" mediaTitle="Example Song" data-src="" type="audio/mp3" />
                         </vm-audio>
                         <vm-ui>
                             <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
@@ -168,9 +168,7 @@
                     </vm-player>
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
-                            <source id="vocalsId" mediaTitle="Example Song"
-                                data-src=""
-                                type="audio/wav" />
+                            <source id="vocalsId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
                         <vm-ui>
                             <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
@@ -189,9 +187,7 @@
                     </vm-player>
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
-                            <source id="accompanimentId" mediaTitle="Example Song"
-                                data-src=""
-                                type="audio/wav"/>
+                            <source id="accompanimentId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
                         <vm-ui>
                             <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
