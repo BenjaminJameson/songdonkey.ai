@@ -94,7 +94,7 @@
                     <form id="formOptions">
                         <div
                             style="flex: 59%; position: relative; display: flex; flex-direction: column; justify-content: space-around;">
-                            <div>
+                            <div id="uploadingBar" style="visibility: visible;">
                                 <p style="display: contents;">Uploading</p>
                                 <div class="progress-line"></div>
                             </div>
@@ -116,7 +116,7 @@
                         </div>
                         <div style="flex: 23%;">
                             <label class="uploadLabel" for="formSubmit">
-                                <input id="formSubmit" style="display: none;" onclick="optionsResult()"/>
+                                <input id="formSubmit" style="display: none;" onclick="runAI()" />
                                 <h2 style="color: white; align-self: center; text-align: center; margin-right: 10%;">
                                     Seperate audio tracks</h2>
                                 <img src="assets/stars.svg" alt="" width="auto" height="50%" class="uploadIcon">
@@ -152,6 +152,8 @@
                             <source id="originalAudioId" mediaTitle="Example Song" data-src="" type="audio/mp3" />
                         </vm-audio>
                         <vm-ui>
+                            <vm-loading-screen>
+                            </vm-loading-screen>
                             <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
                                 <vm-control
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
@@ -171,6 +173,8 @@
                             <source id="vocalsId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
                         <vm-ui>
+                            <vm-loading-screen>
+                            </vm-loading-screen>
                             <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
                                 <vm-control
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
@@ -190,6 +194,8 @@
                             <source id="accompanimentId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
                         <vm-ui>
+                            <vm-loading-screen>
+                            </vm-loading-screen>
                             <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
                                 <vm-control
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
@@ -204,6 +210,7 @@
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
+                    <!-- delete this div once everything is working -->
                     <div style="display: none;">
                         <div>
                             Your audio: <br>
@@ -245,6 +252,8 @@
                             data-src="https://audio-example-songdonkey.s3.amazonaws.com/Example.mp3" type="audio/mp3" />
                     </vm-audio>
                     <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
                         <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
                             <vm-control
                                 style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
@@ -265,12 +274,11 @@
                         <source mediaTitle="Example Song"
                             data-src="https://audio-example-songdonkey.s3.amazonaws.com/Vocals.mp3" type="audio/mp3" />
                     </vm-audio>
-                    <!-- <vm-default-ui noSettings noLoadingScreen> -->
                     <vm-ui>
-                        <!-- ... -->
+                        <vm-loading-screen>
+                        </vm-loading-screen>
                         <vm-captions></vm-captions>
                         <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
-                            <!-- ... -->
                             <vm-control
                                 style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
                                 <vm-playback-control>
@@ -291,12 +299,11 @@
                             data-src="https://audio-example-songdonkey.s3.amazonaws.com/Accompaniment.mp3"
                             type="audio/mp3" />
                     </vm-audio>
-                    <!-- <vm-default-ui noSettings noLoadingScreen> -->
                     <vm-ui>
-                        <!-- ... -->
+                        <vm-loading-screen>
+                        </vm-loading-screen>
                         <vm-captions></vm-captions>
                         <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
-                            <!-- ... -->
                             <vm-control
                                 style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
                                 <vm-playback-control>

@@ -2,8 +2,11 @@ window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
     // view_results();
-    view_chooseOptions();
+    // view_chooseOptions();
 };
+
+var fileToSend = '';
+var objectKey = '';
 
 function processInput(event) {
     console.log("event happened");
@@ -14,9 +17,9 @@ function processInput(event) {
     document.getElementById('yourAudio').src = file;
     document.getElementById('originalAudioId').setAttribute('data-src', file);
     console.log(file);
-    var fileToSend = files[0];
-
-    uploadAndRunAI(fileToSend);
+    fileToSend = files[0];
+    beginUpload();
+    // uploadAndRunAI(fileToSend);
     view_chooseOptions();
 };
 
@@ -34,12 +37,18 @@ async function checkExistsThenUpdate(accompanimentURL, vocalsURL) {
     }
 }
 
-async function uploadAndRunAI(fileToSend) {
+async function runAI(fileToSend) {
+    view_loading();
+    var tracks = document.getElementsByName('tracks')[0].value;
+    var outputFormat = document.getElementsByName('outputFormat')[0].value;
+    console.log('tracks', tracks);
+    console.log('outputForamt', outputFormat);
+
     var urlOfSplitter = 'https://uhuikcje97.execute-api.us-east-1.amazonaws.com/default/song-splitter-image-function';
-    params = await getPresignedURL();
-    var presignedURL = params['presignedURL'];
-    var objectKey = params['objectKey'];
-    await uploadData(presignedURL, fileToSend);
+    // params = await getPresignedURL();
+    // var presignedURL = params['presignedURL'];
+    // var objectKey = params['objectKey'];
+    // await uploadData(presignedURL, fileToSend);
 
 
     var objectKeyNameOnly = objectKey.split(".")[0];
@@ -57,8 +66,8 @@ async function uploadAndRunAI(fileToSend) {
 }
 
 async function getPresignedURL() {
-    var presignedURL = ''
-    var objectKey = ''
+    var presignedURL = '';
+    var objectKey = '';
     await fetch("https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL", {
         method: 'GET',
     })
@@ -85,7 +94,8 @@ async function uploadData(url = '', data) {
         })
         .then((result) => {
             console.log('Success:', result);
-            view_loading();
+            document.getElementById('uploadingBar').style.visibility = 'hidden';
+            // view_loading();
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -142,11 +152,12 @@ function updateAudioElements(accompanimentURL, vocalsURL) {
 }
 
 
-function optionsResult() {
-    var tracks = document.getElementsByName('tracks')[0].value;
-    var outputFormat = document.getElementsByName('outputFormat')[0].value;
-    console.log('tracks', tracks);
-    console.log('outputFormat', outputFormat);
+async function beginUpload() {
+    console.log('beginning upload');
+    params = await getPresignedURL();
+    objectKey = params['objectKey'];
+    var presignedURL = await params['presignedURL'];
+    await uploadData(presignedURL, fileToSend);
 }
 
 
@@ -225,8 +236,11 @@ document.addEventListener("drop", function (event) {
     if (event.target.className == "droptarget") {
         file = URL.createObjectURL(data);
         console.log("this is file", file);
+        document.getElementById('originalAudioId').setAttribute('data-src', file);
         document.getElementById('yourAudio').src = file;
-        uploadAndRunAI(data);
+        fileToSend = data;
+        beginUpload();
+        // uploadAndRunAI(data);
         view_chooseOptions();
     }
 });
