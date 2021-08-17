@@ -25,16 +25,24 @@ function processInput(event) {
     view_chooseOptions();
 };
 
-async function checkExistsThenUpdate(accompanimentURL, vocalsURL) {
-    var accompaniment = await checkIfFileExistsYet(accompanimentURL);
-    var vocals = await checkIfFileExistsYet(vocalsURL);
-    if (accompaniment["status"] == 403 || vocals["status"] == 403) {
+async function checkExistsThenUpdate(allUrls) {
+    var check = '';
+    if (numberTracks == '2') {
+        var check = await checkIfFileExistsYet(allUrls['vocals']);
+    }
+    if (numberTracks == '4') {
+        var check = await checkIfFileExistsYet(allUrls['other']);
+    }
+    if (numberTracks == '5') {
+        var check = await checkIfFileExistsYet(allUrls['piano']);
+    }
+    if (check["status"] == 403) {
         console.log("it doesn't exist yet");
         await new Promise(r => setTimeout(r, 2000));
-        checkExistsThenUpdate(accompanimentURL, vocalsURL);
+        checkExistsThenUpdate(allUrls);
     } else {
-        console.log("both files exist!!!", accompaniment["status"], vocals["status"]);
-        updateAudioElements(accompanimentURL, vocalsURL);
+        console.log("the last files exists");
+        updateAudioElements(allUrls);
         return;
     }
 }
@@ -141,15 +149,14 @@ async function runSplitter(url, options) {
 }
 
 async function checkIfFileExistsYet(url) {
-    var file = {}
+    var file = {};
     await fetch(url, { method: 'GET' })
         .then((response) => {
-            console.log("checking response", response);
+            console.log("checking response");
             file = response;
         })
         .then((result) => {
-            console.log("checking result", result);
-
+            console.log("checking result");
         })
         .catch((error) => {
             console.error("checking error", error);
@@ -159,12 +166,23 @@ async function checkIfFileExistsYet(url) {
 
 function updateAudioElements(allUrls) {
     console.log("updating audioElements");
-    document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
-    document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
-    document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
-    document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
-    document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
-    document.getElementById('other').setAttribute('data-src', allUrls['other']);
+    if (numberTracks == '2') {
+        document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+        document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
+    }
+    if (numberTracks == '4') {
+        document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+        document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+        document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+        document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
+    }
+    if (numberTracks == '5') {
+        document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+        document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+        document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+        document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
+        document.getElementById('other').setAttribute('data-src', allUrls['other']);
+    }
     view_results();
 }
 
