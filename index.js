@@ -1,7 +1,7 @@
 window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
-    view_results();
+    // view_results();
     // view_chooseOptions();
 };
 
@@ -19,7 +19,8 @@ function processInput(event) {
     document.getElementById('originalAudioId').setAttribute('data-src', file);
     console.log(file);
     fileToSend = files[0];
-    beginUpload();
+    var fileType = fileToSend.type;
+    beginUpload(fileType);
     // uploadAndRunAI(fileToSend);
     view_chooseOptions();
 };
@@ -87,11 +88,12 @@ async function runAI() {
     }
 }
 
-async function getPresignedURL() {
+async function getPresignedURL(fileType) {
     var presignedURL = '';
     var objectKey = '';
     await fetch("https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL", {
-        method: 'GET',
+        method: 'POST',
+        body: JSON.stringify({'fileType': fileType})
     })
         .then((response) => response.json())
         .then((result) => {
@@ -189,7 +191,7 @@ function updateAudioElements(allUrls) {
         document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
         document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
         document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
-        document.getElementById('other').setAttribute('data-src', allUrls['other']);
+        document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
         // show audio players
         document.getElementById('playerBass').classList.remove('hideElement');
         document.getElementById('playerDrums').classList.remove('hideElement');
@@ -200,9 +202,9 @@ function updateAudioElements(allUrls) {
 }
 
 
-async function beginUpload() {
+async function beginUpload(fileType) {
     console.log('beginning upload');
-    params = await getPresignedURL();
+    params = await getPresignedURL(fileType);
     objectKey = params['objectKey'];
     var presignedURL = await params['presignedURL'];
     await uploadData(presignedURL, fileToSend);
@@ -286,7 +288,8 @@ document.addEventListener("drop", function (event) {
         console.log("this is file", file);
         document.getElementById('originalAudioId').setAttribute('data-src', file);
         fileToSend = data;
-        beginUpload();
+        var fileType = fileToSend.type;
+        beginUpload(fileType);
         // uploadAndRunAI(data);
         view_chooseOptions();
     }
