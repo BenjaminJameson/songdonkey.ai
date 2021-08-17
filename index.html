@@ -103,7 +103,7 @@
                                 <select name="tracks" id="tracks" class="dropdownOptions">
                                     <option value="2">2 (vocals, accompaniment)</option>
                                     <option value="4">4 (vocals, bass, drums, other)</option>
-                                    <option value="5">5 (vocals, bass, drums, piano, other)</option>
+                                    <option value="5">5 (vocals, bass, drums, other, piano)</option>
                                 </select>
                             </div>
                             <div>
@@ -146,6 +146,7 @@
             </div>
             <!-- use the template div here for speed -->
             <div id="droptargetResult" class="droptarget hideElement" style="width: 185%;">
+                <!-- AUDIO PLAYERS -->
                 <div id="insideDropTarget" class="insideDropTarget">
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
@@ -210,23 +211,92 @@
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
-                    <!-- delete this div once everything is working -->
-                    <div style="display: none;">
-                        <div>
-                            Your audio: <br>
-                            <audio class="audioPlayer" controls id="yourAudio" src=""></audio>
-                        </div>
-                        <div>
-                            Accompaniment: <br>
-                            <audio class="audioPlayer" controls id="accompaniment" src=""></audio>
-                        </div>
-                        <div>
-                            Vocals: <br>
-                            <audio class="audioPlayer" controls id="vocals" src=""></audio>
-                        </div>
-                    </div>
-                    <template>Hello world</template>
+                    <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                        <vm-audio mediaTitle="Example Song">
+                            <source id="bassId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                        </vm-audio>
+                        <vm-ui>
+                            <vm-loading-screen>
+                            </vm-loading-screen>
+                            <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                                <vm-control
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                    <vm-playback-control>
+                                    </vm-playback-control>
+                                </vm-control>
+                                <span style="text-align: center; font-family: lato;">Bass</span>
+                                <vm-scrubber-control></vm-scrubber-control>
+                                <vm-control>
+                                    <vm-end-time />
+                                </vm-control>
+                            </vm-controls>
+                        </vm-ui>
+                    </vm-player>
+                    <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                        <vm-audio mediaTitle="Example Song">
+                            <source id="drumsId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                        </vm-audio>
+                        <vm-ui>
+                            <vm-loading-screen>
+                            </vm-loading-screen>
+                            <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                                <vm-control
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                    <vm-playback-control>
+                                    </vm-playback-control>
+                                </vm-control>
+                                <span style="text-align: center; font-family: lato;">Drums</span>
+                                <vm-scrubber-control></vm-scrubber-control>
+                                <vm-control>
+                                    <vm-end-time />
+                                </vm-control>
+                            </vm-controls>
+                        </vm-ui>
+                    </vm-player>
+                    <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                        <vm-audio mediaTitle="Example Song">
+                            <source id="pianoId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                        </vm-audio>
+                        <vm-ui>
+                            <vm-loading-screen>
+                            </vm-loading-screen>
+                            <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                                <vm-control
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                    <vm-playback-control>
+                                    </vm-playback-control>
+                                </vm-control>
+                                <span style="text-align: center; font-family: lato;">Piano</span>
+                                <vm-scrubber-control></vm-scrubber-control>
+                                <vm-control>
+                                    <vm-end-time />
+                                </vm-control>
+                            </vm-controls>
+                        </vm-ui>
+                    </vm-player>
+                    <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                        <vm-audio mediaTitle="Example Song">
+                            <source id="otherId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                        </vm-audio>
+                        <vm-ui>
+                            <vm-loading-screen>
+                            </vm-loading-screen>
+                            <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                                <vm-control
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                    <vm-playback-control>
+                                    </vm-playback-control>
+                                </vm-control>
+                                <span style="text-align: center; font-family: lato;">Other</span>
+                                <vm-scrubber-control></vm-scrubber-control>
+                                <vm-control>
+                                    <vm-end-time />
+                                </vm-control>
+                            </vm-controls>
+                        </vm-ui>
+                    </vm-player>
                 </div>
+                <!-- /AUDIO PLAYERS -->
             </div>
 
         </div>

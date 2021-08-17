@@ -1,12 +1,14 @@
 window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
-    // view_results();
+    view_results();
     // view_chooseOptions();
 };
 
 var fileToSend = '';
 var objectKey = '';
+var urlOfSplitter = 'https://uhuikcje97.execute-api.us-east-1.amazonaws.com/default/song-splitter-image-function';
+var numberTracks = '';
 
 function processInput(event) {
     console.log("event happened");
@@ -37,31 +39,44 @@ async function checkExistsThenUpdate(accompanimentURL, vocalsURL) {
     }
 }
 
-async function runAI(fileToSend) {
+async function runAI() {
     view_loading();
     var tracks = document.getElementsByName('tracks')[0].value;
     var outputFormat = document.getElementsByName('outputFormat')[0].value;
+    numberTracks = string(tracks);
     console.log('tracks', tracks);
-    console.log('outputForamt', outputFormat);
+    console.log('outputFormat', outputFormat);
 
-    var urlOfSplitter = 'https://uhuikcje97.execute-api.us-east-1.amazonaws.com/default/song-splitter-image-function';
-    // params = await getPresignedURL();
-    // var presignedURL = params['presignedURL'];
-    // var objectKey = params['objectKey'];
-    // await uploadData(presignedURL, fileToSend);
-
+    var splitOptions = {
+        'tracks': tracks,
+        'outputFormat': outputFormat,
+        'objectKey': objectKey
+    }
 
     var objectKeyNameOnly = objectKey.split(".")[0];
     var s3BucketURL = 'https://song-splitter-bucket.s3.amazonaws.com/'
-    var accompanimentURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/accompaniment.wav`;
-    var vocalsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/vocals.wav`;
+    var accompanimentURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/accompaniment${outputFormat}`;
+    var vocalsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/vocals${outputFormat}`;
+    var bassURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/bass${outputFormat}`;
+    var drumsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/drums${outputFormat}`;
+    var otherURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/other${outputFormat}`;
+    var pianoURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/piano${outputFormat}`;
 
-    var splitter = await runSplitter(urlOfSplitter, objectKey);
+    var allUrls = {
+        'accompaniment': accompanimentURL,
+        'vocals': vocalsURL,
+        'bass': bassURL,
+        'drums': drumsURL,
+        'other': otherURL,
+        'piano': pianoURL,
+    };
+
+    var splitter = await runSplitter(urlOfSplitter, splitOptions);
     console.log("splitter response in main", splitter);
     if (splitter["status"] == 200) {
-        updateAudioElements(accompanimentURL, vocalsURL);
+        updateAudioElements(allUrls);
     } else {
-        await checkExistsThenUpdate(accompanimentURL, vocalsURL);
+        await checkExistsThenUpdate(allUrls);
     }
 }
 
@@ -103,13 +118,13 @@ async function uploadData(url = '', data) {
     return response;
 }
 
-async function runSplitter(url, data) {
+async function runSplitter(url, options) {
     console.log("Running AI");
-    var objectKey = { 'objectKey': data };
+    // var objectKey = { 'objectKey': data };
     var splitterResponse = {};
     await fetch(url, {
         method: 'POST',
-        body: JSON.stringify(objectKey)
+        body: JSON.stringify(options)
     })
         .then((response) => {
             console.log("run splitter response", response);
@@ -142,12 +157,14 @@ async function checkIfFileExistsYet(url) {
     return file
 }
 
-function updateAudioElements(accompanimentURL, vocalsURL) {
+function updateAudioElements(allUrls) {
     console.log("updating audioElements");
-    document.getElementById("accompaniment").src = accompanimentURL;
-    document.getElementById("vocals").src = vocalsURL;
-    document.getElementById('vocalsId').setAttribute('data-src', vocalsURL);
-    document.getElementById('accompanimentId').setAttribute('data-src', accompanimentURL);
+    document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+    document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
+    document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+    document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+    document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
+    document.getElementById('other').setAttribute('data-src', allUrls['other']);
     view_results();
 }
 
