@@ -16,7 +16,6 @@ function processInput(event) {
     files = this.files;
     file = URL.createObjectURL(files[0]);
     console.log("this is file", file);
-    document.getElementById('yourAudio').src = file;
     document.getElementById('originalAudioId').setAttribute('data-src', file);
     console.log(file);
     fileToSend = files[0];
@@ -51,7 +50,7 @@ async function runAI() {
     view_loading();
     var tracks = document.getElementsByName('tracks')[0].value;
     var outputFormat = document.getElementsByName('outputFormat')[0].value;
-    numberTracks = string(tracks);
+    numberTracks = tracks;
     console.log('tracks', tracks);
     console.log('outputFormat', outputFormat);
 
@@ -167,21 +166,35 @@ async function checkIfFileExistsYet(url) {
 function updateAudioElements(allUrls) {
     console.log("updating audioElements");
     if (numberTracks == '2') {
+        // set urls
         document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
         document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
+        // show audio players
+        document.getElementById('playerAccompaniment').classList.remove('hideElement');
     }
     if (numberTracks == '4') {
+        // set urls
         document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
         document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
         document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
         document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
+        // show audio players
+        document.getElementById('playerBass').classList.remove('hideElement');
+        document.getElementById('playerDrums').classList.remove('hideElement');
+        document.getElementById('playerOther').classList.remove('hideElement');
     }
     if (numberTracks == '5') {
+        // set urls
         document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
         document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
         document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
         document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
         document.getElementById('other').setAttribute('data-src', allUrls['other']);
+        // show audio players
+        document.getElementById('playerBass').classList.remove('hideElement');
+        document.getElementById('playerDrums').classList.remove('hideElement');
+        document.getElementById('playerOther').classList.remove('hideElement');
+        document.getElementById('playerPiano').classList.remove('hideElement');
     }
     view_results();
 }
@@ -272,7 +285,6 @@ document.addEventListener("drop", function (event) {
         file = URL.createObjectURL(data);
         console.log("this is file", file);
         document.getElementById('originalAudioId').setAttribute('data-src', file);
-        document.getElementById('yourAudio').src = file;
         fileToSend = data;
         beginUpload();
         // uploadAndRunAI(data);
