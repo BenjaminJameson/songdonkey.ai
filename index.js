@@ -93,7 +93,7 @@ async function getPresignedURL(fileType) {
     var objectKey = '';
     await fetch("https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL", {
         method: 'POST',
-        body: JSON.stringify({'fileType': fileType})
+        body: JSON.stringify({ 'fileType': fileType })
     })
         .then((response) => response.json())
         .then((result) => {
@@ -210,7 +210,18 @@ async function beginUpload(fileType) {
     await uploadData(presignedURL, fileToSend);
 }
 
-
+async function download(audioId) {
+    var url = document.getElementById(audioId).getAttribute('data-src');
+    // var obj = await fetch(url);
+    const blob = await (await fetch(url, {method: 'GET'})).blob();
+    const blobUrl = URL.createObjectURL(blob);
+    console.log(url);
+    var element = document.createElement('a');
+    element.setAttribute('href', blobUrl);
+    element.setAttribute('download', audioId);
+    element.click();
+    element.remove();
+}
 
 /* Events fired on the drag target */
 

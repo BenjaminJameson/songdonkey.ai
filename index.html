@@ -164,7 +164,7 @@
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
                             <source id="originalAudioId" mediaTitle="Example Song"
-                                data-src="https://audio-example-songdonkey.s3.amazonaws.com/Example.mp3"
+                                data-src="https://song-splitter-bucket.s3.amazonaws.com//mnt/somepath/8276339354/accompaniment.mp3"
                                 type="audio/mp3" />
                         </vm-audio>
                         <vm-ui>
@@ -181,15 +181,19 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
-                                <vm-control
+                                <vm-control onclick="download('originalAudioId')"
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
-                                    <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;"></vm-icon>
+                                    <vm-icon src="assets/download.svg" label="An icon"
+                                        style="width: 11px; height: 11px;"></vm-icon>
                                     <!-- Icon by mithun on freeicons.io -->
                                     <vm-tooltip>Download</vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
+                    <a href="https://song-splitter-bucket.s3.amazonaws.com//mnt/somepath/8276339354/accompaniment.mp3" download="apple">
+                        <button type="button">Download</button>
+                    </a>
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
                             <source id="vocalsId" mediaTitle="Example Song" data-src="" type="audio/wav" />
