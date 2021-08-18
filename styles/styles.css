@@ -15,6 +15,19 @@ h3 {
     background-color: #A68263;
 }
 
+.header {
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+}
+
 .droptarget {
     display: flex;
     flex-direction: column;

@@ -33,7 +33,7 @@
             font-family: Roboto, sans-serif;
             font-style: normal;
             font-weight: 500;
-            font-size: 3.5vw;
+            font-size: 3.3vw;
         }
 
         h2 {
@@ -58,9 +58,22 @@
 </head>
 
 <body>
-
     <div class="mainImage"></div>
-    <!-- <div class="myDiv"></div> -->
+
+    <!-- header -->
+    <header class="header">
+        <div style="margin-left: -30px;">
+           <a href="https://songdonkey.ai/"><img src="assets/songdonkey.svg" alt="" height="25px"></a> 
+        </div>
+        <nav class="nav">
+            <a href="about.html">About</a>
+            <a href="FAQ.html">FAQ</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacyPolicy.html" target="_blank">Privacy Policy</a>
+        </nav>
+    </header>
+    <!-- /header -->
+
     <div class="row">
         <div class="leftSide">
             <h1><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
@@ -78,7 +91,7 @@
                     </div>
                     <div style="flex: 23%;">
                         <label class="uploadLabel" for="audioInput">
-                            <input id="audioInput" style="display: none;" type="file" accept="audio/mpeg,audio/wav"/>
+                            <input id="audioInput" style="display: none;" type="file" accept="audio/mpeg,audio/wav" />
                             <h2 style="color: white; align-self: center; text-align: center;">Upload</h2>
                             <img src="assets/upload.svg" alt="" width="auto" height="65%" class="uploadIcon">
                         </label>
@@ -190,7 +203,8 @@
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
-                    <vm-player id="playerAccompaniment" class="hideElement" theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-player id="playerAccompaniment" class="hideElement" theme="light"
+                        style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
                             <source id="accompanimentId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
@@ -206,12 +220,13 @@
                                 <span style="text-align: center; font-family: lato;">Accompaniment</span>
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
-                                    <vm-end-time/>
+                                    <vm-end-time />
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
-                    <vm-player id="playerBass" class="hideElement" theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-player id="playerBass" class="hideElement" theme="light"
+                        style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
                             <source id="bassId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
@@ -232,7 +247,8 @@
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
-                    <vm-player id="playerDrums" class="hideElement" theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-player id="playerDrums" class="hideElement" theme="light"
+                        style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
                             <source id="drumsId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
@@ -253,7 +269,8 @@
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
-                    <vm-player id="playerPiano" class="hideElement" theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-player id="playerPiano" class="hideElement" theme="light"
+                        style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
                             <source id="pianoId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
@@ -274,7 +291,8 @@
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
-                    <vm-player id="playerOther" class="hideElement" theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-player id="playerOther" class="hideElement" theme="light"
+                        style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
                             <source id="otherId" mediaTitle="Example Song" data-src="" type="audio/wav" />
                         </vm-audio>
@@ -297,6 +315,8 @@
                     </vm-player>
                 </div>
                 <!-- /AUDIO PLAYERS -->
+
+                <button>Download Button</button>
             </div>
 
         </div>
@@ -313,7 +333,7 @@
                     <h3><img class="tick" src="assets/tick.svg">Always <span style="color: #A68263;">Free</span></h3>
                 </div>
             </div>
-            <div id="soundcloudExamples" style="margin-top: 30%;">
+            <div id="soundcloudExamples" style="margin-top: 12%;">
                 <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
                 <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
                 <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
