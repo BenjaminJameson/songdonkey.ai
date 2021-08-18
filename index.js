@@ -213,12 +213,14 @@ async function beginUpload(fileType) {
 async function download(audioId) {
     var url = document.getElementById(audioId).getAttribute('data-src');
     // var obj = await fetch(url);
+    var urlSplit = url.split('/');
+    var filename = urlSplit[urlSplit.length -1];
+    console.log(filename);
     const blob = await (await fetch(url, {method: 'GET'})).blob();
     const blobUrl = URL.createObjectURL(blob);
-    console.log(url);
     var element = document.createElement('a');
     element.setAttribute('href', blobUrl);
-    element.setAttribute('download', audioId);
+    element.setAttribute('download', filename);
     element.click();
     element.remove();
 }
