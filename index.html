@@ -63,7 +63,7 @@
     <!-- header -->
     <header class="header">
         <div style="margin-left: -30px;">
-           <a href="https://songdonkey.ai/"><img src="assets/songdonkey.svg" alt="" height="25px"></a> 
+            <a href="https://songdonkey.ai/"><img src="assets/songdonkey.svg" alt="" height="25px"></a>
         </div>
         <nav class="nav">
             <a href="about.html">About</a>
@@ -163,14 +163,16 @@
                 <div id="insideDropTarget" class="insideDropTarget">
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
-                            <source id="originalAudioId" mediaTitle="Example Song" data-src="" type="audio/mp3" />
+                            <source id="originalAudioId" mediaTitle="Example Song"
+                                data-src="https://audio-example-songdonkey.s3.amazonaws.com/Example.mp3"
+                                type="audio/mp3" />
                         </vm-audio>
                         <vm-ui>
                             <vm-loading-screen>
                             </vm-loading-screen>
                             <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
                                 <vm-control
-                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 50%; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
                                     <vm-playback-control>
                                     </vm-playback-control>
                                 </vm-control>
@@ -178,6 +180,12 @@
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
+                                </vm-control>
+                                <vm-control
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                    <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;"></vm-icon>
+                                    <!-- Icon by mithun on freeicons.io -->
+                                    <vm-tooltip>Download</vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -316,7 +324,7 @@
                 </div>
                 <!-- /AUDIO PLAYERS -->
 
-                <button>Download Button</button>
+                <!-- <button>Download Button</button> -->
             </div>
 
         </div>
@@ -338,6 +346,7 @@
                 <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
                 <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                     <vm-audio mediaTitle="Example Song">
+                        <!-- serve this through a cdn ###### -->
                         <source mediaTitle="Example Song"
                             data-src="https://audio-example-songdonkey.s3.amazonaws.com/Example.mp3" type="audio/mp3" />
                     </vm-audio>
