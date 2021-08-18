@@ -50,6 +50,22 @@ h3 {
     /* align-items: center; */
 }
 
+.droptargetResults {
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+    width: 500px;
+    height: auto;
+    background: rgba(217, 217, 217, 0.4);
+    border: 1px solid rgba(10, 11, 13, 0.5);
+    box-sizing: content-box;
+    border-radius: 20px;
+    justify-content: space-between;
+    align-content: center;
+}
+
 /* if I want the icon over the label make the parent relative then the child absolute */
 
 .uploadLabel {

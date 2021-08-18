@@ -74,7 +74,7 @@
     </header>
     <!-- /header -->
 
-    <div class="row">
+    <div class="row" style="display: none;">
         <div class="leftSide">
             <h1><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
             <h2>Extract vocals and instruments with artificial intelligence</h2>
@@ -191,12 +191,12 @@
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
-                    <a href="https://song-splitter-bucket.s3.amazonaws.com//mnt/somepath/8276339354/accompaniment.mp3" download="apple">
-                        <button type="button">Download</button>
                     </a>
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
-                            <source id="vocalsId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                            <source id="vocalsId" mediaTitle="Example Song"
+                                data-src="https://song-splitter-bucket.s3.amazonaws.com//mnt/somepath/8276339354/accompaniment.mp3"
+                                type="audio/wav" />
                         </vm-audio>
                         <vm-ui>
                             <vm-loading-screen>
@@ -211,6 +211,13 @@
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
+                                </vm-control>
+                                <vm-control onclick="download('vocalsId')"
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                    <vm-icon src="assets/download.svg" label="An icon"
+                                        style="width: 11px; height: 11px;"></vm-icon>
+                                    <!-- Icon by mithun on freeicons.io -->
+                                    <vm-tooltip>Download</vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -234,6 +241,13 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
+                                <vm-control onclick="download('accompanimentId')"
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                    <vm-icon src="assets/download.svg" label="An icon"
+                                        style="width: 11px; height: 11px;"></vm-icon>
+                                    <!-- Icon by mithun on freeicons.io -->
+                                    <vm-tooltip>Download</vm-tooltip>
+                                </vm-control>
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
@@ -255,6 +269,13 @@
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
+                                </vm-control>
+                                <vm-control onclick="download('bassId')"
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                    <vm-icon src="assets/download.svg" label="An icon"
+                                        style="width: 11px; height: 11px;"></vm-icon>
+                                    <!-- Icon by mithun on freeicons.io -->
+                                    <vm-tooltip>Download</vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -278,6 +299,13 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
+                                <vm-control onclick="download('drumsId')"
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                    <vm-icon src="assets/download.svg" label="An icon"
+                                        style="width: 11px; height: 11px;"></vm-icon>
+                                    <!-- Icon by mithun on freeicons.io -->
+                                    <vm-tooltip>Download</vm-tooltip>
+                                </vm-control>
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
@@ -300,6 +328,13 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
+                                <vm-control onclick="download('pianoId')"
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                    <vm-icon src="assets/download.svg" label="An icon"
+                                        style="width: 11px; height: 11px;"></vm-icon>
+                                    <!-- Icon by mithun on freeicons.io -->
+                                    <vm-tooltip>Download</vm-tooltip>
+                                </vm-control>
                             </vm-controls>
                         </vm-ui>
                     </vm-player>
@@ -321,6 +356,13 @@
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
+                                </vm-control>
+                                <vm-control onclick="download('otherId')"
+                                    style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                    <vm-icon src="assets/download.svg" label="An icon"
+                                        style="width: 11px; height: 11px;"></vm-icon>
+                                    <!-- Icon by mithun on freeicons.io -->
+                                    <vm-tooltip>Download</vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -424,7 +466,231 @@
         </div>
     </div>
 
+    <!-- results div -->
+    <div id="resultsDiv" class="row">
+        <div id="insideDropTarget" class="droptargetResults">
+            <h1><span style="color: #A68263;">Thank</span> you</h1>
+            <!-- AUDIO PLAYERS -->
+            <div>
+                <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source id="originalAudioId" mediaTitle="Example Song"
+                            data-src="https://song-splitter-bucket.s3.amazonaws.com//mnt/somepath/8276339354/accompaniment.mp3"
+                            type="audio/mp3" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 50%; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Original audio</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                            <vm-control onclick="download('originalAudioId')"
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;">
+                                </vm-icon>
+                                <!-- Icon by mithun on freeicons.io -->
+                                <vm-tooltip>Download</vm-tooltip>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                </a>
+                <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source id="vocalsId" mediaTitle="Example Song"
+                            data-src="https://song-splitter-bucket.s3.amazonaws.com//mnt/somepath/8276339354/accompaniment.mp3"
+                            type="audio/wav" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Vocals</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                            <vm-control onclick="download('vocalsId')"
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;">
+                                </vm-icon>
+                                <!-- Icon by mithun on freeicons.io -->
+                                <vm-tooltip>Download</vm-tooltip>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player id="playerAccompaniment" class="hideElement" theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source id="accompanimentId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Accompaniment</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                            <vm-control onclick="download('accompanimentId')"
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;">
+                                </vm-icon>
+                                <!-- Icon by mithun on freeicons.io -->
+                                <vm-tooltip>Download</vm-tooltip>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player id="playerBass" class="hideElement" theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source id="bassId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Bass</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                            <vm-control onclick="download('bassId')"
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;">
+                                </vm-icon>
+                                <!-- Icon by mithun on freeicons.io -->
+                                <vm-tooltip>Download</vm-tooltip>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player id="playerDrums" class="hideElement" theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source id="drumsId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Drums</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                            <vm-control onclick="download('drumsId')"
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;">
+                                </vm-icon>
+                                <!-- Icon by mithun on freeicons.io -->
+                                <vm-tooltip>Download</vm-tooltip>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player id="playerPiano" class="hideElement" theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source id="pianoId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Piano</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                            <vm-control onclick="download('pianoId')"
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;">
+                                </vm-icon>
+                                <!-- Icon by mithun on freeicons.io -->
+                                <vm-tooltip>Download</vm-tooltip>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player id="playerOther" class="hideElement" theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source id="otherId" mediaTitle="Example Song" data-src="" type="audio/wav" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Other</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                            <vm-control onclick="download('otherId')"
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
+                                <vm-icon src="assets/download.svg" label="An icon" style="width: 11px; height: 11px;">
+                                </vm-icon>
+                                <!-- Icon by mithun on freeicons.io -->
+                                <vm-tooltip>Download</vm-tooltip>
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <!-- /AUDIO PLAYERS -->
+            </div>
+            <div>
+                <div>
+                    <img src="assets/downloadAll.svg" alt="">
+                    <p style="text-align: center; font-family: lato; margin-top: 0px;">Download all<br>
+                </div>
+                <span style="color: #525252; font-size:smaller">To split more songs, please reload the page</span>
+                </p>
+            </div>
+        </div>
 
+    </div>
 </body>
 
 </html>
