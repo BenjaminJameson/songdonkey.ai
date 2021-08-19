@@ -184,7 +184,8 @@
                     <vm-ui>
                         <vm-loading-screen>
                         </vm-loading-screen>
-                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
                             <vm-control
                                 style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
                                 <vm-playback-control>
@@ -208,7 +209,8 @@
                         <vm-loading-screen>
                         </vm-loading-screen>
                         <vm-captions></vm-captions>
-                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
                             <vm-control
                                 style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
                                 <vm-playback-control>
@@ -233,7 +235,8 @@
                         <vm-loading-screen>
                         </vm-loading-screen>
                         <vm-captions></vm-captions>
-                        <vm-controls style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none">
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
                             <vm-control
                                 style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
                                 <vm-playback-control>
@@ -468,9 +471,11 @@
             </div>
             <div>
                 <div style="padding-top: 20px;">
-                    <a href="https://song-splitter-bucket.s3.amazonaws.com/zip.zip" download>
+                    <a id="zipDownload" href="" download>
                         <img src="assets/downloadAll.svg" alt="" height="75px">
-                        <p style="text-align: center; font-family: lato; margin-top: 0px;">Download all<br>
+                        <a id="zipDownloadText" href="">
+                            <p style="text-align: center; font-family: lato; margin-top: 0px;">Download all<br></p>
+                        </a>
                     </a>
                 </div>
                 <span style="color: #525252; font-size:smaller">To split more songs, please reload the page</span>

@@ -1,7 +1,7 @@
 window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
-    view_results();
+    // view_results();
     // view_chooseOptions();
     // view_loading();
 };
@@ -70,6 +70,7 @@ async function runAI() {
     var drumsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/drums${outputFormat}`;
     var otherURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/other${outputFormat}`;
     var pianoURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/piano${outputFormat}`;
+    var zipURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/SongDonkey.zip`;
 
     var allUrls = {
         'accompaniment': accompanimentURL,
@@ -78,6 +79,7 @@ async function runAI() {
         'drums': drumsURL,
         'other': otherURL,
         'piano': pianoURL,
+        'zip': zipURL
     };
 
     var splitter = await runSplitter(urlOfSplitter, splitOptions);
@@ -174,6 +176,8 @@ function updateAudioElements(allUrls) {
         document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
         // show audio players
         document.getElementById('playerAccompaniment').classList.remove('hideElement');
+        document.getElementById('zipDownload').href = allUrls['zip'];
+        document.getElementById('zipDownloadText').href = allUrls['zip'];
     }
     if (numberTracks == '4') {
         // set urls
@@ -185,6 +189,8 @@ function updateAudioElements(allUrls) {
         document.getElementById('playerBass').classList.remove('hideElement');
         document.getElementById('playerDrums').classList.remove('hideElement');
         document.getElementById('playerOther').classList.remove('hideElement');
+        document.getElementById('zipDownload').href = allUrls['zip'];
+        document.getElementById('zipDownloadText').href = allUrls['zip'];
     }
     if (numberTracks == '5') {
         // set urls
@@ -198,6 +204,8 @@ function updateAudioElements(allUrls) {
         document.getElementById('playerDrums').classList.remove('hideElement');
         document.getElementById('playerOther').classList.remove('hideElement');
         document.getElementById('playerPiano').classList.remove('hideElement');
+        document.getElementById('zipDownload').href = allUrls['zip'];
+        document.getElementById('zipDownloadText').href = allUrls['zip'];
     }
     view_results();
 }
@@ -215,9 +223,9 @@ async function download(audioId) {
     var url = document.getElementById(audioId).getAttribute('data-src');
     // var obj = await fetch(url);
     var urlSplit = url.split('/');
-    var filename = urlSplit[urlSplit.length -1];
+    var filename = urlSplit[urlSplit.length - 1];
     console.log(filename);
-    const blob = await (await fetch(url, {method: 'GET'})).blob();
+    const blob = await (await fetch(url, { method: 'GET' })).blob();
     const blobUrl = URL.createObjectURL(blob);
     var element = document.createElement('a');
     element.setAttribute('href', blobUrl);
