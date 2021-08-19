@@ -3,6 +3,7 @@ window.onload = (event) => {
     input.addEventListener("input", processInput);
     view_results();
     // view_chooseOptions();
+    // view_loading();
 };
 
 var fileToSend = '';
@@ -337,10 +338,8 @@ function view_loading() {
     document.getElementById('insideDropTargetThirdPage').classList.remove('hideElement');
 }
 function view_results() {
-    document.getElementById('soundcloudExamples').classList.add("hideElement");
-    document.getElementById('insideDropTargetThirdPage').classList.add('hideElement');
-    document.getElementById('droptarget').classList.add('hideElement');
-    document.getElementById('droptargetResult').classList.remove('hideElement');
+    document.getElementById('mainDiv').classList.add("hideElement");
+    document.getElementById('resultsDiv').classList.remove('hideElement');
 }
 
 
