@@ -1,11 +1,47 @@
 /* @import "bulma/sass/utilities/_all.sass";
 @import "bulma/sass/grid/columns.sass"; */
 
+.mainImage {
+    position: fixed;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: url('https://llytonca.sirv.com/mainImage.webp');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: scroll;
+    z-index: -9999999;
+}
+
+body {
+    height: 100%;
+    padding-left: 7%;
+    padding-right: 7%;
+}
+
+h1 {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+}
+
+h2 {
+    font-family: Lato, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: x-large;
+    color: #0A0B0D;
+}
+
 h3 {
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 1.8vw;
+    font-size: x-large;
 }
 
 .myDiv {
@@ -32,7 +68,7 @@ h3 {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 28vw;
+    height: 50vh;
     background: rgba(217, 217, 217, 0.4);
     border: 1px solid rgba(10, 11, 13, 0.5);
     box-sizing: content-box;
@@ -45,9 +81,9 @@ h3 {
 .insideDropTarget {
     display: flex;
     flex-direction: column;
-    height: 60%;
     width: 50%;
-    /* align-items: center; */
+    height: 100%;
+    justify-content: space-evenly;
 }
 
 .droptargetResults {
@@ -73,7 +109,7 @@ h3 {
     justify-content: center;
     align-items: center;
     display: flex;
-    height: 100%;
+    height: 60px;
     width: 100%;
     border-radius: 20px;
     background-color: #A68263;
@@ -86,9 +122,9 @@ h3 {
 }
 
 .animation {
-    position: absolute;
-    padding-bottom: 10%;
-    margin-top: -5%;
+    width: 65%;
+    display: flex;
+    justify-content: center;
 }
 
 .dropdownOptions {
