@@ -22,6 +22,12 @@ body {
     padding-right: 7%;
 }
 
+a {
+    text-decoration: none;
+    color: #0A0B0D;
+    font-size: 13.5px;
+}
+
 h1 {
     font-family: Roboto, sans-serif;
     font-style: normal;
@@ -62,6 +68,9 @@ h3 {
     display: flex;
     justify-content: space-evenly;
     gap: 15px;
+    font-family: Lato, sans-serif;
+    font-weight: bold;
+    font-size: small;
 }
 
 .droptarget {
@@ -115,10 +124,19 @@ h3 {
     background-color: #A68263;
 }
 
+.uploadLabel:hover {
+    cursor: pointer;
+    background-color: #977658;
+}
+
+.uploadLabel:active {
+    background-color: #8b6e52;
+}
+
 .uploadIcon {
     position: absolute;
     right: 0px;
-    margin-right: 4%;
+    margin-right: 11%;
 }
 
 .animation {
@@ -130,8 +148,9 @@ h3 {
 .dropdownOptions {
     width: 100%;
     background: rgba(255, 255, 255, 0.5);
-    border-radius: 20px;
-    border: none;
+    border-radius: 5px;
+    font-family: Lato, sans-serif;
+    cursor: pointer;
 }
 
 /* flex */
@@ -160,6 +179,9 @@ h3 {
     margin-top: 5%;
 }
 
+select {
+    
+}
 .tick {
     height: 0.8em;
 }

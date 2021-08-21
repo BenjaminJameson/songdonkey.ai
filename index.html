@@ -56,7 +56,8 @@
                     <div>
                         <label class="uploadLabel" for="audioInput">
                             <input id="audioInput" style="display: none;" type="file" accept="audio/mpeg,audio/wav" />
-                            <h2 style="color: white; align-self: center; text-align: center; font-size: x-large;">Upload</h2>
+                            <h2 style="color: white; align-self: center; text-align: center; font-size: x-large;">Upload
+                            </h2>
                             <img src="assets/upload.svg" alt="" width="auto" height="65%" class="uploadIcon">
                         </label>
                         <p style="text-align: center; font-family: lato;">Or drop files here<br>
@@ -65,40 +66,36 @@
                     </div>
                 </div>
                 <!-- use the template div here for speed -->
-                <div id="insideDropTargetSecondPage" class="insideDropTarget hideElement">
-                    <form id="formOptions">
-                        <div
-                            style="flex: 59%; position: relative; display: flex; flex-direction: column; justify-content: space-around;">
-                            <div id="uploadingBar" style="visibility: visible;">
-                                <p style="display: contents;">Uploading</p>
-                                <div class="progress-line"></div>
-                            </div>
-                            <div>
-                                <p style="display: contents;">Number of tracks to extract</p>
-                                <select name="tracks" id="tracks" class="dropdownOptions">
-                                    <option value="2">2 (vocals, accompaniment)</option>
-                                    <option value="4">4 (vocals, bass, drums, other)</option>
-                                    <option value="5">5 (vocals, bass, drums, other, piano)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <p style="display: contents;">Output format</p>
-                                <select name="outputFormat" id="outputFormat" class="dropdownOptions">
-                                    <option value=".mp3">.mp3</option>
-                                    <option value=".wav">.wav</option>
-                                </select>
-                            </div>
+                <div id="insideDropTargetSecondPage" class="insideDropTarget hideElement" style="justify-content: center;">
+                    <form id="formOptions" style="display: flex; gap: 27px; flex-direction: column;">
+                        <div id="uploadingBar" style="visibility: visible;">
+                            <p style="display: contents; color: #525252; font-family: Lato;">Uploading</p>
+                            <div class="progress-line"></div>
                         </div>
-                        <div style="flex: 23%;">
+                        <div style="font-family: lato;">
+                            <p style="display: contents;">Number of tracks to extract</p>
+                            <select name="tracks" id="tracks" class="dropdownOptions">
+                                <option value="2">2 (vocals, accompaniment)</option>
+                                <option value="4">4 (vocals, bass, drums, other)</option>
+                                <option value="5">5 (vocals, bass, drums, other, piano)</option>
+                            </select>
+
+                            <p style="display: contents;">Output format</p>
+                            <select name="outputFormat" id="outputFormat" class="dropdownOptions">
+                                <option value=".mp3">.mp3</option>
+                                <option value=".wav">.wav</option>
+                            </select>
+                        </div>
+                        <div>
                             <label class="uploadLabel" for="formSubmit">
                                 <input id="formSubmit" style="display: none;" onclick="runAI()" />
-                                <h2 style="color: white; align-self: center; text-align: center; margin-right: 10%;">
-                                    Seperate audio tracks</h2>
-                                <img src="assets/stars.svg" alt="" width="auto" height="50%" class="uploadIcon">
+                                <h2 style="color: white; align-self: center; text-align: center; font-size: 1.3em;">
+                                    Split audio</h2>
+                                <img src="assets/heart.svg" alt="" width="auto" height="22px" class="uploadIcon">
                             </label>
                         </div>
                     </form>
-                    <div style="flex: 18%;">
+                    <div>
                     </div>
                 </div>
                 <div id="insideDropTargetThirdPage" class="insideDropTarget hideElement">
