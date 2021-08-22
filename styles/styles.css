@@ -179,11 +179,12 @@ h3 {
     margin-top: 5%;
 }
 
-select {
-    
-}
 .tick {
     height: 0.8em;
+}
+.disableClick {
+    pointer-events: none;
+    opacity: 50%;
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
@@ -213,7 +214,7 @@ select {
 }
 
 .progress-line:before {
-    background-color: #B2B3B3;
+    background-color: #A68263;
     content: '';
     -webkit-animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;

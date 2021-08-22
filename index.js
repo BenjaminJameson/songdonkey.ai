@@ -122,6 +122,7 @@ async function uploadData(url = '', data) {
         .then((result) => {
             console.log('Success:', result);
             document.getElementById('uploadingBar').style.visibility = 'hidden';
+            document.getElementById('disableClick').classList.remove('disableClick');
             // view_loading();
         })
         .catch((error) => {
