@@ -1,7 +1,7 @@
 window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
-    // view_results();
+    view_results();
     // view_chooseOptions();
     // view_loading();
 };
@@ -342,6 +342,7 @@ function view_chooseOptions() {
     document.getElementById('insideDropTargetSecondPage').classList.remove('hideElement');
 }
 function view_loading() {
+    document.getElementById('insideDropTarget').classList.add('hideElement');
     document.getElementById('insideDropTargetSecondPage').classList.add('hideElement');
     document.getElementById('insideDropTargetThirdPage').classList.remove('hideElement');
 }
