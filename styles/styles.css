@@ -189,7 +189,7 @@ h3 {
     .spaceMiddle {
         display: none;
     }
-    .testDiv {
+    .mobileImage {
         position: fixed;
         bottom: 0;
         right: 0;
@@ -200,7 +200,19 @@ h3 {
         background-position: bottom;
         background-size: contain;
         background-repeat: no-repeat;
-        z-index: 99999;
+        z-index: -99;
+    }
+    .mainImage {
+        display: none;
+    }
+    .greyBackground {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: #D3D3D1;
+        z-index: -999;
     }
 }
 
