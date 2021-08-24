@@ -10,7 +10,7 @@
     left: 0;
     background-image: url('https://llytonca.sirv.com/mainImage.webp');
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: right;
     background-size: cover;
     background-attachment: scroll;
     z-index: -9999999;
@@ -190,15 +190,16 @@ h3 {
         display: none;
     }
     .testDiv {
-        display: block;
         position: fixed;
-        display: block;
-        width: 100%;
-        height: 200px;
-        background-color: #977658;
         bottom: 0;
         right: 0;
         left: 0;
+        height: 800px;
+        background-image: url(https://llytonca.sirv.com/mobileImage.webp);
+        background-attachment: fixed;
+        background-position: bottom;
+        background-size: contain;
+        background-repeat: no-repeat;
         z-index: 99999;
     }
 }
