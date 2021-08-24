@@ -30,7 +30,6 @@
         </div>
         <nav class="nav">
             <a href="about.html">About</a>
-            <a href="FAQ.html">FAQ</a>
             <a href="contact.html">Contact</a>
             <a href="privacyPolicy.html" target="_blank">Privacy Policy</a>
         </nav>
@@ -75,17 +74,31 @@
                         </div>
                         <div style="font-family: lato;">
                             <p style="display: contents;">Number of tracks to extract</p>
-                            <select name="tracks" id="tracks" class="dropdownOptions">
+                            <!-- <select name="tracks" id="tracks" class="dropdownOptions">
                                 <option value="2">2 (vocals, accompaniment)</option>
                                 <option value="4">4 (vocals, bass, drums, other)</option>
                                 <option value="5">5 (vocals, bass, drums, other, piano)</option>
-                            </select>
-
+                            </select> -->
+                            <div class="custom-select" style="width:100%;">
+                                <select name="tracks" id="tracks">
+                                    <option value="2">2 (vocals, accompaniment)</option>
+                                    <option value="2">2 (vocals, accompaniment)</option>
+                                    <option value="4">4 (vocals, bass, drums, other)</option>
+                                    <option value="5">5 (vocals, bass, drums, other, piano)</option>
+                                </select>
+                            </div>
                             <p style="display: contents;">Output format</p>
-                            <select name="outputFormat" id="outputFormat" class="dropdownOptions">
+                            <!-- <select name="outputFormat" id="outputFormat" class="dropdownOptions">
                                 <option value=".mp3">.mp3</option>
                                 <option value=".wav">.wav</option>
-                            </select>
+                            </select> -->
+                            <div class="custom-select" style="width:100%;">
+                                <select name="outputFormat" id="outputFormat">
+                                    <option value=".mp3">.mp3</option>
+                                    <option value=".mp3">.mp3</option>
+                                    <option value=".wav">.wav</option>
+                                </select>
+                            </div>
                         </div>
                         <div id="disableClick" class="disableClick">
                             <label class="uploadLabel" for="formSubmit">
@@ -429,13 +442,15 @@
                     <a id="zipDownload" href="" download>
                         <img src="assets/downloadAll.svg" alt="" height="60px">
                         <a id="zipDownloadText" href="">
-                            <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">Download all<br></p>
+                            <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">
+                                Download all<br></p>
                         </a>
                     </a>
                 </div>
                 <a href="https://songdonkey.ai/">
                     <img src="assets/restart.svg" alt="" height="60px">
-                    <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">Restart<br></p>
+                    <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">Restart<br>
+                    </p>
                 </a>
             </div>
         </div>

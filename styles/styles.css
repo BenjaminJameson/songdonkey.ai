@@ -145,14 +145,6 @@ h3 {
     justify-content: center;
 }
 
-.dropdownOptions {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    font-family: Lato, sans-serif;
-    cursor: pointer;
-}
-
 /* flex */
 
 .row {
@@ -182,6 +174,7 @@ h3 {
 .tick {
     height: 0.8em;
 }
+
 .disableClick {
     pointer-events: none;
     opacity: 50%;
@@ -305,4 +298,79 @@ h3 {
 
 .hideElement {
     display: none;
+}
+
+.dropdownOptions {
+    width: 100%;
+    cursor: pointer;
+}
+
+.custom-select {
+    position: relative;
+    font-family: Lato, sans-serif;
+    font-size: 13.5px;
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 7px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid #0A0B0D;
+    border-color: #00000075 transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #00000075 transparent;
+    top: 1px;
+}
+
+/*style the items (options), including the selected item:*/
+
+.select-items div, .select-selected {
+    width: 100%;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(0 0 0 / 50%);
+    cursor: pointer;
+    user-select: none;
+    padding: 1px;
+    padding-left: 3px;
+    box-sizing: border-box;
+}
+
+/*style items (options):*/
+
+.select-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: #dfdfdf;
+cursor: default;
 }
