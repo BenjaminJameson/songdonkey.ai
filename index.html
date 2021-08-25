@@ -27,7 +27,7 @@
     <div class="greyBackground"></div>
     <!-- header -->
     <header class="header">
-        <div style="margin-left: -30px;">
+        <div class="logo">
             <a href="https://songdonkey.ai/"><img src="assets/songdonkey.svg" alt="" height="25px"></a>
         </div>
         <nav class="nav">
@@ -49,7 +49,7 @@
                     <div style="display: flex; justify-content: center; align-items: center;">
                         <script
                             src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                        <lottie-player class="animation" max-height="162px" max-width="158px"
+                        <lottie-player class="animation mobileHide" max-height="162px" max-width="158px"
                             src="https://assets9.lottiefiles.com/packages/lf20_zos1rbzl.json" background="transparent"
                             speed="1" loop autoplay>
                         </lottie-player>
@@ -57,11 +57,11 @@
                     <div>
                         <label class="uploadLabel" for="audioInput">
                             <input id="audioInput" style="display: none;" type="file" accept="audio/mpeg,audio/wav" />
-                            <h2 style="color: white; align-self: center; text-align: center; font-size: x-large;">Upload
+                            <h2 style="color: white; align-self: center; text-align: center; font-size: x-large;">Start
                             </h2>
                             <img src="assets/upload.svg" alt="" width="auto" height="65%" class="uploadIcon">
                         </label>
-                        <p style="text-align: center; font-family: lato;">Or drop files here<br>
+                        <p class="mobileHide" style="text-align: center; font-family: lato;">Or drop files here<br>
                             <span style="color: #525252; font-size:smaller">Only .mp3 and .wav files.</span>
                         </p>
                     </div>
@@ -135,7 +135,7 @@
         <div class="spaceMiddle">
         </div>
         <div class="rightSide">
-            <div class="topBoxRight">
+            <div class="topBoxRight mobileHide">
                 <div>
 
                     <h3><img class="tick" src="assets/tick.svg"></img>Always <span style="color: #A68263;">Fast</span>
@@ -146,7 +146,7 @@
                     </h3>
                 </div>
             </div>
-            <div id="soundcloudExamples" style="margin-top: 12%;">
+            <div id="soundcloudExamples" class="examplesMargin">
                 <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
                 <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
                 <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">

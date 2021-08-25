@@ -179,9 +179,17 @@ h3 {
     pointer-events: none;
     opacity: 50%;
 }
+
 .mobileImage {
     display: none;
 }
+
+.logo {
+    margin-left: -30px;
+}
+.examplesMargin {
+        margin-top: 12%;
+    }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 
@@ -190,8 +198,22 @@ h3 {
         padding-left: 8px;
         padding-right: 8px;
     }
+    h1 {
+        font-family: Roboto, sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 40px;
+    }
+    h2 {
+        font-family: Lato, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: large;
+        color: #0A0B0D;
+    }
     .row {
         flex-direction: column;
+        margin-top: 0;
     }
     .spaceMiddle {
         display: none;
@@ -202,11 +224,6 @@ h3 {
         bottom: 0;
         right: 0;
         left: 0;
-        /* background-image: url(https://llytonca.sirv.com/mobileImg.webp);
-        background-attachment: fixed;
-        background-position: bottom;
-        background-size: contain;
-        background-repeat: no-repeat; */
         z-index: -99;
     }
     .mainImage {
@@ -220,6 +237,44 @@ h3 {
         left: 0;
         background-color: #D3D3D1;
         z-index: -999;
+    }
+    .logo {
+        margin-left: 0px;
+    }
+    .mobileHide {
+        display: none;
+    }
+    .droptarget {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        background: none;
+        border: none;
+        box-sizing: content-box;
+        border-radius: none;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+    .insideDropTarget {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        justify-content: space-evenly;
+    }
+    .uploadLabel {
+        height: 50px;
+    }
+    .examplesMargin {
+        margin-top: 0;
+    }
+    vm-controls {
+        --vm-controls-padding: 0px 0px 0px 0px !important;
+    }
+    vm-player {
+        min-height: 0px !important;
     }
 }
 
