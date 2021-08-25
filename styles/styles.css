@@ -179,6 +179,9 @@ h3 {
     pointer-events: none;
     opacity: 50%;
 }
+.mobileImage {
+    display: none;
+}
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 
@@ -194,16 +197,16 @@ h3 {
         display: none;
     }
     .mobileImage {
+        display: block;
         position: fixed;
         bottom: 0;
         right: 0;
         left: 0;
-        height: 800px;
-        background-image: url(https://llytonca.sirv.com/mobileImg.webp);
+        /* background-image: url(https://llytonca.sirv.com/mobileImg.webp);
         background-attachment: fixed;
         background-position: bottom;
         background-size: contain;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat; */
         z-index: -99;
     }
     .mainImage {
