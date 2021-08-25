@@ -187,9 +187,14 @@ h3 {
 .logo {
     margin-left: -30px;
 }
+
 .examplesMargin {
-        margin-top: 12%;
-    }
+    margin-top: 12%;
+}
+
+.navBurger {
+    display: none;
+}
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 
@@ -197,6 +202,12 @@ h3 {
     body {
         padding-left: 8px;
         padding-right: 8px;
+    }
+    .nav {
+        display: none;
+    }
+    .navBurger {
+        display: block;
     }
     h1 {
         font-family: Roboto, sans-serif;
@@ -208,7 +219,7 @@ h3 {
         font-family: Lato, sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: large;
+        font-size: x-large;
         color: #0A0B0D;
     }
     .row {
@@ -268,13 +279,10 @@ h3 {
         height: 50px;
     }
     .examplesMargin {
-        margin-top: 0;
+        margin-top: 15px;
     }
     vm-controls {
         --vm-controls-padding: 0px 0px 0px 0px !important;
-    }
-    vm-player {
-        min-height: 0px !important;
     }
 }
 
