@@ -305,6 +305,30 @@ h3 {
     vm-controls {
         --vm-controls-padding: 0px 0px 0px 0px !important;
     }
+    .droptargetResults {
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin-left: 0;
+        width: 100%;
+        height: auto;
+        background: none;
+        border: none;
+        box-sizing: content-box;
+        border-radius: none;
+        justify-content: space-between;
+        align-content: center;
+    }
+    #thankYou {
+        margin: 15px;
+    }
+    .resultIcons {
+        height: 40px;
+    }
+    .resultIconsDiv {
+        margin: 15px !important;
+    }
 }
 
 /* infinate loading bar */

@@ -339,15 +339,30 @@ function view_begin() {
 
 }
 function view_chooseOptions() {
+    var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('insideDropTarget').classList.add('hideElement');
     document.getElementById('insideDropTargetSecondPage').classList.remove('hideElement');
+    if (x.matches) {
+        document.getElementById('soundcloudExamples').classList.add('hideElement');
+        document.getElementById('title').classList.add('hideElement');
+        document.getElementById('subtitle').classList.add('hideElement');
+        document.getElementById('droptarget').style.marginTop = '20%';
+    }
 }
 function view_loading() {
+    var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('insideDropTarget').classList.add('hideElement');
     document.getElementById('insideDropTargetSecondPage').classList.add('hideElement');
     document.getElementById('insideDropTargetThirdPage').classList.remove('hideElement');
+    if (x.matches) {
+        document.getElementById('soundcloudExamples').classList.add('hideElement');
+        document.getElementById('title').classList.add('hideElement');
+        document.getElementById('subtitle').classList.add('hideElement');
+        document.getElementById('droptarget').style.marginTop = '20%';
+    }
 }
 function view_results() {
+    var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('mainDiv').classList.add("hideElement");
     document.getElementById('resultsDiv').classList.remove('hideElement');
 }

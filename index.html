@@ -45,8 +45,8 @@
     <!-- main div -->
     <div id="mainDiv" class="row">
         <div class="leftSide">
-            <h1><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
-            <h2>Extract vocals and instruments with artificial intelligence</h2>
+            <h1 id="title"><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
+            <h2 id="subtitle">Extract vocals and instruments with artificial intelligence</h2>
 
             <div id="droptarget" class="droptarget">
                 <div id="insideDropTarget" class="insideDropTarget">
@@ -236,7 +236,7 @@
     <!-- results div -->
     <div id="resultsDiv" class="row hideElement">
         <div id="insideDropTarget" class="droptargetResults">
-            <h1><span style="color: #A68263;">Thank</span> you</h1>
+            <h1 id="thankYou"><span style="color: #A68263;">Thank</span> you</h1>
             <!-- AUDIO PLAYERS -->
             <div>
                 <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
@@ -443,10 +443,10 @@
                 </vm-player>
                 <!-- /AUDIO PLAYERS -->
             </div>
-            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; margin-bottom: 20px;">
+            <div class="resultIconsDiv" style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; margin-bottom: 20px;">
                 <div>
                     <a id="zipDownload" href="" download>
-                        <img src="assets/downloadAll.svg" alt="" height="60px">
+                        <img class="resultIcons" src="assets/downloadAll.svg" alt="" height="60px">
                         <a id="zipDownloadText" href="">
                             <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">
                                 Download all<br></p>
@@ -454,7 +454,7 @@
                     </a>
                 </div>
                 <a href="https://songdonkey.ai/">
-                    <img src="assets/restart.svg" alt="" height="60px">
+                    <img class="resultIcons" src="assets/restart.svg" alt="" height="60px">
                     <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">Restart<br>
                     </p>
                 </a>
