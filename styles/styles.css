@@ -306,7 +306,7 @@ h3 {
         --vm-controls-padding: 0px 0px 0px 0px !important;
     }
     .droptargetResults {
-        padding: 10px;
+        padding: 0;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -329,6 +329,21 @@ h3 {
     .resultIconsDiv {
         margin: 15px !important;
     }
+    .select-selected {
+        height: 30px;
+    }
+    
+    .select-items div, .select-selected {
+        height: 30px;
+        font-size: 18px;
+    }
+    /* arrow */
+    .select-selected:after {
+        top: 12px !important;
+    }
+.select-selected.select-arrow-active:after {
+    top: 6px !important;
+}
 }
 
 /* infinate loading bar */
