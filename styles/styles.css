@@ -73,6 +73,10 @@ h3 {
     font-size: small;
 }
 
+.navCross {
+    display: none;
+}
+
 .droptarget {
     display: flex;
     flex-direction: column;
@@ -203,8 +207,25 @@ h3 {
         padding-left: 8px;
         padding-right: 8px;
     }
+    .navCross {
+        display: block;
+    }
     .nav {
+        position: absolute;
         display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+        gap: 15px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 15px;
+        background-color: #D3D3D1;
+        z-index: 99999999999;
+    }
+    .nav>* {
+        font-size: x-large;
     }
     .navBurger {
         display: block;
