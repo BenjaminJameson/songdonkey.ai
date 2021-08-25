@@ -246,6 +246,7 @@ h3 {
     .row {
         flex-direction: column;
         margin-top: 0;
+        overflow: hidden;
     }
     .spaceMiddle {
         display: none;
