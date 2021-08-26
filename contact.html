@@ -1,12 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SongDonkey</title>
+    <meta name="theme-color" content="#D3D3D1">
+    <link rel="stylesheet" href="styles/styles.css"">
+<!-- <link rel=" stylesheet" href="styles/styles.css" media="print" onload="this.media='all'"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@500&display=swap"
+        rel="stylesheet">
+    <script src="index.js"></script>
+    <!-- Default theme. ~960B -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css" />
+
+    <!-- Optional light theme (extends default). ~400B -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/light.css" />
+    <!-- email form -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // https://dashboard.emailjs.com/admin/integration
+            emailjs.init('user_UaQY9CXg4opZuZ62W2UMP');
+        })();
+    </script>
 </head>
+
 <body>
-   Contact 
+    <div class="mainImage"></div>
+    <img class="mobileImage" src="https://llytonca.sirv.com/mobileImg.webp" alt="" width="100%" height="auto">
+    <div class="greyBackground"></div>
+    <!-- header -->
+    <header class="header">
+        <div class="logo">
+            <a href="https://songdonkey.ai/"><img src="assets/songdonkey.svg" alt="" height="25px"></a>
+        </div>
+        <nav id="nav" class="nav">
+            <img class="navCross" src="assets/cross.svg" alt="">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacyPolicy.html" target="_blank">Privacy Policy</a>
+        </nav>
+        <div class="navBurger" onclick="openNav(event)">
+            <img src="assets/navBurger.svg" alt="">
+        </div>
+    </header>
+    <h1 id="title"><span style="color: #A68263;">Contact</span> us</h1>
+    <p style="max-width: 600px; font-size: large;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod
+        reprehenderit quia vel placeat sunt velit. Minima, cumque exercitationem nostrum ratione nulla, rem, sit beatae
+        pariatur quasi cum aliquid? Architecto, nemo.</p>
+
+
+
+    <form id="contact-form">
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input is-medium" type="text" name="user_name">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+                <input class="input is-medium" type="text" name="user_email">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Message</label>
+            <div class="control">
+                <textarea class="textarea is-medium" name="message"></textarea>
+            </div>
+        </div>
+        <div class="control">
+            <button id="submitButton" type="submit"
+                class="button is-fullwidth has-text-weight-medium is-medium is-dark is-outlined" value="Send">Send
+                Message</button>
+            <button id="submitSuccess" type="submit"
+                class="button is-hidden is-fullwidth has-text-weight-medium is-medium is-dark is-outlined" value="Send"
+                disabled>
+                <span class="icon">
+                    <i class="fas fa-lg fa-check"></i>
+                </span>
+            </button>
+        </div>
+    </form>
+
+    <script>
+        // EMAIL CONTACT FORM
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            document.getElementById("submitButton").classList.add("is-loading");
+            // generate a five digit number for the contact_number variable
+            // this.contact_number.value = Math.random() * 100000 | 0;
+            // these IDs from the previous steps
+            emailjs.sendForm('service_y8d5sqo', 'template_8wzk02x', this)
+                .then(function () {
+                    console.log('SUCCESS!');
+                    document.getElementById("submitButton").classList.add("is-hidden");
+                    document.getElementById("submitSuccess").classList.remove("is-hidden");
+                }, function (error) {
+                    console.log('FAILED...', error);
+                });
+        });
+    </script>
+
 </body>
+
 </html>
