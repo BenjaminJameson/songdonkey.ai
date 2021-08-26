@@ -28,6 +28,27 @@
             emailjs.init('user_UaQY9CXg4opZuZ62W2UMP');
         })();
     </script>
+    <style>
+        .label {
+            font-family: Lato, sans-serif;
+            color: #525252;
+            line-height: 25px;
+        }
+
+        .contactInput {
+            width: 100%;
+            border: none;
+            box-sizing: border-box;
+            border-radius: 10px;
+            font-family: Lato, sans-serif;
+            padding: 2px;
+            padding-left: 5px;
+        }
+
+        .messageBoxHeight {
+            height: 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -50,45 +71,138 @@
             <img src="assets/navBurger.svg" alt="">
         </div>
     </header>
-    <h1 id="title"><span style="color: #A68263;">Contact</span> us</h1>
-    <p style="max-width: 600px; font-size: large;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod
-        reprehenderit quia vel placeat sunt velit. Minima, cumque exercitationem nostrum ratione nulla, rem, sit beatae
-        pariatur quasi cum aliquid? Architecto, nemo.</p>
+
+    <div id="mainDiv" class="row">
+        <div class="leftSide">
+            <h1 id="title"><span style="color: #A68263;">Contact</span> SongDonkey</h1>
+            <h2 id="subtitle">Please provide any feedback below</h2>
+
+
+            <form id="contact-form" style="display: flex; flex-direction: column; gap: 10px; width: 500px;">
+                <div>
+                    <label class="label">Name</label><br>
+                    <input class="contactInput" type="text" name="user_name">
+                </div>
+                <div>
+                    <label class="label">Email</label><br>
+                    <input class="contactInput" type="text" name="user_email">
+                </div>
+                <div>
+                    <label class="label">Message</label><br>
+                    <textarea class="contactInput messageBoxHeight" name="message"></textarea>
+                </div>
+                <button id="submitButton" type="submit" style="display: none;"
+                    class="button is-fullwidth has-text-weight-medium is-medium is-dark is-outlined"
+                    value="Send"></button>
+                <label class="uploadLabel" for="submitButton" style="height: 50px;">
+                    <input id="audioInput" style="display: none;" type="file" accept="audio/mpeg,audio/wav" />
+                    <h2 style="color: white; align-self: center; text-align: center; font-size: x-large;">Send Message
+                    </h2>
+                    <img src="assets/upload.svg" alt="" width="auto" height="65%" class="uploadIcon">
+                </label>
+            </form>
+        </div>
+        <div class="spaceMiddle">
+        </div>
+        <div class="rightSide">
+            <div class="topBoxRight mobileHide">
+                <div>
+
+                    <h3><img class="tick" src="assets/tick.svg"></img>Always <span style="color: #A68263;">Fast</span>
+                    </h3>
+                </div>
+                <div>
+                    <h3><img class="tick" src="assets/tick.svg">Always <span style="color: #A68263;">Free</span>
+                    </h3>
+                </div>
+            </div>
+            <div id="soundcloudExamples" class="examplesMargin">
+                <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
+                <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
+                <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <!-- serve this through a cdn ###### -->
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Example.mp3" type="audio/mp3" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Example</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player currentTextTrack theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Vocals.mp3" type="audio/mp3" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-captions></vm-captions>
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Vocals</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control label="Playback" keys="k" pressed="true">
+                                <vm-end-time />
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player currentTextTrack theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Accompaniment.mp3"
+                            type="audio/mp3" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-captions></vm-captions>
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Accompaniment</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control label="Playback" keys="k" pressed="true">
+                                <vm-end-time />
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+            </div>
+        </div>
+    </div>
+    <!-- /main div -->
 
 
 
-    <form id="contact-form">
-        <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-                <input class="input is-medium" type="text" name="user_name">
-            </div>
-        </div>
-        <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-                <input class="input is-medium" type="text" name="user_email">
-            </div>
-        </div>
-        <div class="field">
-            <label class="label">Message</label>
-            <div class="control">
-                <textarea class="textarea is-medium" name="message"></textarea>
-            </div>
-        </div>
-        <div class="control">
-            <button id="submitButton" type="submit"
-                class="button is-fullwidth has-text-weight-medium is-medium is-dark is-outlined" value="Send">Send
-                Message</button>
-            <button id="submitSuccess" type="submit"
-                class="button is-hidden is-fullwidth has-text-weight-medium is-medium is-dark is-outlined" value="Send"
-                disabled>
-                <span class="icon">
-                    <i class="fas fa-lg fa-check"></i>
-                </span>
-            </button>
-        </div>
-    </form>
+
+
 
     <script>
         // EMAIL CONTACT FORM
