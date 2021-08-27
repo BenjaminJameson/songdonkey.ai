@@ -20,11 +20,19 @@
 
     <!-- Optional light theme (extends default). ~400B -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/light.css" />
+    <style>
+        @media screen and (max-width: 800px) {
+            .hideMobile {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="mainImage"></div>
-    <img class="mobileImage" src="https://llytonca.sirv.com/mobileImg.webp" alt="" width="100%" height="auto">
+    <img class="mobileImage hideMobile" src="https://llytonca.sirv.com/mobileImg.webp" alt="" width="100%"
+        height="auto">
     <div class="greyBackground"></div>
     <!-- header -->
     <header class="header">
@@ -42,8 +50,131 @@
             <img src="assets/navBurger.svg" alt="">
         </div>
     </header>
-    <h1 id="title"><span style="color: #A68263;">About</span> SongDonkey</h1>
-<p style="max-width: 600px; font-size: large;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod reprehenderit quia vel placeat sunt velit. Minima, cumque exercitationem nostrum ratione nulla, rem, sit beatae pariatur quasi cum aliquid? Architecto, nemo.jk Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus aliquam iusto alias repellat labore sequi distinctio beatae neque quidem, quae totam quibusdam adipisci quo sunt amet asperiores voluptas optio autem!</p>
+
+
+    <div id="mainDiv" class="row">
+        <div class="leftSide">
+            <h1 id="title"><span style="color: #A68263;">About</span> SongDonkey</h1>
+            <p style="max-width: 600px; font-size: x-large; font-family: Lato, sans-serif;">Welcome to SongDonkey, your
+                number
+                one source for audio separation.
+                We're dedicated to giving you the very best experience, with a focus on speed, universal free access,
+                and data
+                privacy.
+                <br><br>
+                Created in 2021 by Ben Jameson, we now serve creatives all over the world and are thrilled to offer this
+                service. Our passion for artificial intelligence drove us to find a way that could enable SongDonkey to
+                be free
+                and accessible to everyone. It was through extensive research of serverless architectures that made this
+                possible. Each person has priority access with no queues and all data is automatically deleted each day.
+                <br><br>
+                We hope you enjoy the results of your audio as much as we enjoy providing them to you. If you have any
+                questions
+                or comments, please don't hesitate to contact us.
+                <br><br>
+                Sincerely,<br>
+                SongDonkey
+            </p>
+        </div>
+        <div class="spaceMiddle">
+        </div>
+        <div class="rightSide">
+            <div class="topBoxRight mobileHide">
+                <div>
+
+                    <h3><img class="tick" src="assets/tick.svg"></img>Always <span style="color: #A68263;">Fast</span>
+                    </h3>
+                </div>
+                <div>
+                    <h3><img class="tick" src="assets/tick.svg">Always <span style="color: #A68263;">Free</span>
+                    </h3>
+                </div>
+            </div>
+            <div id="soundcloudExamples" class="examplesMargin mobileHide">
+                <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
+                <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
+                <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <!-- serve this through a cdn ###### -->
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Example.mp3" type="audio/mp3" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Example</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control>
+                                <vm-end-time />
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player currentTextTrack theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Vocals.mp3" type="audio/mp3" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-captions></vm-captions>
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Vocals</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control label="Playback" keys="k" pressed="true">
+                                <vm-end-time />
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+                <vm-player currentTextTrack theme="light"
+                    style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <vm-audio mediaTitle="Example Song">
+                        <source mediaTitle="Example Song"
+                            data-src="https://audio-example-songdonkey.s3.amazonaws.com/Accompaniment.mp3"
+                            type="audio/mp3" />
+                    </vm-audio>
+                    <vm-ui>
+                        <vm-loading-screen>
+                        </vm-loading-screen>
+                        <vm-captions></vm-captions>
+                        <vm-controls
+                            style="--vm-controls-bg: #ffffff2e; --vm-controls-bg: none; --vm-controls-padding: 8px 0px 8px 0px">
+                            <vm-control
+                                style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-scale: 1; --vm-control-icon-size: 15px; --vm-control-padding: 2px">
+                                <vm-playback-control>
+                                </vm-playback-control>
+                            </vm-control>
+                            <span style="text-align: center; font-family: lato;">Accompaniment</span>
+                            <vm-scrubber-control></vm-scrubber-control>
+                            <vm-control label="Playback" keys="k" pressed="true">
+                                <vm-end-time />
+                            </vm-control>
+                        </vm-controls>
+                    </vm-ui>
+                </vm-player>
+            </div>
+        </div>
+    </div>
+    <!-- /main div -->
+
+
+
 </body>
 
 </html>
