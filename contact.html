@@ -9,7 +9,7 @@
     <title>SongDonkey</title>
     <meta name="theme-color" content="#D3D3D1">
     <link rel="stylesheet" href="styles/styles.css">
-<!-- <link rel=" stylesheet" href="styles/styles.css" media="print" onload="this.media='all'"> -->
+    <!-- <link rel=" stylesheet" href="styles/styles.css" media="print" onload="this.media='all'"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@500&display=swap"
@@ -35,6 +35,13 @@
             line-height: 25px;
         }
 
+        .contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 500px;
+        }
+
         .contactInput {
             width: 100%;
             border: none;
@@ -48,12 +55,23 @@
         .messageBoxHeight {
             height: 100px;
         }
+
+        @media screen and (max-width: 800px) {
+            .hideMobile {
+                display: none;
+            }
+            .contactForm {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="mainImage"></div>
-    <img class="mobileImage" src="https://llytonca.sirv.com/mobileImg.webp" alt="" width="100%" height="auto">
+    <img class="mobileImage hideMobile" src="https://llytonca.sirv.com/mobileImg.webp" alt="" width="100%"
+        height="auto">
     <div class="greyBackground"></div>
     <!-- header -->
     <header class="header">
@@ -78,7 +96,7 @@
             <h2 id="subtitle">Please provide any feedback below</h2>
 
 
-            <form id="contact-form" style="display: flex; flex-direction: column; gap: 10px; width: 500px;">
+            <form id="contact-form" class="contactForm">
                 <div>
                     <label class="label">Name</label><br>
                     <input class="contactInput" type="text" name="user_name">
@@ -98,8 +116,9 @@
                     <input id="audioInput" style="display: none;" type="file" accept="audio/mpeg,audio/wav" />
                     <h2 style="color: white; align-self: center; text-align: center; font-size: x-large;">Send Message
                     </h2>
-                    <img src="assets/upload.svg" alt="" width="auto" height="65%" class="uploadIcon">
+                    <img id="tick" src="assets/tickWhite.svg" alt="" width="auto" height="50%" class="uploadIcon" style="display: none;">
                 </label>
+                <p id="successMessage" style="text-align: center; font-family: Lato, sans-serif; display: none;">Thank you for your message, we'll be in touch soon</p>
             </form>
         </div>
         <div class="spaceMiddle">
@@ -116,7 +135,7 @@
                     </h3>
                 </div>
             </div>
-            <div id="soundcloudExamples" class="examplesMargin">
+            <div id="soundcloudExamples" class="examplesMargin mobileHide">
                 <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
                 <script type="module" src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"></script>
                 <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
@@ -215,8 +234,8 @@
             emailjs.sendForm('service_y8d5sqo', 'template_8wzk02x', this)
                 .then(function () {
                     console.log('SUCCESS!');
-                    document.getElementById("submitButton").classList.add("is-hidden");
-                    document.getElementById("submitSuccess").classList.remove("is-hidden");
+                    document.getElementById("tick").style.display = 'Block';
+                    document.getElementById("successMessage").style.display = 'Block';
                 }, function (error) {
                     console.log('FAILED...', error);
                 });
