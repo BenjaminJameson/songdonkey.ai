@@ -413,8 +413,8 @@ h3 {
 .timed-progress:before {
     background-color: #AE896A;
     content: '';
-    -webkit-animation: running-progress1 55s cubic-bezier(.44, .72, .8, .79);
-    animation: running-progress1 55s cubic-bezier(.44, .72, .8, .79);
+    -webkit-animation: running-progress1 80s cubic-bezier(.44, .72, .8, .79);
+    animation: running-progress1 80s cubic-bezier(.44, .72, .8, .79);
 }
 
 @-webkit-keyframes running-progress1 {
@@ -477,7 +477,7 @@ h3 {
 .select-selected:after {
     position: absolute;
     content: "";
-    top: 7px;
+    top: 9px;
     right: 10px;
     width: 0;
     height: 0;
@@ -490,7 +490,7 @@ h3 {
 
 .select-selected.select-arrow-active:after {
     border-color: transparent transparent #00000075 transparent;
-    top: 1px;
+    top: 3px;
 }
 
 /*style the items (options), including the selected item:*/
