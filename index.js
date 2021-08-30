@@ -2,7 +2,7 @@ window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
     // view_results();
-    view_error();
+    // view_error();
     // view_chooseOptions();
     // view_loading();
 };
@@ -31,21 +31,29 @@ async function checkExistsThenUpdate(allUrls) {
     var check = '';
     if (numberTracks == '2') {
         var check = await checkIfFileExistsYet(allUrls['vocals']);
+        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
     if (numberTracks == '4') {
         var check = await checkIfFileExistsYet(allUrls['other']);
+        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
     if (numberTracks == '5') {
         var check = await checkIfFileExistsYet(allUrls['piano']);
+        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
-    if (check["status"] == 403) {
+    if (check["status"] == 403 && checkError["status"] == 403) {
         console.log("it doesn't exist yet");
         await new Promise(r => setTimeout(r, 2000));
         checkExistsThenUpdate(allUrls);
     } else {
-        console.log("the last files exists");
-        updateAudioElements(allUrls);
-        return;
+        if (check["status"] == 403) {
+            console.log('error file exists');
+            view_error();
+        } else {
+            console.log("the last files exists");
+            updateAudioElements(allUrls);
+            return;
+        }
     }
 }
 
@@ -72,6 +80,7 @@ async function runAI() {
     var otherURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/other${outputFormat}`;
     var pianoURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/piano${outputFormat}`;
     var zipURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/SongDonkey.zip`;
+    var errorFile = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/error.txt`;
 
     var allUrls = {
         'accompaniment': accompanimentURL,
@@ -80,7 +89,8 @@ async function runAI() {
         'drums': drumsURL,
         'other': otherURL,
         'piano': pianoURL,
-        'zip': zipURL
+        'zip': zipURL,
+        'errorFile': errorFile
     };
 
     var splitter = await runSplitter(urlOfSplitter, splitOptions);
