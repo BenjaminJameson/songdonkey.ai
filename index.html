@@ -27,7 +27,8 @@
 
 <body>
     <div class="mainImage"></div>
-    <img class="mobileImage" src="https://llytonca.sirv.com/mobileImg.webp" alt="record player image" width="100%" height="auto">
+    <img class="mobileImage" src="https://llytonca.sirv.com/mobileImg.webp" alt="record player image" width="100%"
+        height="auto">
     <div class="greyBackground"></div>
     <!-- header -->
     <header class="header">
@@ -115,7 +116,8 @@
                                 <input id="formSubmit" style="display: none;" onclick="runAI()" />
                                 <h2 style="color: white; align-self: center; text-align: center; font-size: 1.3em;">
                                     Split audio</h2>
-                                <img src="assets/heart.svg" alt="heart icon" width="auto" height="22px" class="uploadIcon">
+                                <img src="assets/heart.svg" alt="heart icon" width="auto" height="22px"
+                                    class="uploadIcon">
                             </label>
                         </div>
                     </form>
@@ -146,11 +148,13 @@
             <div class="topBoxRight mobileHide">
                 <div>
 
-                    <h3><img class="tick" src="assets/tick.svg" alt="tick icon"></img>Always <span style="color: #A68263;">Fast</span>
+                    <h3><img class="tick" src="assets/tick.svg" alt="tick icon"></img>Always <span
+                            style="color: #A68263;">Fast</span>
                     </h3>
                 </div>
                 <div>
-                    <h3><img class="tick" src="assets/tick.svg" alt="tick icon">Always <span style="color: #A68263;">Free</span>
+                    <h3><img class="tick" src="assets/tick.svg" alt="tick icon">Always <span
+                            style="color: #A68263;">Free</span>
                     </h3>
                 </div>
             </div>
@@ -463,6 +467,24 @@
                     <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">Restart<br>
                     </p>
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- error div  -->
+    <div id="errorDiv" class="row hideElement">
+        <div id="insideDropTarget" class="droptargetResults">
+            <h1 id="thankYou"><span style="color: #A68263;">Apologies,</span> we feel like such an ass <span><img src="assets/songdonkeyIcon.svg" alt=""></span></h1>
+            <!-- AUDIO PLAYERS -->
+            <div style="display: contents; font-family: Lato; text-align: left;">
+                There has been a server error. A few things to try may
+                be:
+                <ul>
+                    <li>Only upload .mp3 or .wav files</li>
+                    <li>Upload a smaller file (cut it and upload each part separately if needed, there's no limit to the
+                        amount of times you can upload)</li>
+                    <li>Please contact us if the error persists and we'll do our best to help</li>
+                </ul>
             </div>
         </div>
     </div>

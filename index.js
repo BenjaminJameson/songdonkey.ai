@@ -2,6 +2,7 @@ window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
     // view_results();
+    view_error();
     // view_chooseOptions();
     // view_loading();
 };
@@ -365,6 +366,12 @@ function view_results() {
     var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('mainDiv').classList.add("hideElement");
     document.getElementById('resultsDiv').classList.remove('hideElement');
+}
+
+function view_error() {
+    document.getElementById('mainDiv').classList.add("hideElement");
+    document.getElementById('resultsDiv').classList.add('hideElement');
+    document.getElementById('errorDiv').classList.remove('hideElement');
 }
 
 
