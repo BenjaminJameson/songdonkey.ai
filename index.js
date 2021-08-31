@@ -145,9 +145,6 @@ async function uploadData(url = '', data) {
 
 async function runSplitter(url, options) {
     console.log("Running AI");
-    var start = new Date();
-    var startTime = start.getTime();
-    console.log('starting timer', startTime);
     // var objectKey = { 'objectKey': data };
     var splitterResponse = {};
     await fetch(url, {
@@ -157,12 +154,8 @@ async function runSplitter(url, options) {
         .then((response) => {
             console.log("run splitter response", response);
             splitterResponse = response;
-            var end = new Date();
-            var timeTaken = end.getTime();
-            console.log("timeTaken", timeTaken);
-            console.log("time taken", timeTaken - startTime)
-            if (response["status"] != 503 && (timeTaken - startTime) < 28000) {
-                console.log("api returned an error 503 in under 25seconds");
+            if (response["status"] == 500) {
+                console.log("api returned an error 500");
                 view_error();
             }
         })
