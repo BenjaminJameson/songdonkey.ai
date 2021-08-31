@@ -158,7 +158,7 @@ async function runSplitter(url, options) {
             console.log("run splitter response", response);
             splitterResponse = response;
             var timeTaken = date.getTime();
-            if (response["status"] = 503 && (timeTaken - startTime) < 25000 ) {
+            if (response["status"] == 503 && (timeTaken - startTime) < 25000 ) {
                 console.log("api returned an error 503 in under 25seconds")
             }
         })
