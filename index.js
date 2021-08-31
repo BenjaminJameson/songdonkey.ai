@@ -11,8 +11,7 @@ var fileToSend = '';
 var objectKey = '';
 var urlOfSplitter = 'https://uhuikcje97.execute-api.us-east-1.amazonaws.com/default/song-splitter-image-function';
 var numberTracks = '';
-var date = new Date();
-var startTime;
+
 
 function processInput(event) {
     console.log("event happened");
@@ -146,7 +145,8 @@ async function uploadData(url = '', data) {
 
 async function runSplitter(url, options) {
     console.log("Running AI");
-    startTime = date.getTime();
+    var start = new Date();
+    var startTime = start.getTime();
     console.log('starting timer', startTime);
     // var objectKey = { 'objectKey': data };
     var splitterResponse = {};
@@ -157,7 +157,8 @@ async function runSplitter(url, options) {
         .then((response) => {
             console.log("run splitter response", response);
             splitterResponse = response;
-            var timeTaken = date.getTime();
+            var end = new Date();
+            var timeTaken = end.getTime();
             console.log("timeTaken", timeTaken);
             console.log("time taken", timeTaken - startTime)
             if (response["status"] == 503 && (timeTaken - startTime) < 25000) {
