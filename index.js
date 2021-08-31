@@ -11,6 +11,7 @@ var fileToSend = '';
 var objectKey = '';
 var urlOfSplitter = 'https://uhuikcje97.execute-api.us-east-1.amazonaws.com/default/song-splitter-image-function';
 var numberTracks = '';
+var date = new Date();
 var startTime;
 
 function processInput(event) {
@@ -145,7 +146,7 @@ async function uploadData(url = '', data) {
 
 async function runSplitter(url, options) {
     console.log("Running AI");
-    startTime = Date.getTime();
+    startTime = date.getTime();
     console.log('starting timer', startTime);
     // var objectKey = { 'objectKey': data };
     var splitterResponse = {};
@@ -156,7 +157,8 @@ async function runSplitter(url, options) {
         .then((response) => {
             console.log("run splitter response", response);
             splitterResponse = response;
-            if (response["status"] = 503 && (Date.getTime() - startTime) < 25000 ) {
+            var timeTaken = date.getTime();
+            if (response["status"] = 503 && (timeTaken - startTime) < 25000 ) {
                 console.log("api returned an error 503 in under 25seconds")
             }
         })
