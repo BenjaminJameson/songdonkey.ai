@@ -2,7 +2,7 @@ window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
     // view_results();
-    view_error();
+    // view_error();
     // view_chooseOptions();
     // view_loading();
 };
