@@ -341,6 +341,9 @@ h3 {
     .select-selected.select-arrow-active:after {
         top: 6px !important;
     }
+    .mobileNoMargin {
+        margin: 0px;
+    }
 }
 
 /* infinate loading bar */
