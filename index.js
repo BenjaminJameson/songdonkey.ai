@@ -350,15 +350,22 @@ document.addEventListener("drop", function (event) {
 
 
 async function slowMessage() {
+    console.log('slow timer started');
     await new Promise(r => setTimeout(r, 80000));
     document.getElementById('timeEstimate').innerHTML = 'Your song is still processing, please wait a further 20 seconds';
     return
 }
 
 async function timeoutErrorMessage() {
+    console.log('timeout error timer started');
     await new Promise(r => setTimeout(r, 160000));
     view_error();
     return
+}
+
+async function startTimers (){
+    slowMessage();
+    timeoutErrorMessage();
 }
 
 function view_begin() {
@@ -377,8 +384,7 @@ function view_chooseOptions() {
 }
 function view_loading() {
     // begin timer
-    slowMessage();
-    timeoutErrorMessage();
+    startTimers();
     var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('insideDropTarget').classList.add('hideElement');
     document.getElementById('insideDropTargetSecondPage').classList.add('hideElement');
