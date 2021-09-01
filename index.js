@@ -32,29 +32,24 @@ async function checkExistsThenUpdate(allUrls) {
     var check = '';
     if (numberTracks == '2') {
         var check = await checkIfFileExistsYet(allUrls['vocals']);
-        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+        // var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
     if (numberTracks == '4') {
         var check = await checkIfFileExistsYet(allUrls['other']);
-        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+        // var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
     if (numberTracks == '5') {
         var check = await checkIfFileExistsYet(allUrls['piano']);
-        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+        // var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
-    if (check["status"] == 403 && checkError["status"] == 403) {
+    if (check["status"] == 403) {
         console.log("it doesn't exist yet");
         await new Promise(r => setTimeout(r, 2000));
         checkExistsThenUpdate(allUrls);
     } else {
-        if (check["status"] == 403) {
-            console.log('error file exists');
-            view_error();
-        } else {
-            console.log("the last files exists");
-            updateAudioElements(allUrls);
-            return;
-        }
+        console.log("the last files exists");
+        updateAudioElements(allUrls);
+        return;
     }
 }
 
@@ -81,7 +76,7 @@ async function runAI() {
     var otherURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/other${outputFormat}`;
     var pianoURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/piano${outputFormat}`;
     var zipURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/SongDonkey.zip`;
-    var errorFile = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/error.txt`;
+    // var errorFile = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/error.txt`;
 
     var allUrls = {
         'accompaniment': accompanimentURL,
@@ -91,7 +86,7 @@ async function runAI() {
         'other': otherURL,
         'piano': pianoURL,
         'zip': zipURL,
-        'errorFile': errorFile
+        // 'errorFile': errorFile
     };
 
     var splitter = await runSplitter(urlOfSplitter, splitOptions);
@@ -355,13 +350,13 @@ document.addEventListener("drop", function (event) {
 
 
 async function slowMessage() {
-    await new Promise(r => setTimeout(r, 10000));
+    await new Promise(r => setTimeout(r, 80000));
     document.getElementById('timeEstimate').innerHTML = 'Your song is still processing, please wait a further 20 seconds';
     return
 }
 
 async function timeoutErrorMessage() {
-    await new Promise(r => setTimeout(r, 120000));
+    await new Promise(r => setTimeout(r, 160000));
     view_error();
     return
 }
