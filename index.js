@@ -251,6 +251,8 @@ async function download(audioId) {
     element.remove();
 }
 
+
+
 /* Events fired on the drag target */
 
 // document.addEventListener("dragstart", function (event) {
@@ -351,6 +353,19 @@ document.addEventListener("drop", function (event) {
 //     console.log('page is fully loaded');
 // };
 
+
+async function slowMessage() {
+    await new Promise(r => setTimeout(r, 10000));
+    document.getElementById('timeEstimate').innerHTML = 'Your song is still processing, please wait a further 20 seconds';
+    return
+}
+
+async function timeoutErrorMessage() {
+    await new Promise(r => setTimeout(r, 120000));
+    view_error();
+    return
+}
+
 function view_begin() {
 
 }
@@ -366,6 +381,9 @@ function view_chooseOptions() {
     }
 }
 function view_loading() {
+    // begin timer
+    slowMessage();
+    timeoutErrorMessage();
     var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('insideDropTarget').classList.add('hideElement');
     document.getElementById('insideDropTargetSecondPage').classList.add('hideElement');
