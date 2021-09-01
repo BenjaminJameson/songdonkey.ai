@@ -359,11 +359,13 @@ async function slowMessage() {
 async function timeoutErrorMessage() {
     console.log('timeout error timer started');
     await new Promise(r => setTimeout(r, 160000));
-    view_error();
+    if (document.getElementById('resultsDiv').classList.contains('hideElement')) {
+        view_error();
+    }
     return
 }
 
-async function startTimers (){
+async function startTimers() {
     slowMessage();
     timeoutErrorMessage();
 }
