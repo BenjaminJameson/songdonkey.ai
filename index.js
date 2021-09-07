@@ -53,6 +53,32 @@ async function checkExistsThenUpdate(allUrls) {
     }
 }
 
+function writeDBsplitOptions() {
+    console.log('wrote to db split options');
+    var tracks = document.getElementsByName('tracks')[0].value;
+    var outputFormat = document.getElementsByName('outputFormat')[0].value;
+    numberTracks = tracks;
+    console.log('tracks', tracks);
+    console.log('outputFormat', outputFormat);
+
+    var splitOptions = {
+        'tracks': tracks,
+        'outputFormat': outputFormat,
+        'objectKey': objectKey
+    }
+    fetch("https://j0b0ap2u5j.execute-api.us-east-1.amazonaws.com/default/song-donkey-dynamodb", {
+        method: 'POST',
+        body: JSON.stringify(splitOptions)
+    })
+        .then((response) => response.json())
+        .then((result) => {
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+
 async function runAI() {
     view_loading();
     var tracks = document.getElementsByName('tracks')[0].value;
@@ -305,6 +331,7 @@ document.addEventListener("dragleave", function (event) {
         document.getElementById("insideDropTarget").style.zIndex = "";
     }
 });
+
 
 /* On drop - Prevent the browser default handling of the data (default is open as link on drop)
    Reset the color of the output text and DIV's border color
