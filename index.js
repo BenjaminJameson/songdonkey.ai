@@ -356,7 +356,9 @@ document.addEventListener("drop", function (event) {
     var data = event.dataTransfer.items[0].getAsFile();
     console.log(data);
     if (event.target.className == "droptarget") {
+        audioFileSizeMB = data.size / 1000000;
         file = URL.createObjectURL(data);
+        getAudioLength(file);
         console.log("this is file", file);
         document.getElementById('originalAudioId').setAttribute('data-src', file);
         fileToSend = data;
