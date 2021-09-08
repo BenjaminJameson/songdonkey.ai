@@ -9,14 +9,16 @@ window.onload = (event) => {
 
 var fileToSend = '';
 var objectKey = '';
-var urlOfSplitter = 'https://uhuikcje97.execute-api.us-east-1.amazonaws.com/default/song-splitter-image-function';
+// var urlOfSplitter = 'https://uhuikcje97.execute-api.us-east-1.amazonaws.com/default/song-splitter-image-function';
 var numberTracks = '';
+var audioFileSizeMB;
 
 
 function processInput(event) {
     console.log("event happened");
     console.log(event);
     files = this.files;
+    audioFileSizeMB = files[0].size / 1000000;
     file = URL.createObjectURL(files[0]);
     console.log("this is file", file);
     document.getElementById('originalAudioId').setAttribute('data-src', file);
@@ -32,28 +34,31 @@ async function checkExistsThenUpdate(allUrls) {
     var check = '';
     if (numberTracks == '2') {
         var check = await checkIfFileExistsYet(allUrls['vocals']);
-        // var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
     if (numberTracks == '4') {
         var check = await checkIfFileExistsYet(allUrls['other']);
-        // var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
     if (numberTracks == '5') {
         var check = await checkIfFileExistsYet(allUrls['piano']);
-        // var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+        var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
     }
-    if (check["status"] == 403) {
-        console.log("it doesn't exist yet");
+    if (check['status'] == 200) {
+        updateAudioElements(allUrls);
+        return
+    } else if (checkError['status'] == 200) {
+        view_error();
+        return
+    } else {
         await new Promise(r => setTimeout(r, 2000));
         checkExistsThenUpdate(allUrls);
-    } else {
-        console.log("the last files exists");
-        updateAudioElements(allUrls);
-        return;
     }
 }
 
-function writeDBsplitOptions() {
+async function writeDBsplitOptions() {
+    view_loading();
+    beginPolling();
     console.log('wrote to db split options');
     var tracks = document.getElementsByName('tracks')[0].value;
     var outputFormat = document.getElementsByName('outputFormat')[0].value;
@@ -64,9 +69,10 @@ function writeDBsplitOptions() {
     var splitOptions = {
         'tracks': tracks,
         'outputFormat': outputFormat,
-        'objectKey': objectKey
+        'objectKey': objectKey,
+        'audioFileSizeMB': audioFileSizeMB
     }
-    fetch("https://j0b0ap2u5j.execute-api.us-east-1.amazonaws.com/default/song-donkey-dynamodb", {
+    await fetch("https://j0b0ap2u5j.execute-api.us-east-1.amazonaws.com/default/song-donkey-dynamodb", {
         method: 'POST',
         body: JSON.stringify(splitOptions)
     })
@@ -75,26 +81,17 @@ function writeDBsplitOptions() {
         })
         .catch((error) => {
             console.error('Error:', error);
+            view_error();
         });
 }
 
 
-async function runAI() {
-    view_loading();
-    var tracks = document.getElementsByName('tracks')[0].value;
-    var outputFormat = document.getElementsByName('outputFormat')[0].value;
-    numberTracks = tracks;
-    console.log('tracks', tracks);
-    console.log('outputFormat', outputFormat);
-
-    var splitOptions = {
-        'tracks': tracks,
-        'outputFormat': outputFormat,
-        'objectKey': objectKey
-    }
-
+async function beginPolling() {
+    // wait 20 seconds
+    await new Promise(r => setTimeout(r, 20000));
     var objectKeyNameOnly = objectKey.split(".")[0];
-    var s3BucketURL = 'https://song-splitter-bucket.s3.amazonaws.com/'
+    var outputFormat = document.getElementsByName('outputFormat')[0].value;
+    var s3BucketURL = 'https://song-splitter-output.s3.amazonaws.com/';
     var accompanimentURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/accompaniment${outputFormat}`;
     var vocalsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/vocals${outputFormat}`;
     var bassURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/bass${outputFormat}`;
@@ -102,7 +99,7 @@ async function runAI() {
     var otherURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/other${outputFormat}`;
     var pianoURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/piano${outputFormat}`;
     var zipURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/SongDonkey.zip`;
-    // var errorFile = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/error.txt`;
+    var errorFile = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/error.txt`;
 
     var allUrls = {
         'accompaniment': accompanimentURL,
@@ -112,16 +109,9 @@ async function runAI() {
         'other': otherURL,
         'piano': pianoURL,
         'zip': zipURL,
-        // 'errorFile': errorFile
+        'errorFile': errorFile
     };
-
-    var splitter = await runSplitter(urlOfSplitter, splitOptions);
-    console.log("splitter response in main", splitter);
-    if (splitter["status"] == 200) {
-        updateAudioElements(allUrls);
-    } else {
-        await checkExistsThenUpdate(allUrls);
-    }
+    await checkExistsThenUpdate(allUrls);
 }
 
 async function getPresignedURL(fileType) {
