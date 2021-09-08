@@ -12,6 +12,7 @@ var objectKey = '';
 // var urlOfSplitter = 'https://uhuikcje97.execute-api.us-east-1.amazonaws.com/default/song-splitter-image-function';
 var numberTracks = '';
 var audioFileSizeMB;
+var audioLengthMinutes;
 
 
 function processInput(event) {
@@ -22,11 +23,11 @@ function processInput(event) {
     file = URL.createObjectURL(files[0]);
     console.log("this is file", file);
     document.getElementById('originalAudioId').setAttribute('data-src', file);
+    getAudioLength(file);
     console.log(file);
     fileToSend = files[0];
     var fileType = fileToSend.type;
     beginUpload(fileType);
-    // uploadAndRunAI(fileToSend);
     view_chooseOptions();
 };
 
@@ -70,7 +71,8 @@ async function writeDBsplitOptions() {
         'tracks': tracks,
         'outputFormat': outputFormat,
         'objectKey': objectKey,
-        'audioFileSizeMB': audioFileSizeMB
+        'audioFileSizeMB': audioFileSizeMB,
+        'audioLengthMinutes': audioLengthMinutes
     }
     await fetch("https://j0b0ap2u5j.execute-api.us-east-1.amazonaws.com/default/song-donkey-dynamodb", {
         method: 'POST',
@@ -134,24 +136,36 @@ async function getPresignedURL(fileType) {
     return params
 }
 
-async function uploadData(url = '', data) {
-    var response = await fetch(url, {
-        method: 'PUT',
-        body: data
-    })
-        .then((response) => {
-            console.log('response:', response);
-        })
-        .then((result) => {
-            console.log('Success:', result);
+
+async function uploadData(url, data) {
+
+    let request = new XMLHttpRequest();
+    request.open('PUT', url);
+
+    // upload progress event
+    request.upload.addEventListener('progress', function (e) {
+        // upload progress as percentage
+        let percent_completed = Math.round((e.loaded / e.total) * 100);
+        let width = `${percent_completed.toString()}%`;
+        document.getElementById('uploadProgress').style.width = width;
+        if (percent_completed == 100) {
             document.getElementById('uploadingBar').style.visibility = 'hidden';
             document.getElementById('disableClick').classList.remove('disableClick');
-            // view_loading();
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    return response;
+        }
+    });
+
+    // request finished event
+    request.addEventListener('load', function (e) {
+        // HTTP status message (200, 404 etc)
+        console.log('status', request.status);
+
+        // request.response holds response from the server
+        console.log('response', request.response);
+        console.log('uploaded');
+    });
+
+    // send POST request to server
+    request.send(data);
 }
 
 async function runSplitter(url, options) {
@@ -262,7 +276,12 @@ async function download(audioId) {
     element.remove();
 }
 
-
+async function getAudioLength(file) {
+    var audioObj = new Audio(file);
+    audioObj.addEventListener("loadeddata", function () {
+        audioLengthMinutes = this.duration / 60;
+    });
+}
 
 /* Events fired on the drag target */
 
@@ -529,3 +548,5 @@ function closeNav() {
     document.getElementById('nav').style.display = 'none';
     document.body.removeEventListener('click', closeNav);
 }
+
+
