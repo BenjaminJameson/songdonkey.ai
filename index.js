@@ -52,7 +52,7 @@ async function checkExistsThenUpdate(allUrls) {
         view_error();
         return
     } else {
-        await new Promise(r => setTimeout(r, 2000));
+        await new Promise(r => setTimeout(r, 4000));
         checkExistsThenUpdate(allUrls);
     }
 }
@@ -74,6 +74,8 @@ async function writeDBsplitOptions() {
         'audioFileSizeMB': audioFileSizeMB,
         'audioLengthMinutes': audioLengthMinutes
     }
+    console.log('audioFileSizeMB', audioFileSizeMB)
+    console.log('audioLengthMinutes', audioLengthMinutes)
     await fetch("https://j0b0ap2u5j.execute-api.us-east-1.amazonaws.com/default/song-donkey-dynamodb", {
         method: 'POST',
         body: JSON.stringify(splitOptions)
@@ -87,6 +89,15 @@ async function writeDBsplitOptions() {
         });
 }
 
+function isFileLarge() {
+    if (audioFileSizeMB > 4) {
+        console.log('file is large');
+        return true
+    } else {
+        console.log('file is small');
+        return false
+    }
+}
 
 async function beginPolling() {
     // wait 20 seconds
@@ -117,9 +128,14 @@ async function beginPolling() {
 }
 
 async function getPresignedURL(fileType) {
+    if (isFileLarge()==false) {
+        var url = "https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
+    } else {
+        var url = "https://at3r2pm991.execute-api.us-east-1.amazonaws.com/default/getPresignedUrlLargeBucket";
+    }
     var presignedURL = '';
     var objectKey = '';
-    await fetch("https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL", {
+    await fetch(url, {
         method: 'POST',
         body: JSON.stringify({ 'fileType': fileType })
     })
@@ -254,6 +270,11 @@ function updateAudioElements(allUrls) {
 
 
 async function beginUpload(fileType) {
+    if (fileType != 'audio/mpeg' && fileType != 'audio/wav') {
+        console.log('filetype not mpeg or wav');
+        view_error();
+        return
+    }
     console.log('beginning upload');
     params = await getPresignedURL(fileType);
     objectKey = params['objectKey'];
@@ -396,7 +417,7 @@ async function slowMessage() {
 
 async function timeoutErrorMessage() {
     console.log('timeout error timer started');
-    await new Promise(r => setTimeout(r, 160000));
+    await new Promise(r => setTimeout(r, 300000));
     if (document.getElementById('resultsDiv').classList.contains('hideElement')) {
         view_error();
     }
