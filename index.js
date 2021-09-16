@@ -1,8 +1,6 @@
 window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
-    // window.addEventListener('error', function () { view_error(); console.log('error'); });
-    // window.onerror = function (message, source, lineno, colno, error) { view_error(); console.log('error second'); };
     // view_results();
     // view_error();
     // view_chooseOptions();
@@ -59,11 +57,12 @@ async function checkExistsThenUpdate(allUrls) {
 }
 
 async function writeDBsplitOptions() {
+    var tracks = document.getElementsByName('tracks')[0].value;
+    var outputFormat = document.getElementsByName('outputFormat')[0].value;
+    update_time_estimated(tracks);
     view_loading();
     beginPolling();
     console.log('wrote to db split options');
-    var tracks = document.getElementsByName('tracks')[0].value;
-    var outputFormat = document.getElementsByName('outputFormat')[0].value;
     numberTracks = tracks;
     console.log('tracks', tracks);
     console.log('outputFormat', outputFormat);
@@ -581,24 +580,55 @@ function closeNav() {
 
 let estimated_times = {
     //first number rounds nearest minutes, second is 5/4 tracks or 2 tracks
-    '0_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
-    '0_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
-    '1_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
-    '1_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
-    '2_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
-    '2_5': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000 },
-    '3_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
-    '3_5': { 'message': 'Estimated time 59 seconds', 'milliseconds': 59000 },
-    '4_2': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000 },
-    '4_5': { 'message': 'Estimated time 1 minute 9 seconds', 'milliseconds': 69000 },
-    '5_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000 },
-    '5_5': { 'message': 'Estimated time 1 minute 39 seconds', 'milliseconds': 99000 },
-    '5-7_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000 },
-    '5-7_5': { 'message': 'Estimated time 1 minute 49 seconds', 'milliseconds': 109000 },
-    '7-14_2': { 'message': 'Estimated time 2 minutes 10 seconds', 'milliseconds': 130000 },
-    '7-14_5': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 300000 },
-    '14-21_2': { 'message': 'Estimated time 3 minutes 20 seconds', 'milliseconds': 200000 },
-    '14-21_5': { 'message': 'Your audio file is longer than usual, please allow up to 6 minutes', 'milliseconds': 360000 },
-    '21+_2': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 300000 },
-    '21+_5': { 'message': 'Your audio file is longer than usual, please allow up to 8 minutes', 'milliseconds': 480000 }
+    '0_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
+    '0_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
+    '1_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
+    '1_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
+    '2_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
+    '2_5': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000, 'delay': 30000 },
+    '3_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
+    '3_5': { 'message': 'Estimated time 59 seconds', 'milliseconds': 59000, 'delay': 50000 },
+    '4_2': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000, 'delay': 30000 },
+    '4_5': { 'message': 'Estimated time 1 minute 9 seconds', 'milliseconds': 69000, 'delay': 60000 },
+    '5_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000, 'delay': 40000 },
+    '5_5': { 'message': 'Estimated time 1 minute 39 seconds', 'milliseconds': 99000, 'delay': 90000 },
+    '5-7_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000, 'delay': 40000 },
+    '5-7_5': { 'message': 'Estimated time 1 minute 49 seconds', 'milliseconds': 109000, 'delay': 90000 },
+    '7-14_2': { 'message': 'Estimated time 2 minutes 10 seconds', 'milliseconds': 130000, 'delay': 100000 },
+    '7-14_5': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 250000 },
+    '14-21_2': { 'message': 'Estimated time 3 minutes 20 seconds', 'milliseconds': 200000, 'delay': 150000 },
+    '14-21_5': { 'message': 'Your audio file is longer than usual, please allow up to 6 minutes', 'milliseconds': 360000, 'delay': 300000 },
+    '21+_2': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 250000 },
+    '21+_5': { 'message': 'Your audio file is longer than usual, please allow up to 8 minutes', 'milliseconds': 480000, 'delay': 400000 }
+}
+
+function update_time_estimated(tracks) {
+    let length = Math.round(audioLengthMinutes)
+    let num_tracks = tracks
+    if (tracks == 4) {
+        num_tracks = 5
+    }
+    if (length > 5) {
+        if (length < 7) {
+            length = '5-7'
+        } else if (length < 14) {
+            length = '7-14'
+        } else if (length < 21) {
+            length = '14-21'
+        } else {
+            length = '21+'
+        }
+    }
+
+    let key = `${length}_${num_tracks}`
+    let estimate = estimated_times[key]
+    let estimate_message = estimate['message']
+    let estimate_milliseconds = estimate['milliseconds']
+    let delay = estimate['delay']
+    console.log('key', key)
+    console.log('estimate', estimate)
+    console.log('estimate message', estimate_message)
+    console.log('estimate milliseconds', estimate_milliseconds)
+    console.log('delay', delay)
+    return delay
 }
