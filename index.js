@@ -584,7 +584,7 @@ let estimated_times = {
     '0_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
     '0_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
     '1_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
-    '1_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000},
+    '1_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
     '2_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
     '2_5': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000 },
     '3_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000 },
@@ -595,10 +595,10 @@ let estimated_times = {
     '5_5': { 'message': 'Estimated time 1 minute 39 seconds', 'milliseconds': 99000 },
     '5-7_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000 },
     '5-7_5': { 'message': 'Estimated time 1 minute 49 seconds', 'milliseconds': 109000 },
-    '7-14_2': { 'message': 'Estimated time 2 minutes 10 seconds', 'milliseconds': 109000 },
-    '7-14_5': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 109000 },
-    '14-21_2': { 'message': 'Estimated time 3 minutes 20 seconds', 'milliseconds': 109000 },
+    '7-14_2': { 'message': 'Estimated time 2 minutes 10 seconds', 'milliseconds': 130000 },
+    '7-14_5': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 300000 },
+    '14-21_2': { 'message': 'Estimated time 3 minutes 20 seconds', 'milliseconds': 200000 },
     '14-21_5': { 'message': 'Your audio file is longer than usual, please allow up to 6 minutes', 'milliseconds': 360000 },
-    '21+_2': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 109000 },
+    '21+_2': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 300000 },
     '21+_5': { 'message': 'Your audio file is longer than usual, please allow up to 8 minutes', 'milliseconds': 480000 }
 }
