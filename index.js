@@ -1,6 +1,8 @@
 window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
+    // window.addEventListener('error', function () { view_error(); console.log('error'); });
+    // window.onerror = function (message, source, lineno, colno, error) { view_error(); console.log('error second'); };
     // view_results();
     // view_error();
     // view_chooseOptions();
@@ -16,18 +18,17 @@ var audioLengthMinutes;
 
 
 function processInput(event) {
-    console.log("event happened");
     console.log(event);
     files = this.files;
     audioFileSizeMB = files[0].size / 1000000;
     file = URL.createObjectURL(files[0]);
     console.log("this is file", file);
     document.getElementById('originalAudioId').setAttribute('data-src', file);
-    getAudioLength(file);
+    // getAudioLength(file);
     console.log(file);
     fileToSend = files[0];
     var fileType = fileToSend.type;
-    beginUpload(fileType);
+    beginUpload(fileType, file);
     view_chooseOptions();
 };
 
@@ -89,11 +90,11 @@ async function writeDBsplitOptions() {
         });
 }
 
-function isFileLarge() {
-    if (audioFileSizeMB > 4) {
+function isFileLarge(length) {
+    if (length > 7.5) {
         console.log('file is large');
         return true
-    } else {
+    } else if (length <= 7.5) {
         console.log('file is small');
         return false
     }
@@ -127,14 +128,15 @@ async function beginPolling() {
     await checkExistsThenUpdate(allUrls);
 }
 
-async function getPresignedURL(fileType) {
-    if (isFileLarge()==false) {
+async function getPresignedURL(fileType, is_large) {
+    if (is_large == false) {
         var url = "https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
-    } else {
+    } else if (is_large == true) {
         var url = "https://at3r2pm991.execute-api.us-east-1.amazonaws.com/default/getPresignedUrlLargeBucket";
     }
     var presignedURL = '';
     var objectKey = '';
+    console.log('url', url);
     await fetch(url, {
         method: 'POST',
         body: JSON.stringify({ 'fileType': fileType })
@@ -269,17 +271,19 @@ function updateAudioElements(allUrls) {
 }
 
 
-async function beginUpload(fileType) {
+async function beginUpload(fileType, file) {
     if (fileType != 'audio/mpeg' && fileType != 'audio/wav') {
         console.log('filetype not mpeg or wav');
         view_error();
         return
     }
+    var length = await getAudioLength(file);
+    var is_large = isFileLarge(length);
     console.log('beginning upload');
-    params = await getPresignedURL(fileType);
+    params = await getPresignedURL(fileType, is_large);
     objectKey = params['objectKey'];
     var presignedURL = await params['presignedURL'];
-    await uploadData(presignedURL, fileToSend);
+    uploadData(presignedURL, fileToSend);
 }
 
 async function download(audioId) {
@@ -299,9 +303,11 @@ async function download(audioId) {
 
 async function getAudioLength(file) {
     var audioObj = new Audio(file);
-    audioObj.addEventListener("loadeddata", function () {
-        audioLengthMinutes = this.duration / 60;
-    });
+    while (isNaN(audioObj.duration) == true) {
+        await new Promise(r => setTimeout(r, 500));
+    }
+    audioLengthMinutes = audioObj.duration / 60;
+    return audioLengthMinutes
 }
 
 /* Events fired on the drag target */
@@ -417,7 +423,7 @@ async function slowMessage() {
 
 async function timeoutErrorMessage() {
     console.log('timeout error timer started');
-    await new Promise(r => setTimeout(r, 300000));
+    await new Promise(r => setTimeout(r, 600000)); //10 minutes
     if (document.getElementById('resultsDiv').classList.contains('hideElement')) {
         view_error();
     }
