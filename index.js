@@ -59,9 +59,9 @@ async function checkExistsThenUpdate(allUrls) {
 async function writeDBsplitOptions() {
     var tracks = document.getElementsByName('tracks')[0].value;
     var outputFormat = document.getElementsByName('outputFormat')[0].value;
-    update_time_estimated(tracks);
+    let delay = update_time_estimated(tracks);
     view_loading();
-    beginPolling();
+    beginPolling(delay);
     console.log('wrote to db split options');
     numberTracks = tracks;
     console.log('tracks', tracks);
@@ -99,9 +99,9 @@ function isFileLarge(length) {
     }
 }
 
-async function beginPolling() {
+async function beginPolling(delay) {
     // wait 20 seconds
-    await new Promise(r => setTimeout(r, 20000));
+    await new Promise(r => setTimeout(r, delay));
     var objectKeyNameOnly = objectKey.split(".")[0];
     var outputFormat = document.getElementsByName('outputFormat')[0].value;
     var s3BucketURL = 'https://song-splitter-output.s3.amazonaws.com/';
@@ -396,10 +396,6 @@ document.addEventListener("drop", function (event) {
 });
 
 
-
-
-
-
 // soundcloud
 
 // window.onload = (event) => {
@@ -413,10 +409,14 @@ document.addEventListener("drop", function (event) {
 // };
 
 
-async function slowMessage() {
+async function slowMessage(animation_time) {
     console.log('slow timer started');
-    await new Promise(r => setTimeout(r, 80000));
-    document.getElementById('timeEstimate').innerHTML = 'Your song is still processing, please wait a further 20 seconds';
+    await new Promise(r => setTimeout(r, animation_time * 1000));
+    document.getElementById('timeEstimate').innerHTML = 'Your song is still processing, please wait a further 29 seconds';
+    document.getElementById('timed-progress').classList.add('hideElement');
+    document.getElementById('timed-progress-20').classList.remove('hideElement');
+    await new Promise(r => setTimeout(r, 29000));
+    document.getElementById('timeEstimate').innerHTML = 'Your song is still processing...';
     return
 }
 
@@ -429,10 +429,6 @@ async function timeoutErrorMessage() {
     return
 }
 
-async function startTimers() {
-    slowMessage();
-    timeoutErrorMessage();
-}
 
 function view_begin() {
 
@@ -450,7 +446,7 @@ function view_chooseOptions() {
 }
 function view_loading() {
     // begin timer
-    startTimers();
+    timeoutErrorMessage();
     var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('insideDropTarget').classList.add('hideElement');
     document.getElementById('insideDropTargetSecondPage').classList.add('hideElement');
@@ -477,11 +473,6 @@ function view_error() {
 
 // I need to use cloneNode(true) so that it copies the nested children
 // but doing the state stuff and template can come with the speed improvement
-
-
-
-
-
 
 
 var x, i, j, l, ll, selElmnt, a, b, c;
@@ -564,7 +555,6 @@ then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
 
 
-
 // navbar open and close
 function openNav(event) {
     event.stopPropagation();
@@ -586,8 +576,8 @@ let estimated_times = {
     '1_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
     '2_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
     '2_5': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000, 'delay': 30000 },
-    '3_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
-    '3_5': { 'message': 'Estimated time 59 seconds', 'milliseconds': 59000, 'delay': 50000 },
+    '3_2': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000, 'delay': 30000 },
+    '3_5': { 'message': 'Estimated time 1 minute 9 seconds', 'milliseconds': 69000, 'delay': 60000 },
     '4_2': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000, 'delay': 30000 },
     '4_5': { 'message': 'Estimated time 1 minute 9 seconds', 'milliseconds': 69000, 'delay': 60000 },
     '5_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000, 'delay': 40000 },
@@ -623,12 +613,10 @@ function update_time_estimated(tracks) {
     let key = `${length}_${num_tracks}`
     let estimate = estimated_times[key]
     let estimate_message = estimate['message']
-    let estimate_milliseconds = estimate['milliseconds']
+    let animation_time = estimate['milliseconds'] / 1000
     let delay = estimate['delay']
-    console.log('key', key)
-    console.log('estimate', estimate)
-    console.log('estimate message', estimate_message)
-    console.log('estimate milliseconds', estimate_milliseconds)
-    console.log('delay', delay)
+    document.getElementById('timeEstimate').innerHTML = estimate_message;
+    document.getElementById('timed-progress').style.animationDuration = `${animation_time}s`;
+    slowMessage(animation_time);
     return delay
 }
