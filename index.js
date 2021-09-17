@@ -591,11 +591,11 @@ let estimated_times = {
     '5-7_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000, 'delay': 40000 },
     '5-7_5': { 'message': 'Estimated time 1 minute 49 seconds', 'milliseconds': 109000, 'delay': 90000 },
     '7-14_2': { 'message': 'Estimated time 2 minutes 10 seconds', 'milliseconds': 130000, 'delay': 100000 },
-    '7-14_5': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 250000 },
+    '7-14_5': { 'message': 'Your audio file is larger than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 200000 },
     '14-21_2': { 'message': 'Estimated time 3 minutes 20 seconds', 'milliseconds': 200000, 'delay': 150000 },
-    '14-21_5': { 'message': 'Your audio file is longer than usual, please allow up to 6 minutes', 'milliseconds': 360000, 'delay': 300000 },
-    '21+_2': { 'message': 'Your audio file is longer than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 250000 },
-    '21+_5': { 'message': 'Your audio file is longer than usual, please allow up to 8 minutes', 'milliseconds': 480000, 'delay': 400000 }
+    '14-21_5': { 'message': 'Your audio file is larger than usual, please allow up to 6 minutes', 'milliseconds': 360000, 'delay': 200000 },
+    '21+_2': { 'message': 'Your audio file is larger than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 200000 },
+    '21+_5': { 'message': 'Your audio file is larger than usual, please allow up to 8 minutes', 'milliseconds': 480000, 'delay': 300000 }
 }
 
 function update_time_estimated(tracks) {
