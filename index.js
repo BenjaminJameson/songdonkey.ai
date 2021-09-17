@@ -19,6 +19,7 @@ function processInput(event) {
     console.log(event);
     files = this.files;
     audioFileSizeMB = files[0].size / 1000000;
+    error_if_file_too_big(audioFileSizeMB);
     file = URL.createObjectURL(files[0]);
     console.log("this is file", file);
     document.getElementById('originalAudioId').setAttribute('data-src', file);
@@ -96,6 +97,11 @@ function isFileLarge(length) {
     } else if (length <= 7.5) {
         console.log('file is small');
         return false
+    }
+}
+function error_if_file_too_big(audioFileSizeMB) {
+    if (audioFileSizeMB > 300) {
+        view_error()
     }
 }
 
