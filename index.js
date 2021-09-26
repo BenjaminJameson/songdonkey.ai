@@ -171,11 +171,22 @@ async function uploadData(url, data) {
         let percent_completed = Math.round((e.loaded / e.total) * 100);
         let width = `${percent_completed.toString()}%`;
         document.getElementById('uploadProgress').style.width = width;
-        if (percent_completed == 100) {
+        // if (percent_completed == 100) {
+        //     document.getElementById('uploadingBar').style.visibility = 'hidden';
+        //     document.getElementById('disableClick').classList.remove('disableClick');
+        // }
+    });
+
+    request.onreadystatechange = function () { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
             document.getElementById('uploadingBar').style.visibility = 'hidden';
             document.getElementById('disableClick').classList.remove('disableClick');
+        } else if (this.readyState === XMLHttpRequest.DONE && this.status !== 200) {
+            // Request finished. Do processing here.
+            view_error();
         }
-    });
+    }
 
     // request finished event
     request.addEventListener('load', function (e) {
