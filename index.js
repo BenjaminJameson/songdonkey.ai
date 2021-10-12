@@ -401,12 +401,13 @@ document.addEventListener("drop", function (event) {
     if (event.target.className == "droptarget") {
         audioFileSizeMB = data.size / 1000000;
         file = URL.createObjectURL(data);
+        console.log('this is the file getting sent', file);
         getAudioLength(file);
         console.log("this is file", file);
         document.getElementById('originalAudioId').setAttribute('data-src', file);
         fileToSend = data;
         var fileType = fileToSend.type;
-        beginUpload(fileType);
+        beginUpload(fileType, file);
         // uploadAndRunAI(data);
         view_chooseOptions();
     }
