@@ -142,6 +142,7 @@ h3 {
 
 .animation {
     width: 65%;
+    max-width: 160px;
     display: flex;
     justify-content: center;
 }
