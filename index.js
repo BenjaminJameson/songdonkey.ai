@@ -1,7 +1,7 @@
 window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
-    view_results();
+    // view_results();
     // view_error();
     // view_chooseOptions();
     // view_loading();
@@ -481,20 +481,6 @@ function view_results() {
     document.getElementById('mainDiv').classList.add("hideElement");
     document.getElementById('resultsDiv').classList.remove('hideElement');
     document.getElementById('donations').classList.remove('hideElement');
-    let coffeeScript = document.createElement('script');
-    document.head.appendChild(coffeeScript);
-    coffeeScript.src = 'https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js';
-    coffeeScript.setAttribute('data-description', 'Support me on Buy me a coffee!');
-    coffeeScript.setAttribute('data-name', 'BMC-Widget');
-    coffeeScript.setAttribute('data-cfasync', 'false');
-    coffeeScript.setAttribute('data-position', 'Right');
-    coffeeScript.setAttribute('data-id', 'songdonkey');
-    coffeeScript.setAttribute('data-message', 'Any donations are greatly appreciated!');
-    coffeeScript.setAttribute('data-color', '#FF5F5F');
-    coffeeScript.setAttribute('data-x_margin', '18');
-    coffeeScript.setAttribute('data-y_margin', '18');
-    coffeeScript.type = "text/javascript";
-    console.log(coffeeScript);
 }
 
 function view_error() {
