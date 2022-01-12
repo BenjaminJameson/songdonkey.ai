@@ -288,11 +288,11 @@ function updateAudioElements(allUrls) {
 
 
 async function beginUpload(fileType, file) {
-    // if (fileType != 'audio/mpeg' && fileType != 'audio/wav') {
-    //     console.log('filetype not mpeg or wav');
-    //     view_error();
-    //     return
-    // }
+    if (fileType != 'audio/mpeg' && fileType != 'audio/wav') {
+        console.log('filetype not mpeg or wav');
+        view_error();
+        return
+    }
     var length = await getAudioLength(file);
     var is_large = isFileLarge(length);
     console.log('beginning upload');
