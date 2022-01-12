@@ -18,6 +18,13 @@ var audioLengthMinutes;
 function processInput(event) {
     console.log(event);
     files = this.files;
+    //check the file type by file name
+    console.log(files[0]['name'].split('.')[files[0]['name'].split('.').length - 1])
+    if (files[0]['name'].split('.')[files[0]['name'].split('.').length - 1] != 'mp3' && files[0]['name'].split('.')[files[0]['name'].split('.').length - 1] != 'wav') {
+        console.log('file is not mp3 or wav')
+        view_error();
+        return
+    }
     audioFileSizeMB = files[0].size / 1000000;
     error_if_file_too_big(audioFileSizeMB);
     file = URL.createObjectURL(files[0]);
@@ -288,11 +295,12 @@ function updateAudioElements(allUrls) {
 
 
 async function beginUpload(fileType, file) {
-    if (fileType != 'audio/mpeg' && fileType != 'audio/wav') {
-        console.log('filetype not mpeg or wav');
-        view_error();
-        return
-    }
+    // console.log(file)
+    // if (fileType != 'audio/mpeg' && fileType != 'audio/wav') {
+    //     console.log('filetype not mpeg or wav');
+    //     view_error();
+    //     return
+    // }
     var length = await getAudioLength(file);
     var is_large = isFileLarge(length);
     console.log('beginning upload');
