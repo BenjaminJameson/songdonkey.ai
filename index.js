@@ -142,7 +142,9 @@ async function beginPolling(delay) {
 
 async function getPresignedURL(fileType, is_large) {
     if (is_large == false) {
-        var url = "https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
+        // var url = "https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
+        //this is the new rest protected api
+        var url = "https://p1u8lvzspb.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
     } else if (is_large == true) {
         var url = "https://at3r2pm991.execute-api.us-east-1.amazonaws.com/default/getPresignedUrlLargeBucket";
     }
