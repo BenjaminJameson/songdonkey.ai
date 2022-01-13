@@ -162,6 +162,7 @@ async function getPresignedURL(fileType, is_large) {
             objectKey = result["audioFilename"];
         })
         .catch((error) => {
+            view_error();
             console.error('Error:', error);
         });
     var params = { 'presignedURL': presignedURL, 'objectKey': objectKey }
