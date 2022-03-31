@@ -112,11 +112,13 @@ function error_if_file_too_big(audioFileSizeMB) {
     }
 }
 
+
+let outputFormat;
 async function beginPolling(delay) {
     // wait 20 seconds
     await new Promise(r => setTimeout(r, delay));
     var objectKeyNameOnly = objectKey.split(".")[0];
-    var outputFormat = document.getElementsByName('outputFormat')[0].value;
+    outputFormat = document.getElementsByName('outputFormat')[0].value;
     var s3BucketURL = 'https://song-splitter-output.s3.amazonaws.com/';
     var accompanimentURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/accompaniment${outputFormat}`;
     var vocalsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/vocals${outputFormat}`;
@@ -492,6 +494,18 @@ function view_results() {
     document.getElementById('mainDiv').classList.add("hideElement");
     document.getElementById('resultsDiv').classList.remove('hideElement');
     document.getElementById('donations').classList.remove('hideElement');
+    document.getElementById('downloadButtonsIfPaid').style.display = 'none'
+    document.getElementById('restartButtonToHide').style.display = 'none'
+    document.getElementById('thankYouAlreadyPaid').style.display = 'none'
+    if (getCookie('songdonkeyPaid') != "") {
+        console.log('cookie exists')
+        document.getElementById('extraText').style.display = 'none'
+        document.getElementById('textToRemove').style.display = 'none'
+        document.getElementById('checkoutDiv').style.display = 'none'
+        document.getElementById('downloadButtonsIfPaid').style.display = 'block'
+        document.getElementById('restartButtonToHide').style.display = 'block'
+        document.getElementById('thankYouAlreadyPaid').style.display = 'block'
+    }
 }
 
 function view_error() {
@@ -649,4 +663,55 @@ function update_time_estimated(tracks) {
     document.getElementById('timed-progress').style.animationDuration = `${animation_time}s`;
     slowMessage(animation_time);
     return delay
+}
+
+function triggerCheckout() {
+    console.log('hello world stripe')
+    let customerNum = { 'objectKeyNameOnly': objectKeyNameOnly, 'numberTracks': numberTracks, 'outputFormat': outputFormat }
+
+    const requestOptions2 = {
+        method: 'POST',
+        body: JSON.stringify(customerNum)
+    };
+    fetch('https://4tcwjj2kv0.execute-api.us-east-1.amazonaws.com/default/songDonkeyStripeCheckout', requestOptions2)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            let stripUrl = data['stripeUrl']
+            window.open(
+                stripUrl, "_blank");
+        })
+}
+
+
+function addCookie(cname, cvalue, exdays) {
+    console.log('adding cookie')
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    console.log(getCookie('songdonkeyPaid'))
+}
+function deleteCookie() {
+    console.log('deleting cooking')
+    document.cookie = "songdonkeyPaid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }

@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@500&display=swap"
         rel="stylesheet">
-    <script defer src="index.js"></script>
+    <!-- <script src="index.js"></script> -->
     <!-- Default theme. ~960B -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css" />
 
@@ -36,15 +36,17 @@
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8347029003312041"
      crossorigin="anonymous"></script> -->
+    <script>
+        window.onload = function () {
+            var x = window.matchMedia("(max-width: 800px)");
+            document.getElementById('mainDiv').classList.add("hideElement");
+            document.getElementById('resultsDiv').classList.remove('hideElement');
+            document.getElementById('donations').classList.remove('hideElement');
+        }
+    </script>
 </head>
 
 <body>
-    <button style="position: absolute; z-index: 999999999999;" onclick="addCookie('songdonkeyPaid', true, 0.0416)">Add
-        cookie</button>
-    <button style="position: absolute; z-index: 999999999999; top: 30px;" onclick="checkCookie()">Check
-        cookie</button>
-    <button style="position: absolute; z-index: 999999999999; top: 60px;" onclick="deleteCookie()">Delete
-        cookie</button>
     <div class="mainImage"></div>
     <img class="mobileImage" src="https://llytonca.sirv.com/mobileImg.webp" alt="record player image" width="100%"
         height="auto">
@@ -285,7 +287,7 @@
                 <h1 id="thankYou"><span style="color: #A68263;">Thank</span> you</h1>
                 <!-- AUDIO PLAYERS -->
                 <div>
-                    <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
+                    <!-- <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
                             <source id="originalAudioId" mediaTitle="Example Song"
                                 data-src="https://song-splitter-bucket.s3.amazonaws.com//mnt/somepath/8276339354/accompaniment.mp3"
@@ -310,12 +312,11 @@
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
                                     </vm-icon>
-                                    <!-- Icon by mithun on freeicons.io -->
                                     <vm-tooltip>Download</vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
-                    </vm-player>
+                    </vm-player> -->
                     </a>
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
                         <vm-audio mediaTitle="Example Song">
@@ -498,7 +499,7 @@
                 </div>
                 <div class="resultIconsDiv"
                     style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; margin-bottom: 20px;">
-                    <div id="downloadButtonsIfPaid">
+                    <div>
                         <a id="zipDownload" href="" download>
                             <img class="resultIcons" src="assets/downloadAll.svg" alt="download all icon" height="60px">
                             <a id="zipDownloadText" href="">
@@ -507,40 +508,34 @@
                             </a>
                         </a>
                     </div>
-                    <a id="restartButtonToHide" href="https://songdonkey.ai/">
+                    <a href="https://songdonkey.ai/">
                         <img class="resultIcons" src="assets/restart.svg" alt="restart icon" height="60px">
                         <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">
                             Restart<br>
                         </p>
                     </a>
-                    <div id="checkoutDiv" style="width: 100%;">
-                        <label class="uploadLabel" for="checkoutButton">
-                            <input id="checkoutButton" style="display: none;" onclick="triggerCheckout()" />
-                            <h2
-                                style="color: white; align-self: center; text-align: center; font-size: 1.3em; font-weight: 600;">
-                                Checkout USD $0.50</h2>
-                            <img id="starsIconCheckout" src="assets/stars.svg" alt="heart icon" width="auto"
-                                height="30px" class="uploadIcon">
-                        </label>
-                    </div>
+                    <!-- <label class="uploadLabel" for="checkoutButton">
+                        <input id="checkoutButton" style="display: none;" onclick="writeDBsplitOptions()" />
+                        <h2
+                            style="color: white; align-self: center; text-align: center; font-size: 1.3em; font-weight: 600;">
+                            Checkout $0.50</h2>
+                        <img src="assets/stars.svg" alt="heart icon" width="auto" height="30px" class="uploadIcon">
+                    </label> -->
                 </div>
             </div>
 
             <div id="donations" class="donations hideElement">
-                <div id="textToRemove">
-                    <h1 id="thankYou"><span style="color: #A68263;">Secure checkout</span> to <br>download</h1>
-                </div>
-                <h1 id="thankYouAlreadyPaid"><span style="color: #A68263;">Enjoy your</span> <br>free download</h1>
+                <h1 id="thankYou"><span style="color:black">Success!</span></h1>
                 <!-- <a href="https://www.buymeacoffee.com/songdonkey" target="_blank"><img
                         src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=songdonkey&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a>
 
                 <a href="https://nowpayments.io/donation?api_key=MJFNQ5E-AV3MPYN-QKWZ608-D6N100W" target="_blank"> <img
                         width="235px" src="https://nowpayments.io/images/embeds/donation-button-black.svg"
                         alt="Crypto donation button by NOWPayments"> </a> -->
-                <h1 id="extraText" style="color: black; font-size: x-large;">Then enjoy the next <span
-                        style="color: #A68263;">
-                        hour of unlimited free </span>splitting <br> on this device</h1>
-
+                <h1 style="color: black; font-size: x-large;">To enjoy the next <span style="color: #A68263;">
+                        hour of unlimited free </span><br> splitting on this device, simply reload the <br>site and
+                    upload
+                    as normal</h1>
             </div>
         </div>
     </div>
@@ -579,6 +574,91 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let search = window.location.search
+        search = search.replace('?', '')
+        let objectKeyNameOnly = search.split('/')[0]
+        let numberTracks = search.split('/')[1]
+        let outputFormat = search.split('/')[2]
+        console.log(objectKeyNameOnly, numberTracks, outputFormat)
+
+
+        var s3BucketURL = 'https://song-splitter-output.s3-accelerate.amazonaws.com/';
+        var accompanimentURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/accompaniment${outputFormat}`;
+        var vocalsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/vocals${outputFormat}`;
+        var bassURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/bass${outputFormat}`;
+        var drumsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/drums${outputFormat}`;
+        var otherURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/other${outputFormat}`;
+        var pianoURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/piano${outputFormat}`;
+        var zipURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/SongDonkey.zip`;
+        var errorFile = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/error.txt`;
+
+        var allUrls = {
+            'accompaniment': accompanimentURL,
+            'vocals': vocalsURL,
+            'bass': bassURL,
+            'drums': drumsURL,
+            'other': otherURL,
+            'piano': pianoURL,
+            'zip': zipURL,
+            'errorFile': errorFile
+        };
+
+        if (numberTracks == '2') {
+            // set urls
+            document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+            document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
+            // show audio players
+            document.getElementById('playerAccompaniment').classList.remove('hideElement');
+            document.getElementById('zipDownload').href = allUrls['zip'];
+            document.getElementById('zipDownloadText').href = allUrls['zip'];
+        }
+        if (numberTracks == '4') {
+            // set urls
+            document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+            document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+            document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+            document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
+            // show audio players
+            document.getElementById('playerBass').classList.remove('hideElement');
+            document.getElementById('playerDrums').classList.remove('hideElement');
+            document.getElementById('playerOther').classList.remove('hideElement');
+            document.getElementById('zipDownload').href = allUrls['zip'];
+            document.getElementById('zipDownloadText').href = allUrls['zip'];
+        }
+        if (numberTracks == '5') {
+            // set urls
+            document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+            document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+            document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+            document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
+            document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
+            // show audio players
+            document.getElementById('playerBass').classList.remove('hideElement');
+            document.getElementById('playerDrums').classList.remove('hideElement');
+            document.getElementById('playerOther').classList.remove('hideElement');
+            document.getElementById('playerPiano').classList.remove('hideElement');
+            document.getElementById('zipDownload').href = allUrls['zip'];
+            document.getElementById('zipDownloadText').href = allUrls['zip'];
+        }
+
+        async function download(audioId) {
+            var url = document.getElementById(audioId).getAttribute('data-src');
+            // var obj = await fetch(url);
+            var urlSplit = url.split('/');
+            var filename = urlSplit[urlSplit.length - 1];
+            console.log(filename);
+            const blob = await (await fetch(url, { method: 'GET' })).blob();
+            const blobUrl = URL.createObjectURL(blob);
+            var element = document.createElement('a');
+            element.setAttribute('href', blobUrl);
+            element.setAttribute('download', filename);
+            element.click();
+            element.remove();
+        }
+    </script>
+
 </body>
 
 </html>
