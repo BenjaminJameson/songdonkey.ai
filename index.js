@@ -1,7 +1,7 @@
 window.onload = (event) => {
     var input = document.getElementById('audioInput');
     input.addEventListener("input", processInput);
-    view_results();
+    // view_results();
     // view_error();
     // view_chooseOptions();
     // view_loading();
@@ -113,11 +113,12 @@ function error_if_file_too_big(audioFileSizeMB) {
 }
 
 
+let objectKeyNameOnly;
 let outputFormat;
 async function beginPolling(delay) {
     // wait 20 seconds
     await new Promise(r => setTimeout(r, delay));
-    var objectKeyNameOnly = objectKey.split(".")[0];
+    objectKeyNameOnly = objectKey.split(".")[0];
     outputFormat = document.getElementsByName('outputFormat')[0].value;
     var s3BucketURL = 'https://song-splitter-output.s3.amazonaws.com/';
     var accompanimentURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/accompaniment${outputFormat}`;
@@ -490,6 +491,7 @@ function view_loading() {
     }
 }
 function view_results() {
+    console.log('view_results()')
     var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('mainDiv').classList.add("hideElement");
     document.getElementById('resultsDiv').classList.remove('hideElement');
@@ -497,6 +499,11 @@ function view_results() {
     document.getElementById('downloadButtonsIfPaid').style.display = 'none'
     document.getElementById('restartButtonToHide').style.display = 'none'
     document.getElementById('thankYouAlreadyPaid').style.display = 'none'
+    let downloadButtons = document.querySelectorAll('.downloadHider')
+    console.log(downloadButtons)
+    for (let i = 0; i < downloadButtons.length; i++) {
+        downloadButtons[i].style.display = 'none'
+    }
     if (getCookie('songdonkeyPaid') != "") {
         console.log('cookie exists')
         document.getElementById('extraText').style.display = 'none'
@@ -505,6 +512,10 @@ function view_results() {
         document.getElementById('downloadButtonsIfPaid').style.display = 'block'
         document.getElementById('restartButtonToHide').style.display = 'block'
         document.getElementById('thankYouAlreadyPaid').style.display = 'block'
+        let downloadButtons = document.querySelectorAll('.downloadHider')
+        for (let i = 0; i < downloadButtons.length; i++) {
+            downloadButtons[i].style.display = 'block'
+        }
     }
 }
 
@@ -671,13 +682,19 @@ function triggerCheckout() {
 
     const requestOptions2 = {
         method: 'POST',
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify(customerNum)
     };
-    fetch('https://4tcwjj2kv0.execute-api.us-east-1.amazonaws.com/default/songDonkeyStripeCheckout', requestOptions2)
+    fetch('https://3f5d2e9hkk.execute-api.us-east-1.amazonaws.com/Prod/songDonkeyStripeCheckout', requestOptions2)
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            let stripUrl = data['stripeUrl']
+            let body = data['body']
+            console.log(body, typeof body)
+            let bodyJson = JSON.parse(body)
+            console.log(bodyJson)
+            let stripUrl = bodyJson['stripeUrl']
+            console.log(stripUrl)
             window.open(
                 stripUrl, "_blank");
         })
