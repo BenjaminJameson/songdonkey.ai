@@ -677,6 +677,7 @@ function update_time_estimated(tracks) {
 }
 
 function triggerCheckout() {
+    addCookie('songdonkeyPaid', true, 0.0416)
     console.log('hello world stripe')
     let customerNum = { 'objectKeyNameOnly': objectKeyNameOnly, 'numberTracks': numberTracks, 'outputFormat': outputFormat }
 
