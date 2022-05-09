@@ -13,6 +13,12 @@
     z-index: -9999999;
 }
 
+.english {}
+
+.chinese {
+    display: none;
+}
+
 body {
     height: 100%;
     padding-left: 7%;
@@ -211,9 +217,11 @@ h3 {
         padding-left: 8px;
         padding-right: 8px;
     }
+
     .navCross {
         display: block;
     }
+
     .nav {
         position: absolute;
         display: none;
@@ -228,22 +236,27 @@ h3 {
         background-color: #D3D3D1;
         z-index: 99999999999;
     }
+
     .nav>* {
         font-size: x-large;
     }
+
     .navBurger {
         display: block;
     }
 
     #starsIconCheckout {
-        display: none;
+        height: 25px;
+        margin-right: 15px;
     }
+
     h1 {
         font-family: Roboto, sans-serif;
         font-style: normal;
         font-weight: 500;
         font-size: 40px;
     }
+
     h2 {
         font-family: Lato, sans-serif;
         font-style: normal;
@@ -251,13 +264,16 @@ h3 {
         font-size: x-large;
         color: #0A0B0D;
     }
+
     .row {
         flex-direction: column;
         margin-top: 0;
     }
+
     .spaceMiddle {
         display: none;
     }
+
     .mobileImage {
         display: block;
         position: fixed;
@@ -266,9 +282,11 @@ h3 {
         left: 0;
         z-index: -99;
     }
+
     .mainImage {
         display: none;
     }
+
     .greyBackground {
         position: fixed;
         top: 0;
@@ -278,12 +296,15 @@ h3 {
         background-color: #D3D3D1;
         z-index: -999;
     }
+
     .logo {
         margin-left: 0px;
     }
+
     .mobileHide {
         display: none;
     }
+
     .droptarget {
         display: flex;
         flex-direction: column;
@@ -297,6 +318,7 @@ h3 {
         align-items: center;
         align-content: center;
     }
+
     .insideDropTarget {
         display: flex;
         flex-direction: column;
@@ -304,15 +326,19 @@ h3 {
         height: 100%;
         justify-content: space-evenly;
     }
+
     .uploadLabel {
         height: 50px;
     }
+
     .examplesMargin {
         margin-top: 15px;
     }
+
     vm-controls {
         --vm-controls-padding: 0px 0px 0px 0px !important;
     }
+
     .droptargetResults {
         padding: 0;
         text-align: center;
@@ -329,29 +355,37 @@ h3 {
         align-content: center;
         overflow: hidden;
     }
+
     #thankYou {
         margin: 15px;
     }
+
     .resultIcons {
         height: 40px;
     }
+
     .resultIconsDiv {
         margin: 15px !important;
     }
+
     .select-selected {
         height: 30px;
     }
+
     .select-items div, .select-selected {
         height: 30px;
         font-size: 18px;
     }
+
     /* arrow */
     .select-selected:after {
         top: 12px !important;
     }
+
     .select-selected.select-arrow-active:after {
         top: 6px !important;
     }
+
     .mobileNoMargin {
         margin: 0px;
     }
@@ -386,6 +420,7 @@ h3 {
     from {
         width: 0%;
     }
+
     to {
         width: 100%;
     }
@@ -404,6 +439,7 @@ h3 {
     from {
         width: 0%;
     }
+
     to {
         width: 100%;
     }

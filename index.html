@@ -18,6 +18,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@500&display=swap"
         rel="stylesheet">
     <script defer src="index.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5CWM6W3');</script>
+    <!-- End Google Tag Manager -->
     <!-- Default theme. ~960B -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css" />
 
@@ -32,13 +42,29 @@
 
         gtag('config', 'G-TQNHGTGWPJ');
     </script>
-    <script data-ad-client="ca-pub-8347029003312041" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- <script data-ad-client="ca-pub-8347029003312041" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
     <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8347029003312041"
      crossorigin="anonymous"></script> -->
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CWM6W3" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div style="display: none;" id="google_translate_element"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <!-- <button style="position: absolute; z-index: 999999999999;" onclick="addCookie('songdonkeyPaid', true, 0.0416)">Add
         cookie</button>
     <button style="position: absolute; z-index: 999999999999; top: 30px;" onclick="checkCookie()">Check
@@ -59,6 +85,12 @@
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
             <a href="privacyPolicy.html" target="_blank">Privacy Policy</a>
+            <span style="cursor: pointer;" onclick="showTranslate()">汉字</span>
+            <script>
+                function showTranslate() {
+                    document.getElementById('google_translate_element').style.display = 'block'
+                }
+            </script>
         </nav>
         <div class="navBurger" onclick="openNav(event)">
             <img src="assets/navBurger.svg" alt="navbar burger lines icon">
@@ -305,7 +337,7 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
-                                <vm-control class="downloadHider" onclick="download('originalAudioId')"
+                                <vm-control class="" onclick="download('originalAudioId')"
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
@@ -335,7 +367,7 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
-                                <vm-control class="downloadHider" onclick="download('vocalsId')"
+                                <vm-control class="" onclick="download('vocalsId')"
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
@@ -365,7 +397,7 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
-                                <vm-control class="downloadHider" onclick="download('accompanimentId')"
+                                <vm-control class="" onclick="download('accompanimentId')"
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
@@ -394,7 +426,7 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
-                                <vm-control class="downloadHider" onclick="download('bassId')"
+                                <vm-control class="" onclick="download('bassId')"
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
@@ -423,7 +455,7 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
-                                <vm-control class="downloadHider" onclick="download('drumsId')"
+                                <vm-control class="" onclick="download('drumsId')"
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
@@ -453,7 +485,7 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
-                                <vm-control class="downloadHider" onclick="download('pianoId')"
+                                <vm-control class="" onclick="download('pianoId')"
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
@@ -483,7 +515,7 @@
                                 <vm-control>
                                     <vm-end-time />
                                 </vm-control>
-                                <vm-control class="downloadHider" onclick="download('otherId')"
+                                <vm-control class="" onclick="download('otherId')"
                                     style="--vm-control-bg:var(--vm-player-theme); --vm-control-border-radius: 100px; --vm-control-color: #FFFFFF; --vm-control-padding: 6px">
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
@@ -495,6 +527,11 @@
                         </vm-ui>
                     </vm-player>
                     <!-- /AUDIO PLAYERS -->
+                </div>
+                <div
+                    style="display: flex; justify-content: space-between; padding: 20px; padding-bottom: 0px; font-size: large;">
+                    <p>Process full length audio:</p>
+                    <p>CN¥ $2.50 or USD $0.40</p>
                 </div>
                 <div class="resultIconsDiv"
                     style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; margin-bottom: 20px;">
@@ -516,19 +553,23 @@
                     <div id="checkoutDiv" style="width: 100%;">
                         <label class="uploadLabel" for="checkoutButton">
                             <input id="checkoutButton" style="display: none;" onclick="triggerCheckout()" />
-                            <h2
+                            <h2 id="secureCheckoutButtonText"
                                 style="color: white; align-self: center; text-align: center; font-size: 1.3em; font-weight: 600;">
-                                Checkout USD $0.40</h2>
-                            <img id="starsIconCheckout" src="assets/stars.svg" alt="heart icon" width="auto"
+                                Secure Checkout</h2>
+                            <img id="starsIconCheckout" src="assets/lock.svg" alt="heart icon" width="auto"
                                 height="30px" class="uploadIcon">
                         </label>
                     </div>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                <img style="max-width: 75%;" src="assets/stripe.png" alt="">
                 </div>
             </div>
 
             <div id="donations" class="donations hideElement">
                 <div id="textToRemove">
-                    <h1 id="thankYou"><span style="color: #A68263;">Secure checkout</span> to <br>download</h1>
+                    <h1 id="thankYou" class="mobileHide"><span style="color: #A68263;">Secure checkout</span> to <br>process full audio
+                    </h1>
                 </div>
                 <h1 id="thankYouAlreadyPaid"><span style="color: #A68263;">Enjoy your</span> <br>free download</h1>
                 <!-- <a href="https://www.buymeacoffee.com/songdonkey" target="_blank"><img
@@ -537,9 +578,9 @@
                 <a href="https://nowpayments.io/donation?api_key=MJFNQ5E-AV3MPYN-QKWZ608-D6N100W" target="_blank"> <img
                         width="235px" src="https://nowpayments.io/images/embeds/donation-button-black.svg"
                         alt="Crypto donation button by NOWPayments"> </a> -->
-                <h1 id="extraText" style="color: black; font-size: x-large;">Then enjoy the next <span
+                <!-- <h1 id="extraText" style="color: black; font-size: x-large;">Then enjoy the next <span
                         style="color: #A68263;">
-                        hour of unlimited free </span>splitting <br> on this device</h1>
+                        hour of unlimited free </span>processing <br> on this device</h1> -->
 
             </div>
         </div>
@@ -555,17 +596,12 @@
                 There has been an error. A few things to try may
                 be:
                 <ul>
+                    <li>There is a maximum of 10 minutes per song</li>
                     <li>The site only accepts mp3 or wav files</li>
                     <li>Split less stems (2 or 4 if it failed with 5)</li>
                     <li>Select mp3 as the output instead of wav</li>
-                    <li>There is a maximum file size of 300mb</li>
                     <li>Just try again. Sometimes the server takes longer than usual to start, but will be awake and
                         ready if you retry</li>
-                    <li>Currently we're unable to offer the service in certain countries due to ads not covering server
-                        costs. We're working on
-                        making the AI run in the browser, so all countries can use it. In the meantime please see
-                        https://github.com/deezer/spleeter to split the song yourself.
-                    </li>
                     <li>Please contact us if the error persists and we'll do our best to help</li>
                 </ul>
             </div>

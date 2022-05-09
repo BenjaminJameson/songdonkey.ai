@@ -59,7 +59,7 @@ async function checkExistsThenUpdate(allUrls) {
         view_error();
         return
     } else {
-        await new Promise(r => setTimeout(r, 4000));
+        await new Promise(r => setTimeout(r, 2000)); //number is the delay to keep retrying
         checkExistsThenUpdate(allUrls);
     }
 }
@@ -98,8 +98,11 @@ async function writeDBsplitOptions() {
 }
 
 function isFileLarge(length) {
-    if (length > 7.5) {
+    console.log('is file large function')
+    //changing this to cut songs that are bigger than 10min
+    if (length > 10) {
         console.log('file is large');
+        view_error()
         return true
     } else if (length <= 7.5) {
         console.log('file is small');
@@ -143,14 +146,35 @@ async function beginPolling(delay) {
     await checkExistsThenUpdate(allUrls);
 }
 
+async function triggerFullSongSplitter() {
+    console.log('triggerFullSongSplitter')
+    console.log('objectKey', objectKey)
+    await fetch("https://a0bqsjyig7.execute-api.us-east-1.amazonaws.com/default/songsplitterFullAudio", {
+        method: 'POST',
+        body: JSON.stringify(objectKey)
+    })
+        .then((response) => response.json())
+        .then((result) => {
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            view_error();
+        });
+}
+
 async function getPresignedURL(fileType, is_large) {
-    if (is_large == false) {
-        // var url = "https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
-        //this is the new rest protected api
-        var url = "https://p1u8lvzspb.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
-    } else if (is_large == true) {
-        var url = "https://at3r2pm991.execute-api.us-east-1.amazonaws.com/default/getPresignedUrlLargeBucket";
-    }
+    // if (is_large == false) {
+    //     // var url = "https://rvs3mygk4h.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
+    //     //this is the new rest protected api, the good one
+    //     // var url = "https://p1u8lvzspb.execute-api.us-east-1.amazonaws.com/default/getPresignedURL";
+    //     //this is the testing 30 second one
+    //     var url = "https://lw2swvvfgi.execute-api.us-east-1.amazonaws.com/default/songdonkey30secPresignedUrl"
+    // } else if (is_large == true) {
+    //     var url = "https://at3r2pm991.execute-api.us-east-1.amazonaws.com/default/getPresignedUrlLargeBucket";
+    // }
+
+    //I changed this to only send to this bucket, not the large bucket anymore
+    var url = "https://lw2swvvfgi.execute-api.us-east-1.amazonaws.com/default/songdonkey30secPresignedUrl"
     var presignedURL = '';
     var objectKey = '';
     console.log('url', url);
@@ -309,6 +333,9 @@ async function beginUpload(fileType, file) {
     // }
     var length = await getAudioLength(file);
     var is_large = isFileLarge(length);
+    if (is_large == true) {
+        return
+    }
     console.log('beginning upload');
     params = await getPresignedURL(fileType, is_large);
     objectKey = params['objectKey'];
@@ -337,6 +364,7 @@ async function getAudioLength(file) {
         await new Promise(r => setTimeout(r, 500));
     }
     audioLengthMinutes = audioObj.duration / 60;
+    console.log(audioLengthMinutes)
     return audioLengthMinutes
 }
 
@@ -625,26 +653,26 @@ function closeNav() {
 
 let estimated_times = {
     //first number rounds nearest minutes, second is 5/4 tracks or 2 tracks
-    '0_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
-    '0_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
-    '1_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
-    '1_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
-    '2_2': { 'message': 'Estimated time 29 seconds', 'milliseconds': 29000, 'delay': 20000 },
-    '2_5': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000, 'delay': 30000 },
-    '3_2': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000, 'delay': 30000 },
-    '3_5': { 'message': 'Estimated time 1 minute 9 seconds', 'milliseconds': 69000, 'delay': 60000 },
-    '4_2': { 'message': 'Estimated time 39 seconds', 'milliseconds': 39000, 'delay': 30000 },
-    '4_5': { 'message': 'Estimated time 1 minute 9 seconds', 'milliseconds': 69000, 'delay': 60000 },
-    '5_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000, 'delay': 40000 },
-    '5_5': { 'message': 'Estimated time 1 minute 39 seconds', 'milliseconds': 99000, 'delay': 90000 },
-    '5-7_2': { 'message': 'Estimated time 49 seconds', 'milliseconds': 49000, 'delay': 40000 },
-    '5-7_5': { 'message': 'Estimated time 1 minute 49 seconds', 'milliseconds': 109000, 'delay': 90000 },
-    '7-14_2': { 'message': 'Estimated time 2 minutes 10 seconds', 'milliseconds': 130000, 'delay': 100000 },
-    '7-14_5': { 'message': 'Your audio file is larger than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 200000 },
-    '14-21_2': { 'message': 'Estimated time 3 minutes 20 seconds', 'milliseconds': 200000, 'delay': 150000 },
-    '14-21_5': { 'message': 'Your audio file is larger than usual, please allow up to 6 minutes', 'milliseconds': 360000, 'delay': 200000 },
-    '21+_2': { 'message': 'Your audio file is larger than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 200000 },
-    '21+_5': { 'message': 'Your audio file is larger than usual, please allow up to 8 minutes', 'milliseconds': 480000, 'delay': 300000 }
+    '0_2': { 'message': 'Estimated time 16 seconds', 'milliseconds': 15000, 'delay': 10000 },
+    '0_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 30000, 'delay': 18000 },
+    '1_2': { 'message': 'Estimated time 16 seconds', 'milliseconds': 15000, 'delay': 10000 },
+    '1_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 30000, 'delay': 18000 },
+    '2_2': { 'message': 'Estimated time 16 seconds', 'milliseconds': 15000, 'delay': 10000 },
+    '2_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 30000, 'delay': 18000 },
+    '3_2': { 'message': 'Estimated time 16 seconds', 'milliseconds': 15000, 'delay': 10000 },
+    '3_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 30000, 'delay': 18000 },
+    '4_2': { 'message': 'Estimated time 16 seconds', 'milliseconds': 15000, 'delay': 10000 },
+    '4_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 30000, 'delay': 18000 },
+    '5_2': { 'message': 'Estimated time 16 seconds', 'milliseconds': 15000, 'delay': 10000 },
+    '5_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 30000, 'delay': 18000 },
+    '5-7_2': { 'message': 'Estimated time 16 seconds', 'milliseconds': 15000, 'delay': 10000 },
+    '5-7_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 30000, 'delay': 18000 },
+    '7-14_2': { 'message': 'Estimated time 16 seconds', 'milliseconds': 15000, 'delay': 10000 },
+    '7-14_5': { 'message': 'Estimated time 29 seconds', 'milliseconds': 30000, 'delay': 18000 },
+    '14-21_2': { 'message': 'Estimated time 3 minutes 20 seconds', 'milliseconds': 200000, 'delay': 10000 },
+    '14-21_5': { 'message': 'Your audio file is larger than usual, please allow up to 6 minutes', 'milliseconds': 360000, 'delay': 20000 },
+    '21+_2': { 'message': 'Your audio file is larger than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 20000 },
+    '21+_5': { 'message': 'Your audio file is larger than usual, please allow up to 8 minutes', 'milliseconds': 480000, 'delay': 30000 }
 }
 
 function update_time_estimated(tracks) {
@@ -677,10 +705,13 @@ function update_time_estimated(tracks) {
 }
 
 function triggerCheckout() {
-    addCookie('songdonkeyPaid', true, 0.0416)
+    // addCookie('songdonkeyPaid', true, 0.0416) //cant put it because the 30sec splitter cant process the full one
+
     console.log('hello world stripe')
+    document.getElementById('secureCheckoutButtonText').innerHTML = 'Opening Checkout...'
     let customerNum = { 'objectKeyNameOnly': objectKeyNameOnly, 'numberTracks': numberTracks, 'outputFormat': outputFormat }
 
+    triggerFullSongSplitter()
     const requestOptions2 = {
         method: 'POST',
         headers: { 'content-type': 'application/json' },

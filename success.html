@@ -76,8 +76,8 @@
     <!-- main div -->
     <div id="mainDiv" class="row">
         <div class="leftSide">
-            <h1 id="title"><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
-            <h2 id="subtitle">Extract vocals and instruments with artificial intelligence</h2>
+            <h1 id="title"><span style="color: #A68263;">Thank </span> you</h1>
+            <h2 id="subtitle">Loading fully extracted audio</h2>
 
             <div id="droptarget" class="droptarget">
                 <div id="insideDropTarget" class="insideDropTarget">
@@ -525,17 +525,17 @@
             </div>
 
             <div id="donations" class="donations hideElement">
-                <h1 id="thankYou"><span style="color:black">Success!</span></h1>
+                <!-- <h1 id="thankYou"><span style="color:black">Success!</span></h1> -->
                 <!-- <a href="https://www.buymeacoffee.com/songdonkey" target="_blank"><img
                         src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=songdonkey&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a>
 
                 <a href="https://nowpayments.io/donation?api_key=MJFNQ5E-AV3MPYN-QKWZ608-D6N100W" target="_blank"> <img
                         width="235px" src="https://nowpayments.io/images/embeds/donation-button-black.svg"
                         alt="Crypto donation button by NOWPayments"> </a> -->
-                <h1 style="color: black; font-size: x-large;">To enjoy the next <span style="color: #A68263;">
+                <!-- <h1 style="color: black; font-size: x-large;">To enjoy the next <span style="color: #A68263;">
                         hour of unlimited free </span><br> splitting on this device, simply reload the <br>site and
                     upload
-                    as normal</h1>
+                    as normal</h1> -->
             </div>
         </div>
     </div>
@@ -547,7 +547,7 @@
                         src="assets/songdonkeyIcon.svg" alt=""></span></h1>
             <!-- AUDIO PLAYERS -->
             <div style="display: contents; font-family: Lato; text-align: left;">
-                There has been an error. A few things to try may
+                There has been an error. Please contact us and we'll issue a refund as soon as possible. In the meantime a few things to try may
                 be:
                 <ul>
                     <li>The site only accepts mp3 or wav files</li>
@@ -555,12 +555,7 @@
                     <li>Select mp3 as the output instead of wav</li>
                     <li>There is a maximum file size of 300mb</li>
                     <li>Just try again. Sometimes the server takes longer than usual to start, but will be awake and
-                        ready if you retry</li>
-                    <li>Currently we're unable to offer the service in certain countries due to ads not covering server
-                        costs. We're working on
-                        making the AI run in the browser, so all countries can use it. In the meantime please see
-                        https://github.com/deezer/spleeter to split the song yourself.
-                    </li>
+                        ready if you retry</li> 
                     <li>Please contact us if the error persists and we'll do our best to help</li>
                 </ul>
             </div>
@@ -585,13 +580,13 @@
 
 
         var s3BucketURL = 'https://song-splitter-output.s3-accelerate.amazonaws.com/';
-        var accompanimentURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/accompaniment${outputFormat}`;
-        var vocalsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/vocals${outputFormat}`;
-        var bassURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/bass${outputFormat}`;
-        var drumsURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/drums${outputFormat}`;
-        var otherURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/other${outputFormat}`;
-        var pianoURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/piano${outputFormat}`;
-        var zipURL = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/SongDonkey.zip`;
+        var accompanimentURL = `${s3BucketURL}/mnt/somepath/fullaudiofolder/${objectKeyNameOnly}/accompaniment${outputFormat}`;
+        var vocalsURL = `${s3BucketURL}/mnt/somepath/fullaudiofolder/${objectKeyNameOnly}/vocals${outputFormat}`;
+        var bassURL = `${s3BucketURL}/mnt/somepath/fullaudiofolder/${objectKeyNameOnly}/bass${outputFormat}`;
+        var drumsURL = `${s3BucketURL}/mnt/somepath/fullaudiofolder/${objectKeyNameOnly}/drums${outputFormat}`;
+        var otherURL = `${s3BucketURL}/mnt/somepath/fullaudiofolder/${objectKeyNameOnly}/other${outputFormat}`;
+        var pianoURL = `${s3BucketURL}/mnt/somepath/fullaudiofolder/${objectKeyNameOnly}/piano${outputFormat}`;
+        var zipURL = `${s3BucketURL}/mnt/somepath/fullaudiofolder/${objectKeyNameOnly}/SongDonkey.zip`;
         var errorFile = `${s3BucketURL}/mnt/somepath/${objectKeyNameOnly}/error.txt`;
 
         var allUrls = {
