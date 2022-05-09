@@ -285,6 +285,8 @@
 
             <div id="insideDropTarget" class="droptargetResults">
                 <h1 id="thankYou"><span style="color: #A68263;">Thank</span> you</h1>
+                <p id="processingNoticeToHide">Allow up to one minute while the artificial intelligence processes
+                    your full audio</p>
                 <!-- AUDIO PLAYERS -->
                 <div>
                     <!-- <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
@@ -700,6 +702,7 @@
 
         function updateAudioElements(allUrls) {
             console.log("updating audioElements");
+            document.getElementById('processingNoticeToHide').style.display = 'none'
             if (numberTracks == '2') {
                 // set urls
                 document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
