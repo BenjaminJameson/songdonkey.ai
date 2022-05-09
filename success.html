@@ -547,7 +547,8 @@
                         src="assets/songdonkeyIcon.svg" alt=""></span></h1>
             <!-- AUDIO PLAYERS -->
             <div style="display: contents; font-family: Lato; text-align: left;">
-                There has been an error. Please contact us and we'll issue a refund as soon as possible. In the meantime a few things to try may
+                There has been an error. Please contact us and we'll issue a refund as soon as possible. In the meantime
+                a few things to try may
                 be:
                 <ul>
                     <li>The site only accepts mp3 or wav files</li>
@@ -555,7 +556,7 @@
                     <li>Select mp3 as the output instead of wav</li>
                     <li>There is a maximum file size of 300mb</li>
                     <li>Just try again. Sometimes the server takes longer than usual to start, but will be awake and
-                        ready if you retry</li> 
+                        ready if you retry</li>
                     <li>Please contact us if the error persists and we'll do our best to help</li>
                 </ul>
             </div>
@@ -600,43 +601,45 @@
             'errorFile': errorFile
         };
 
-        if (numberTracks == '2') {
-            // set urls
-            document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
-            document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
-            // show audio players
-            document.getElementById('playerAccompaniment').classList.remove('hideElement');
-            document.getElementById('zipDownload').href = allUrls['zip'];
-            document.getElementById('zipDownloadText').href = allUrls['zip'];
-        }
-        if (numberTracks == '4') {
-            // set urls
-            document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
-            document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
-            document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
-            document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
-            // show audio players
-            document.getElementById('playerBass').classList.remove('hideElement');
-            document.getElementById('playerDrums').classList.remove('hideElement');
-            document.getElementById('playerOther').classList.remove('hideElement');
-            document.getElementById('zipDownload').href = allUrls['zip'];
-            document.getElementById('zipDownloadText').href = allUrls['zip'];
-        }
-        if (numberTracks == '5') {
-            // set urls
-            document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
-            document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
-            document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
-            document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
-            document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
-            // show audio players
-            document.getElementById('playerBass').classList.remove('hideElement');
-            document.getElementById('playerDrums').classList.remove('hideElement');
-            document.getElementById('playerOther').classList.remove('hideElement');
-            document.getElementById('playerPiano').classList.remove('hideElement');
-            document.getElementById('zipDownload').href = allUrls['zip'];
-            document.getElementById('zipDownloadText').href = allUrls['zip'];
-        }
+        checkExistsThenUpdate(allUrls)
+
+        // if (numberTracks == '2') {
+        //     // set urls
+        //     document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+        //     document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
+        //     // show audio players
+        //     document.getElementById('playerAccompaniment').classList.remove('hideElement');
+        //     document.getElementById('zipDownload').href = allUrls['zip'];
+        //     document.getElementById('zipDownloadText').href = allUrls['zip'];
+        // }
+        // if (numberTracks == '4') {
+        //     // set urls
+        //     document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+        //     document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+        //     document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+        //     document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
+        //     // show audio players
+        //     document.getElementById('playerBass').classList.remove('hideElement');
+        //     document.getElementById('playerDrums').classList.remove('hideElement');
+        //     document.getElementById('playerOther').classList.remove('hideElement');
+        //     document.getElementById('zipDownload').href = allUrls['zip'];
+        //     document.getElementById('zipDownloadText').href = allUrls['zip'];
+        // }
+        // if (numberTracks == '5') {
+        //     // set urls
+        //     document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+        //     document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+        //     document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+        //     document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
+        //     document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
+        //     // show audio players
+        //     document.getElementById('playerBass').classList.remove('hideElement');
+        //     document.getElementById('playerDrums').classList.remove('hideElement');
+        //     document.getElementById('playerOther').classList.remove('hideElement');
+        //     document.getElementById('playerPiano').classList.remove('hideElement');
+        //     document.getElementById('zipDownload').href = allUrls['zip'];
+        //     document.getElementById('zipDownloadText').href = allUrls['zip'];
+        // }
 
         async function download(audioId) {
             var url = document.getElementById(audioId).getAttribute('data-src');
@@ -651,6 +654,90 @@
             element.setAttribute('download', filename);
             element.click();
             element.remove();
+        }
+
+        async function checkExistsThenUpdate(allUrls) {
+            var check = '';
+            if (numberTracks == '2') {
+                var check = await checkIfFileExistsYet(allUrls['vocals']);
+                var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+            }
+            if (numberTracks == '4') {
+                var check = await checkIfFileExistsYet(allUrls['other']);
+                var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+            }
+            if (numberTracks == '5') {
+                var check = await checkIfFileExistsYet(allUrls['piano']);
+                var checkError = await checkIfFileExistsYet(allUrls['errorFile']);
+            }
+            if (check['status'] == 200) {
+                updateAudioElements(allUrls);
+                return
+            } else if (checkError['status'] == 200) {
+                view_error();
+                return
+            } else {
+                await new Promise(r => setTimeout(r, 2000)); //number is the delay to keep retrying
+                checkExistsThenUpdate(allUrls);
+            }
+        }
+
+        async function checkIfFileExistsYet(url) {
+            var file = {};
+            await fetch(url, { method: 'GET' })
+                .then((response) => {
+                    console.log("checking response");
+                    file = response;
+                })
+                .then((result) => {
+                    console.log("checking result");
+                })
+                .catch((error) => {
+                    console.error("checking error", error);
+                });
+            return file
+        }
+
+        function updateAudioElements(allUrls) {
+            console.log("updating audioElements");
+            if (numberTracks == '2') {
+                // set urls
+                document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+                document.getElementById('accompanimentId').setAttribute('data-src', allUrls['accompaniment']);
+                // show audio players
+                document.getElementById('playerAccompaniment').classList.remove('hideElement');
+                document.getElementById('zipDownload').href = allUrls['zip'];
+                document.getElementById('zipDownloadText').href = allUrls['zip'];
+            }
+            if (numberTracks == '4') {
+                // set urls
+                document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+                document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+                document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+                document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
+                // show audio players
+                document.getElementById('playerBass').classList.remove('hideElement');
+                document.getElementById('playerDrums').classList.remove('hideElement');
+                document.getElementById('playerOther').classList.remove('hideElement');
+                document.getElementById('zipDownload').href = allUrls['zip'];
+                document.getElementById('zipDownloadText').href = allUrls['zip'];
+            }
+            if (numberTracks == '5') {
+                // set urls
+                document.getElementById('vocalsId').setAttribute('data-src', allUrls['vocals']);
+                document.getElementById('bassId').setAttribute('data-src', allUrls['bass']);
+                document.getElementById('drumsId').setAttribute('data-src', allUrls['drums']);
+                document.getElementById('pianoId').setAttribute('data-src', allUrls['piano']);
+                document.getElementById('otherId').setAttribute('data-src', allUrls['other']);
+                // show audio players
+                document.getElementById('playerBass').classList.remove('hideElement');
+                document.getElementById('playerDrums').classList.remove('hideElement');
+                document.getElementById('playerOther').classList.remove('hideElement');
+                document.getElementById('playerPiano').classList.remove('hideElement');
+                document.getElementById('zipDownload').href = allUrls['zip'];
+                document.getElementById('zipDownloadText').href = allUrls['zip'];
+            }
+            // view_results();
         }
     </script>
 
