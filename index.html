@@ -552,7 +552,8 @@
                     </a>
                     <div id="checkoutDiv" style="width: 100%;">
                         <label class="uploadLabel" for="checkoutButton">
-                            <input id="checkoutButton" style="display: none;" onclick="triggerCheckout()" />
+                            <input id="checkoutButton" style="display: none;"
+                                onclick="triggerCheckout(); this.disabled=true" />
                             <h2 id="secureCheckoutButtonText"
                                 style="color: white; align-self: center; text-align: center; font-size: 1.3em; font-weight: 600;">
                                 Secure Checkout</h2>
@@ -562,13 +563,14 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: center;">
-                <img style="max-width: 75%;" src="assets/stripe.png" alt="">
+                    <img style="max-width: 75%;" src="assets/stripe.png" alt="">
                 </div>
             </div>
 
             <div id="donations" class="donations hideElement">
                 <div id="textToRemove">
-                    <h1 id="thankYou" class="mobileHide"><span style="color: #A68263;">Secure checkout</span> to <br>process full audio
+                    <h1 id="thankYou" class="mobileHide"><span style="color: #A68263;">Secure checkout</span> to
+                        <br>process full audio
                     </h1>
                 </div>
                 <h1 id="thankYouAlreadyPaid"><span style="color: #A68263;">Enjoy your</span> <br>free download</h1>
