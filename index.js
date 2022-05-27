@@ -34,6 +34,7 @@ function processInput(event) {
     console.log(file);
     fileToSend = files[0]
     var fileType = fileToSend.type;
+    console.log('fileType', fileType)
     beginUpload(fileType, file);
     view_chooseOptions();
 };
@@ -449,6 +450,7 @@ document.addEventListener("drop", function (event) {
         document.getElementById('originalAudioId').setAttribute('data-src', file);
         fileToSend = data;
         var fileType = fileToSend.type;
+        console.log('fileType', fileType)
         beginUpload(fileType, file);
         // uploadAndRunAI(data);
         view_chooseOptions();
