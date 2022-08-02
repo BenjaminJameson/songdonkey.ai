@@ -13,9 +13,11 @@
     z-index: -9999999;
 }
 
-.english {}
+.en {
+    display: block;
+}
 
-.chinese {
+.cn {
     display: none;
 }
 

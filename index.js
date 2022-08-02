@@ -3,7 +3,7 @@ window.onload = (event) => {
     input.addEventListener("input", processInput);
     // view_results();
     // view_error();
-    // view_chooseOptions();
+    view_chooseOptions();
     // view_loading();
 };
 
@@ -14,6 +14,19 @@ var numberTracks = '';
 var audioFileSizeMB;
 var audioLengthMinutes;
 
+function changeLang() {
+    console.log('hi')
+    let nodeList2 = document.querySelectorAll(".en");
+    console.log(nodeList2)
+    for (let i = 0; i < nodeList2.length; i++) {
+        nodeList2[i].style.display = "None";
+    }
+    let nodeList = document.querySelectorAll(".cn");
+    console.log(nodeList)
+    for (let i = 0; i < nodeList.length; i++) {
+        nodeList[i].style.display = "Block";
+    }
+}
 
 function processInput(event) {
     console.log(event);
@@ -521,7 +534,7 @@ function view_loading() {
     }
 }
 function view_results() {
-    dataLayer.push({'event': 'results_back'});
+    dataLayer.push({ 'event': 'results_back' });
     console.log('view_results()')
     var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('mainDiv').classList.add("hideElement");

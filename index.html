@@ -82,10 +82,19 @@
         </div>
         <nav id="nav" class="nav">
             <img class="navCross" src="assets/cross.svg" alt="cross icon">
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="privacyPolicy.html" target="_blank">Privacy Policy</a>
-            <span id="translateButtonTracking" style="cursor: pointer;" onclick="showTranslate()">汉字</span>
+            <a href="about.html">
+                <span class="en">About</span>
+                <span class="cn">关于</span>
+            </a>
+            <a href="contact.html">
+                <span class="en">Contact</span>
+                <span class="cn">接触</span>
+            </a>
+            <a href="privacyPolicy.html" target="_blank">
+                <span class="en">Privacy Policy</span>
+                <span class="cn">隐私政策</span>
+            </a>
+            <!-- <span id="translateButtonTracking" style="cursor: pointer;" onclick="showTranslate()">汉字</span> -->
             <script>
                 function showTranslate() {
                     document.getElementById('google_translate_element').style.display = 'block'
@@ -106,8 +115,11 @@
     <!-- main div -->
     <div id="mainDiv" class="row">
         <div class="leftSide">
-            <h1 id="title"><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
-            <h2 id="subtitle">Extract vocals and instruments with artificial intelligence</h2>
+            <h1 id="title" class="cn"><span style="color: #A68263;">SongDonkey 的</span>音频分割</h1>
+            <button onclick="changeLang()">change lang</button>
+            <h1 id="title" class="en"><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
+            <h2 id="subtitle" class="cn">用人工智能提取人声和乐器</h2>
+            <h2 id="subtitle" class="en">Extract vocals and instruments with artificial intelligence</h2>
 
             <div id="droptarget" class="droptarget">
                 <div id="insideDropTarget" class="insideDropTarget">
@@ -122,13 +134,21 @@
                     <div>
                         <label class="uploadLabel" for="audioInput">
                             <input id="audioInput" style="display: none;" type="file" accept="audio/mpeg,audio/wav" />
-                            <h2 style="color: white; align-self: center; text-align: center; font-size: x-large;">Start
+                            <h2 style="color: white; align-self: center; text-align: center; font-size: x-large;">
+                                <span class="en">Start</span>
+                                <span class="cn">开始</span>
                             </h2>
                             <img src="assets/upload.svg" alt="upload icon" width="auto" height="65%" class="uploadIcon">
                         </label>
                         <p class="mobileNoMargin" style="text-align: center; font-family: lato;"><span
-                                class="mobileHide">Or drop files here<br></span>
-                            <span style="color: #525252; font-size:smaller">Only .mp3 and .wav files</span>
+                                class="mobileHide">
+                                <span class="en">Or drop files here</span>
+                                <span class="cn">或将文件放在这里</span>
+                                <br></span>
+                            <span style="color: #525252; font-size:smaller">
+                                <span class="en">Only .mp3 and .wav files</span>
+                                <span class="cn">只有 .mp3 和 .wav 文件</span>
+                            </span>
                         </p>
                     </div>
                 </div>
@@ -137,19 +157,25 @@
                     style="justify-content: center;">
                     <form id="formOptions" style="display: flex; gap: 27px; flex-direction: column;">
                         <div id="uploadingBar" style="visibility: visible;">
-                            <p style="display: contents; color: #525252; font-family: Lato;">Uploading</p>
+                            <p style="display: contents; color: #525252; font-family: Lato;">
+                                <span class="en">Uploading</span>
+                                <span class="cn">上传</span>
+                            </p>
                             <div style="background-color: rgba(255, 255, 255, 0.5); height: 6px; border-radius: 6px;">
                                 <div id="uploadProgress" class="progress-line"></div>
                             </div>
                         </div>
                         <div style="font-family: lato;">
-                            <p style="display: contents;">Number of tracks to extract</p>
+                            <p style="display: contents;">
+                                <span class="en">Number of tracks to extract</span>
+                                <span class="cn">要提取的曲目数</span>
+                            </p>
                             <!-- <select name="tracks" id="tracks" class="dropdownOptions">
                                 <option value="2">2 (vocals, accompaniment)</option>
                                 <option value="4">4 (vocals, bass, drums, other)</option>
                                 <option value="5">5 (vocals, bass, drums, other, piano)</option>
                             </select> -->
-                            <div class="custom-select" style="width:100%;">
+                            <div class="custom-select en" style="width:100%;">
                                 <select name="tracks" id="tracks">
                                     <option value="2">2 (vocals, accompaniment)</option>
                                     <option value="2">2 (vocals, accompaniment)</option>
@@ -157,7 +183,18 @@
                                     <option value="5">5 (vocals, bass, drums, other, piano)</option>
                                 </select>
                             </div>
-                            <p style="display: contents;">Output format</p>
+                            <div class="custom-select cn" style="width:100%;">
+                                <select name="tracks" id="tracks">
+                                    <option value="2">2 (人声、伴奏)</option>
+                                    <option value="2">2 (人声、伴奏)</option>
+                                    <option value="4">4 (人声、贝斯、鼓、其他)</option>
+                                    <option value="5">5 (人声、贝斯、鼓、其他、钢琴)</option>
+                                </select>
+                            </div>
+                            <p style="display: contents;">
+                                <span class="en">Output format</span>
+                                <span class="cn">输出格式</span>
+                            </p>
                             <!-- <select name="outputFormat" id="outputFormat" class="dropdownOptions">
                                 <option value=".mp3">.mp3</option>
                                 <option value=".wav">.wav</option>
@@ -174,7 +211,9 @@
                             <label class="uploadLabel" for="formSubmit">
                                 <input id="formSubmit" style="display: none;" onclick="writeDBsplitOptions()" />
                                 <h2 style="color: white; align-self: center; text-align: center; font-size: 1.3em;">
-                                    Split audio</h2>
+                                    <span class="en">Split audio</span>
+                                    <span class="cn">分割音频</span>
+                                </h2>
                                 <img src="assets/heart.svg" alt="heart icon" width="auto" height="22px"
                                     class="uploadIcon">
                             </label>
@@ -208,15 +247,24 @@
         </div>
         <div class="rightSide">
             <div class="topBoxRight mobileHide">
-                <div>
-
+                <div class="en">
                     <h3><img class="tick" src="assets/tick.svg" alt="tick icon"></img>Always <span
                             style="color: #A68263;">Fast</span>
                     </h3>
                 </div>
-                <div>
+                <div class="cn">
+                    <h3><img class="tick" src="assets/tick.svg" alt="tick icon"></img>总是<span
+                            style="color: #A68263;">快</span>
+                    </h3>
+                </div>
+                <div class="en">
                     <h3><img class="tick" src="assets/tick.svg" alt="tick icon">No <span
                             style="color: #A68263;">Sign-up</span>
+                    </h3>
+                </div>
+                <div class="cn">
+                    <h3><img class="tick" src="assets/tick.svg" alt="tick icon">没有<span
+                            style="color: #A68263;">注册</span>
                     </h3>
                 </div>
             </div>
@@ -239,7 +287,10 @@
                                 <vm-playback-control>
                                 </vm-playback-control>
                             </vm-control>
-                            <span style="text-align: center; font-family: lato;">Example</span>
+                            <span style="text-align: center; font-family: lato;">
+                                <span class="en">Example</span>
+                                <span class="cn">例子</span>
+                            </span>
                             <vm-scrubber-control></vm-scrubber-control>
                             <vm-control>
                                 <vm-end-time />
@@ -264,7 +315,10 @@
                                 <vm-playback-control>
                                 </vm-playback-control>
                             </vm-control>
-                            <span style="text-align: center; font-family: lato;">Vocals</span>
+                            <span style="text-align: center; font-family: lato;">
+                                <span class="en">Vocals</span>
+                                <span class="cn">人声</span>
+                            </span>
                             <vm-scrubber-control></vm-scrubber-control>
                             <vm-control label="Playback" keys="k" pressed="true">
                                 <vm-end-time />
@@ -290,7 +344,10 @@
                                 <vm-playback-control>
                                 </vm-playback-control>
                             </vm-control>
-                            <span style="text-align: center; font-family: lato;">Accompaniment</span>
+                            <span style="text-align: center; font-family: lato;">
+                                <span class="en">Accompaniment</span>
+                                <span class="cn">伴奏</span>
+                            </span>
                             <vm-scrubber-control></vm-scrubber-control>
                             <vm-control label="Playback" keys="k" pressed="true">
                                 <vm-end-time />
