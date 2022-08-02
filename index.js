@@ -521,6 +521,7 @@ function view_loading() {
     }
 }
 function view_results() {
+    dataLayer.push({'event': 'results_back'});
     console.log('view_results()')
     var x = window.matchMedia("(max-width: 800px)");
     document.getElementById('mainDiv').classList.add("hideElement");
