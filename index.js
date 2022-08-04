@@ -5,6 +5,7 @@ window.onload = (event) => {
     // view_error();
     // view_chooseOptions();
     // view_loading();
+    // changeLang()
 };
 
 var fileToSend = '';
@@ -730,8 +731,13 @@ function triggerCheckout() {
     // addCookie('songdonkeyPaid', true, 0.0416) //cant put it because the 30sec splitter cant process the full one
 
     console.log('hello world stripe')
-    document.getElementById('secureCheckoutButtonText').innerHTML = 'Opening Checkout...'
-    let customerNum = { 'objectKeyNameOnly': objectKeyNameOnly, 'numberTracks': numberTracks, 'outputFormat': outputFormat }
+    if (lang == "cn") {
+        document.getElementById('secureCheckoutButtonText').innerHTML = '打开结帐...'
+    } else {
+        document.getElementById('secureCheckoutButtonText').innerHTML = 'Opening Checkout...'
+    }
+
+    let customerNum = { 'objectKeyNameOnly': objectKeyNameOnly, 'numberTracks': numberTracks, 'outputFormat': outputFormat, 'lang': lang}
 
     triggerFullSongSplitter()
     const requestOptions2 = {

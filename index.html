@@ -116,7 +116,7 @@
     <div id="mainDiv" class="row">
         <div class="leftSide">
             <h1 id="title" class="cn"><span style="color: #A68263;">SongDonkey 的</span>音频分割</h1>
-            <button onclick="changeLang()">change lang</button>
+            <!-- <button onclick="changeLang()">change lang</button> -->
             <h1 id="title" class="en"><span style="color: #A68263;">Audio</span> splitting by SongDonkey</h1>
             <h2 id="subtitle" class="cn">用人工智能提取人声和乐器</h2>
             <h2 id="subtitle" class="en">Extract vocals and instruments with artificial intelligence</h2>
@@ -376,7 +376,8 @@
         <div style="display: flex; justify-content: space-evenly; width: 100%; flex-wrap: wrap;">
 
             <div id="insideDropTarget" class="droptargetResults">
-                <h1 id="thankYou"><span style="color: #A68263;">Thank</span> you</h1>
+                <h1 id="thankYou" class="en"><span style="color: #A68263;">Thank</span> you</h1>
+                <h1 id="thankYou" class="cn"><span style="color: #A68263;">谢</span>谢</h1>
                 <!-- AUDIO PLAYERS -->
                 <div>
                     <vm-player theme="light" style="--vm-player-theme: #A68263; --vm-player-box-shadow: none">
@@ -394,7 +395,10 @@
                                     <vm-playback-control>
                                     </vm-playback-control>
                                 </vm-control>
-                                <span style="text-align: center; font-family: lato;">Original audio</span>
+                                <span style="text-align: center; font-family: lato;">
+                                    <span class="en">Original audio</span>
+                                    <span class="cn">原始音频</span>
+                                </span>
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
@@ -405,7 +409,10 @@
                                         style="width: 11px; height: 11px;">
                                     </vm-icon>
                                     <!-- Icon by mithun on freeicons.io -->
-                                    <vm-tooltip>Download</vm-tooltip>
+                                    <vm-tooltip>
+                                        <span class="en">Download</span>
+                                        <span class="cn">下载</span>
+                                    </vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -424,7 +431,10 @@
                                     <vm-playback-control>
                                     </vm-playback-control>
                                 </vm-control>
-                                <span style="text-align: center; font-family: lato;">Vocals</span>
+                                <span style="text-align: center; font-family: lato;">
+                                    <span class="en">Vocals</span>
+                                    <span class="cn">人声</span>
+                                </span>
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
@@ -435,7 +445,10 @@
                                         style="width: 11px; height: 11px;">
                                     </vm-icon>
                                     <!-- Icon by mithun on freeicons.io -->
-                                    <vm-tooltip>Download</vm-tooltip>
+                                    <vm-tooltip>
+                                        <span class="en">Download</span>
+                                        <span class="cn">下载</span>
+                                    </vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -454,7 +467,10 @@
                                     <vm-playback-control>
                                     </vm-playback-control>
                                 </vm-control>
-                                <span style="text-align: center; font-family: lato;">Accompaniment</span>
+                                <span style="text-align: center; font-family: lato;">
+                                    <span class="en">Accompaniment</span>
+                                    <span class="cn">伴奏</span>
+                                </span>
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
@@ -464,7 +480,10 @@
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
                                     </vm-icon>
-                                    <vm-tooltip>Download</vm-tooltip>
+                                    <vm-tooltip>
+                                        <span class="en">Download</span>
+                                        <span class="cn">下载</span>
+                                    </vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -483,7 +502,10 @@
                                     <vm-playback-control>
                                     </vm-playback-control>
                                 </vm-control>
-                                <span style="text-align: center; font-family: lato;">Bass</span>
+                                <span style="text-align: center; font-family: lato;">
+                                    <span class="en">Bass</span>
+                                    <span class="cn">低音</span>
+                                </span>
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
@@ -493,7 +515,10 @@
                                     <vm-icon src="assets/download.svg" label="An icon"
                                         style="width: 11px; height: 11px;">
                                     </vm-icon>
-                                    <vm-tooltip>Download</vm-tooltip>
+                                    <vm-tooltip>
+                                        <span class="en">Download</span>
+                                        <span class="cn">下载</span>
+                                    </vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -512,7 +537,10 @@
                                     <vm-playback-control>
                                     </vm-playback-control>
                                 </vm-control>
-                                <span style="text-align: center; font-family: lato;">Drums</span>
+                                <span style="text-align: center; font-family: lato;">
+                                    <span class="en">Drums</span>
+                                    <span class="cn">鼓</span>
+                                </span>
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
@@ -523,7 +551,10 @@
                                         style="width: 11px; height: 11px;">
                                     </vm-icon>
                                     <!-- Icon by mithun on freeicons.io -->
-                                    <vm-tooltip>Download</vm-tooltip>
+                                    <vm-tooltip>
+                                        <span class="en">Download</span>
+                                        <span class="cn">下载</span>
+                                    </vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -542,7 +573,10 @@
                                     <vm-playback-control>
                                     </vm-playback-control>
                                 </vm-control>
-                                <span style="text-align: center; font-family: lato;">Piano</span>
+                                <span style="text-align: center; font-family: lato;">
+                                    <span class="en">Piano</span>
+                                    <span class="cn">钢琴</span>
+                                </span>
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
@@ -553,7 +587,10 @@
                                         style="width: 11px; height: 11px;">
                                     </vm-icon>
                                     <!-- Icon by mithun on freeicons.io -->
-                                    <vm-tooltip>Download</vm-tooltip>
+                                    <vm-tooltip>
+                                        <span class="en">Download</span>
+                                        <span class="cn">下载</span>
+                                    </vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -572,7 +609,10 @@
                                     <vm-playback-control>
                                     </vm-playback-control>
                                 </vm-control>
-                                <span style="text-align: center; font-family: lato;">Other</span>
+                                <span style="text-align: center; font-family: lato;">
+                                    <span>Other</span>
+                                    <span>其他</span>
+                                </span>
                                 <vm-scrubber-control></vm-scrubber-control>
                                 <vm-control>
                                     <vm-end-time />
@@ -583,7 +623,10 @@
                                         style="width: 11px; height: 11px;">
                                     </vm-icon>
                                     <!-- Icon by mithun on freeicons.io -->
-                                    <vm-tooltip>Download</vm-tooltip>
+                                    <vm-tooltip>
+                                        <span class="en">Download</span>
+                                        <span class="cn">下载</span>
+                                    </vm-tooltip>
                                 </vm-control>
                             </vm-controls>
                         </vm-ui>
@@ -592,8 +635,14 @@
                 </div>
                 <div
                     style="display: flex; justify-content: space-between; padding: 20px; padding-bottom: 0px; font-size: large;">
-                    <p>Process full length audio:</p>
-                    <p>CN¥ $2.50 or USD $0.40</p>
+                    <p>
+                        <span class="en">Process full length audio:</span>
+                        <span class="cn">处理全长音频</span>
+                    </p>
+                    <p>
+                        <span class="en">CN¥ $2.50 or USD $0.40</span>
+                        <span class="cn">人民币 15 元</span>
+                    </p>
                 </div>
                 <div class="resultIconsDiv"
                     style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; margin-bottom: 20px;">
@@ -602,14 +651,19 @@
                             <img class="resultIcons" src="assets/downloadAll.svg" alt="download all icon" height="60px">
                             <a id="zipDownloadText" href="">
                                 <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">
-                                    Download all<br></p>
+                                    <span class="en">Download all</span>
+                                    <span class="cn">全部下载</span>
+                                    <br>
+                                </p>
                             </a>
                         </a>
                     </div>
                     <a id="restartButtonToHide" href="https://songdonkey.ai/">
                         <img class="resultIcons" src="assets/restart.svg" alt="restart icon" height="60px">
                         <p style="text-align: center; font-family: lato; margin-top: 0px; margin-bottom: 0px;">
-                            Restart<br>
+                            <span class="en">Restart</span>
+                            <span class="cn">重新开始</span>
+                            <br>
                         </p>
                     </a>
                     <div id="checkoutDiv" style="width: 100%;">
@@ -618,21 +672,28 @@
                                 onclick="triggerCheckout(); this.disabled=true" />
                             <h2 id="secureCheckoutButtonText"
                                 style="color: white; align-self: center; text-align: center; font-size: 1.3em; font-weight: 600;">
-                                Secure Checkout</h2>
+                                <span class="en">Secure Checkout</span>
+                                <span class="cn">安全支付</span>
+                            </h2>
                             <img id="starsIconCheckout" src="assets/lock.svg" alt="heart icon" width="auto"
-                                height="30px" class="uploadIcon">
+                                height="30px" class="uploadIcon en">
+                            <img src="assets/alipay.png" alt="alipay" height="80%" width="auto" class="uploadIcon cn" style="margin-right: 3%;">
                         </label>
                     </div>
                 </div>
                 <div style="display: flex; justify-content: center;">
-                    <img style="max-width: 75%;" src="assets/stripe.png" alt="">
+                    <img style="max-width: 75%;" src="assets/stripe.png" alt="stripe payment" class="en">
                 </div>
             </div>
 
             <div id="donations" class="donations hideElement">
                 <div id="textToRemove">
-                    <h1 id="thankYou" class="mobileHide"><span style="color: #A68263;">Secure checkout</span> to
-                        <br>process full audio
+                    <h1 id="thankYou" class="mobileHide"><span style="color: #A68263;">
+                            <span class="en">Secure checkout</span>
+                            <span class="cn">安全结帐</span>
+                        </span>
+                        <span class="en">to process full audio</span>
+                        <span class="cn">以处理完整音频</span>
                     </h1>
                 </div>
                 <h1 id="thankYouAlreadyPaid"><span style="color: #A68263;">Enjoy your</span> <br>free download</h1>
