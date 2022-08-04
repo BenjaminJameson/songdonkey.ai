@@ -5,7 +5,7 @@ window.onload = (event) => {
     // view_error();
     // view_chooseOptions();
     // view_loading();
-    // changeLang()
+    // changeLang();
 };
 
 var fileToSend = '';
@@ -14,6 +14,25 @@ var objectKey = '';
 var numberTracks = '';
 var audioFileSizeMB;
 var audioLengthMinutes;
+
+
+function checkIp() {
+    let ops = {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify('checkingIP')
+    };
+    console.log(ops)
+    fetch('https://huikgo6fck.execute-api.us-east-1.amazonaws.com/default', ops)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            let body = data['body']
+            console.log(body, typeof body)
+            let bodyJson = JSON.parse(body)
+            console.log(bodyJson)
+        })
+}
 
 let lang = "en";
 function changeLang() {
@@ -737,7 +756,7 @@ function triggerCheckout() {
         document.getElementById('secureCheckoutButtonText').innerHTML = 'Opening Checkout...'
     }
 
-    let customerNum = { 'objectKeyNameOnly': objectKeyNameOnly, 'numberTracks': numberTracks, 'outputFormat': outputFormat, 'lang': lang}
+    let customerNum = { 'objectKeyNameOnly': objectKeyNameOnly, 'numberTracks': numberTracks, 'outputFormat': outputFormat, 'lang': lang }
 
     triggerFullSongSplitter()
     const requestOptions2 = {
