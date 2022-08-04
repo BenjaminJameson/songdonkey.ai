@@ -3,7 +3,7 @@ window.onload = (event) => {
     input.addEventListener("input", processInput);
     // view_results();
     // view_error();
-    view_chooseOptions();
+    // view_chooseOptions();
     // view_loading();
 };
 
@@ -14,7 +14,9 @@ var numberTracks = '';
 var audioFileSizeMB;
 var audioLengthMinutes;
 
+let lang = "en";
 function changeLang() {
+    lang = "cn"
     console.log('hi')
     let nodeList2 = document.querySelectorAll(".en");
     console.log(nodeList2)
@@ -688,7 +690,8 @@ let estimated_times = {
     '14-21_2': { 'message': 'Estimated time 3 minutes 20 seconds', 'milliseconds': 200000, 'delay': 10000 },
     '14-21_5': { 'message': 'Your audio file is larger than usual, please allow up to 6 minutes', 'milliseconds': 360000, 'delay': 20000 },
     '21+_2': { 'message': 'Your audio file is larger than usual, please allow up to 5 minutes', 'milliseconds': 300000, 'delay': 20000 },
-    '21+_5': { 'message': 'Your audio file is larger than usual, please allow up to 8 minutes', 'milliseconds': 480000, 'delay': 30000 }
+    '21+_5': { 'message': 'Your audio file is larger than usual, please allow up to 8 minutes', 'milliseconds': 480000, 'delay': 30000 },
+    'cn': { 'message': '预计时间 30 秒', 'milliseconds': 30000, 'delay': 18000 }
 }
 
 function update_time_estimated(tracks) {
@@ -710,6 +713,9 @@ function update_time_estimated(tracks) {
     }
 
     let key = `${length}_${num_tracks}`
+    if (lang == "cn") {
+        key = "cn"
+    }
     let estimate = estimated_times[key]
     let estimate_message = estimate['message']
     let animation_time = estimate['milliseconds'] / 1000
