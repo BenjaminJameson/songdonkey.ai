@@ -6,6 +6,7 @@ window.onload = (event) => {
     // view_chooseOptions();
     // view_loading();
     // changeLang();
+    checkIp()
 };
 
 var fileToSend = '';
@@ -23,7 +24,7 @@ function checkIp() {
         body: JSON.stringify('checkingIP')
     };
     console.log(ops)
-    fetch('https://huikgo6fck.execute-api.us-east-1.amazonaws.com/default', ops)
+    fetch('https://huikgo6fck.execute-api.us-east-1.amazonaws.com/prod/songdonkeyCheckIP', ops)
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -31,6 +32,9 @@ function checkIp() {
             console.log(body, typeof body)
             let bodyJson = JSON.parse(body)
             console.log(bodyJson)
+            if (bodyJson['country'] == "CN") {
+                changeLang()
+            }
         })
 }
 
