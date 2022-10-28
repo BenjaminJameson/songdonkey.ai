@@ -13,6 +13,32 @@
     z-index: -9999999;
 }
 
+.sponsoredAd {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    font-family: lato;
+    font-weight: bold;
+    text-align: center;
+    background-color: white;
+    display: flex;
+    box-sizing: border-box;
+    padding: 7px;
+    border: 1px solid rgba(10, 11, 13, 0.5);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.captokButton {
+    min-height: 30px;
+    width: 100%;
+    border: none;
+    background-color: #AE896A;
+    border-radius: 7px;
+    color: white;
+    cursor: pointer;
+}
+
 .en {
     display: block;
 }
@@ -374,7 +400,8 @@ h3 {
         height: 30px;
     }
 
-    .select-items div, .select-selected {
+    .select-items div,
+    .select-selected {
         height: 30px;
         font-size: 18px;
     }
@@ -405,7 +432,8 @@ h3 {
 
 /* timed loading bar */
 
-.timed-progress, .timed-progress:before {
+.timed-progress,
+.timed-progress:before {
     height: 6px;
     width: 100%;
     margin: 0;
@@ -503,7 +531,8 @@ h3 {
 
 /*style the items (options), including the selected item:*/
 
-.select-items div, .select-selected {
+.select-items div,
+.select-selected {
     width: 100%;
     border-radius: 10px;
     background: rgb(255, 255, 255);
@@ -532,7 +561,8 @@ h3 {
     display: none;
 }
 
-.select-items div:hover, .same-as-selected {
+.select-items div:hover,
+.same-as-selected {
     background-color: #dfdfdf;
     cursor: default;
 }
